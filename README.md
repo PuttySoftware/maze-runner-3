@@ -1,2 +1,2 @@
-# maze-runner-3
- Maze Runner 3, the third game in the Maze Runner series.
+# Maze Runner 3
+ The third game in the Maze Runner series.
