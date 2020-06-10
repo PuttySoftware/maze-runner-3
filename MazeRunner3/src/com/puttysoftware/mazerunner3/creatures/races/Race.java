@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.creatures.races;
 
-import com.puttysoftware.mazerunner3.descriptionmanagers.RaceDescriptionManager;
+import com.puttysoftware.mazerunner3.loader.description.RaceDescriptionLoader;
 
 public class Race {
     private final int[] data;
@@ -19,7 +19,7 @@ public class Race {
 	}
 	this.raceID = rid;
 	this.data = rdata;
-	this.desc = RaceDescriptionManager.getRaceDescription(rid);
+	this.desc = RaceDescriptionLoader.getRaceDescription(rid);
     }
 
     public int getAttribute(final int aid) {

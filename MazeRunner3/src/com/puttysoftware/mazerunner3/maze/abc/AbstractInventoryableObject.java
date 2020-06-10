@@ -7,11 +7,11 @@ package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractInventoryableObject extends AbstractMazeObject {
     // Constructors
@@ -28,7 +28,7 @@ public abstract class AbstractInventoryableObject extends AbstractMazeObject {
 	inv.addItem(this);
 	final Application app = Boot.getApplication();
 	app.getGameManager().decay();
-	SoundManager.playSound(SoundConstants.SOUND_GRAB);
+	SoundLoader.playSound(SoundConstants.SOUND_GRAB);
     }
 
     @Override

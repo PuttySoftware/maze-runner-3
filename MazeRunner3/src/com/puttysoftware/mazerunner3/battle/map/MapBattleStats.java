@@ -13,9 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import com.puttysoftware.images.BufferedImageIcon;
+import com.puttysoftware.mazerunner3.loader.EffectImageConstants;
+import com.puttysoftware.mazerunner3.loader.EffectImageLoader;
 import com.puttysoftware.mazerunner3.maze.objects.BattleCharacter;
-import com.puttysoftware.mazerunner3.resourcemanagers.StatImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.StatImageManager;
 
 class MapBattleStats {
     // Fields
@@ -77,23 +77,23 @@ class MapBattleStats {
     }
 
     private void updateIcons() {
-	final BufferedImageIcon nameImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_NAME);
+	final BufferedImageIcon nameImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_NAME);
 	this.nameLabel.setIcon(nameImage);
-	final BufferedImageIcon teamImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_TEAM);
+	final BufferedImageIcon teamImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_TEAM);
 	this.teamLabel.setIcon(teamImage);
-	final BufferedImageIcon hpImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_HEALTH);
+	final BufferedImageIcon hpImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_HEALTH);
 	this.hpLabel.setIcon(hpImage);
-	final BufferedImageIcon mpImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_MAGIC);
+	final BufferedImageIcon mpImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_MAGIC);
 	this.mpLabel.setIcon(mpImage);
-	final BufferedImageIcon attImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_ATTACK);
+	final BufferedImageIcon attImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_ATTACK);
 	this.attLabel.setIcon(attImage);
-	final BufferedImageIcon defImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_DEFENSE);
+	final BufferedImageIcon defImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_DEFENSE);
 	this.defLabel.setIcon(defImage);
-	final BufferedImageIcon apImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_ACTIONS);
+	final BufferedImageIcon apImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_ACTIONS);
 	this.apLabel.setIcon(apImage);
-	final BufferedImageIcon attLeftImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_ATTACKS);
+	final BufferedImageIcon attLeftImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_ATTACKS);
 	this.attLeftLabel.setIcon(attLeftImage);
-	final BufferedImageIcon spImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_SPELLS);
+	final BufferedImageIcon spImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_SPELLS);
 	this.splLabel.setIcon(spImage);
     }
 }

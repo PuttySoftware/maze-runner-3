@@ -6,11 +6,11 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractBomb;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class WarpBomb extends AbstractBomb {
     // Constructors
@@ -35,7 +35,7 @@ public class WarpBomb extends AbstractBomb {
 
     @Override
     public void useActionHook(final int x, final int y, final int z) {
-	SoundManager.playSound(SoundConstants.SOUND_EXPLODE);
+	SoundLoader.playSound(SoundConstants.SOUND_EXPLODE);
 	Boot.getApplication().getMazeManager().getMaze().radialScanWarpObjects(x, y, z, MazeConstants.LAYER_OBJECT,
 		AbstractBomb.EFFECT_RADIUS);
     }

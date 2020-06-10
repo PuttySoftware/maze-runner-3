@@ -7,14 +7,14 @@ package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.objects.GhostAmulet;
 import com.puttysoftware.mazerunner3.maze.objects.PasswallBoots;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractMultipleLock extends AbstractLock {
     // Fields
@@ -70,7 +70,7 @@ public abstract class AbstractMultipleLock extends AbstractLock {
 	    fill = "";
 	}
 	Boot.getApplication().showMessage("You need " + this.keyCount + " " + this.getKey().getName() + fill);
-	SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
+	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
 
     @Override

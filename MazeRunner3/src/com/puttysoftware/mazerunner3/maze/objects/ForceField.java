@@ -6,12 +6,12 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractField;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class ForceField extends AbstractField {
     // Constructors
@@ -23,7 +23,7 @@ public class ForceField extends AbstractField {
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	Boot.getApplication().showMessage("You'll get zapped");
-	SoundManager.playSound(SoundConstants.SOUND_FORCE_FIELD);
+	SoundLoader.playSound(SoundConstants.SOUND_FORCE_FIELD);
     }
 
     @Override

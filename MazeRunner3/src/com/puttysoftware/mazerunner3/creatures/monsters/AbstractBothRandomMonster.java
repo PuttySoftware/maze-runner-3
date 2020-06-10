@@ -7,8 +7,8 @@ package com.puttysoftware.mazerunner3.creatures.monsters;
 
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.creatures.faiths.FaithManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.MonsterImageManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.MonsterNames;
+import com.puttysoftware.mazerunner3.loader.MonsterImageLoader;
+import com.puttysoftware.mazerunner3.loader.MonsterNames;
 import com.puttysoftware.randomrange.RandomRange;
 
 abstract class AbstractBothRandomMonster extends AbstractMonster {
@@ -37,7 +37,7 @@ abstract class AbstractBothRandomMonster extends AbstractMonster {
 	    final String[] types = MonsterNames.getAllNames();
 	    final RandomRange r = new RandomRange(0, types.length - 1);
 	    this.setType(types[r.generate()]);
-	    return MonsterImageManager.getImage(this.getType(), this.getElement());
+	    return MonsterImageLoader.getImage(this.getType(), this.getElement());
 	}
     }
 

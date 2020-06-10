@@ -30,6 +30,8 @@ import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.DrawGrid;
+import com.puttysoftware.mazerunner3.loader.ImageTransformer;
+import com.puttysoftware.mazerunner3.loader.ObjectImageLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
@@ -38,8 +40,6 @@ import com.puttysoftware.mazerunner3.maze.objects.Player;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectList;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.ImageTransformer;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageManager;
 import com.puttysoftware.picturepicker.PicturePicker;
 
 class MazeEditorGUI {
@@ -378,15 +378,15 @@ class MazeEditorGUI {
 		    final AbstractMazeObject obj1 = app.getMazeManager().getMaze()
 			    .getCell(y, x, this.elMgr.getEditorLocationZ(), MazeConstants.LAYER_GROUND)
 			    .editorRenderHook(y, x, this.elMgr.getEditorLocationZ());
-		    this.drawGrid.setImageCell(ObjectImageManager.getImage(obj1.getName(), obj1.getBaseID(),
+		    this.drawGrid.setImageCell(ObjectImageLoader.getImage(obj1.getName(), obj1.getBaseID(),
 			    obj1.getTemplateColor(), obj1.getAttributeID(), obj1.getAttributeTemplateColor()), xFix,
 			    yFix);
 		} catch (final ArrayIndexOutOfBoundsException ae) {
-		    this.drawGrid.setImageCell(ObjectImageManager.getImage(MazeEditorGUI.EMPTY_VOID.getName(),
+		    this.drawGrid.setImageCell(ObjectImageLoader.getImage(MazeEditorGUI.EMPTY_VOID.getName(),
 			    MazeEditorGUI.EMPTY_VOID.getBaseID(), ColorConstants.COLOR_NONE,
 			    MazeEditorGUI.EMPTY_VOID.getAttributeID(), ColorConstants.COLOR_NONE), xFix, yFix);
 		} catch (final NullPointerException np) {
-		    this.drawGrid.setImageCell(ObjectImageManager.getImage(MazeEditorGUI.EMPTY_VOID.getName(),
+		    this.drawGrid.setImageCell(ObjectImageLoader.getImage(MazeEditorGUI.EMPTY_VOID.getName(),
 			    MazeEditorGUI.EMPTY_VOID.getBaseID(), ColorConstants.COLOR_NONE,
 			    MazeEditorGUI.EMPTY_VOID.getAttributeID(), ColorConstants.COLOR_NONE), xFix, yFix);
 		}
@@ -420,14 +420,14 @@ class MazeEditorGUI {
 		    final AbstractMazeObject obj2 = m
 			    .getCell(y, x, this.elMgr.getEditorLocationZ(), MazeConstants.LAYER_OBJECT)
 			    .editorRenderHook(y, x, this.elMgr.getEditorLocationZ());
-		    final BufferedImageIcon img1 = ObjectImageManager.getImage(obj1.getName(), obj1.getBaseID(),
+		    final BufferedImageIcon img1 = ObjectImageLoader.getImage(obj1.getName(), obj1.getBaseID(),
 			    obj1.getTemplateColor(), obj1.getAttributeID(), obj1.getAttributeTemplateColor());
-		    final BufferedImageIcon img2 = ObjectImageManager.getImage(obj2.getName(), obj2.getBaseID(),
+		    final BufferedImageIcon img2 = ObjectImageLoader.getImage(obj2.getName(), obj2.getBaseID(),
 			    obj2.getTemplateColor(), obj2.getAttributeID(), obj2.getAttributeTemplateColor());
 		    if (u == y && v == x) {
 			final AbstractMazeObject obj3 = new Player().editorRenderHook(y, x,
 				this.elMgr.getEditorLocationZ());
-			final BufferedImageIcon img3 = ObjectImageManager.getImage(obj3.getName(), obj3.getBaseID(),
+			final BufferedImageIcon img3 = ObjectImageLoader.getImage(obj3.getName(), obj3.getBaseID(),
 				obj3.getTemplateColor(), obj3.getAttributeID(), obj3.getAttributeTemplateColor());
 			this.drawGrid.setImageCell(ImageTransformer.getVirtualCompositeImage(img1, img2, img3), xFix,
 				yFix);
@@ -435,11 +435,11 @@ class MazeEditorGUI {
 			this.drawGrid.setImageCell(ImageTransformer.getCompositeImage(img1, img2), xFix, yFix);
 		    }
 		} catch (final ArrayIndexOutOfBoundsException ae) {
-		    this.drawGrid.setImageCell(ObjectImageManager.getImage(MazeEditorGUI.EMPTY_VOID.getName(),
+		    this.drawGrid.setImageCell(ObjectImageLoader.getImage(MazeEditorGUI.EMPTY_VOID.getName(),
 			    MazeEditorGUI.EMPTY_VOID.getBaseID(), ColorConstants.COLOR_NONE,
 			    MazeEditorGUI.EMPTY_VOID.getAttributeID(), ColorConstants.COLOR_NONE), xFix, yFix);
 		} catch (final NullPointerException np) {
-		    this.drawGrid.setImageCell(ObjectImageManager.getImage(MazeEditorGUI.EMPTY_VOID.getName(),
+		    this.drawGrid.setImageCell(ObjectImageLoader.getImage(MazeEditorGUI.EMPTY_VOID.getName(),
 			    MazeEditorGUI.EMPTY_VOID.getBaseID(), ColorConstants.COLOR_NONE,
 			    MazeEditorGUI.EMPTY_VOID.getAttributeID(), ColorConstants.COLOR_NONE), xFix, yFix);
 		}
@@ -465,12 +465,12 @@ class MazeEditorGUI {
 	    final AbstractMazeObject obj2 = app.getMazeManager().getMaze()
 		    .getCell(y, x, this.elMgr.getEditorLocationZ(), MazeConstants.LAYER_OBJECT)
 		    .editorRenderHook(y, x, this.elMgr.getEditorLocationZ());
-	    final BufferedImageIcon img1 = ObjectImageManager.getImage(obj1.getName(), obj1.getBaseID(),
+	    final BufferedImageIcon img1 = ObjectImageLoader.getImage(obj1.getName(), obj1.getBaseID(),
 		    obj1.getTemplateColor(), obj1.getAttributeID(), obj1.getAttributeTemplateColor());
-	    final BufferedImageIcon img2 = ObjectImageManager.getImage(obj2.getName(), obj2.getBaseID(),
+	    final BufferedImageIcon img2 = ObjectImageLoader.getImage(obj2.getName(), obj2.getBaseID(),
 		    obj2.getTemplateColor(), obj2.getAttributeID(), obj2.getAttributeTemplateColor());
 	    final AbstractMazeObject obj4 = obj3.editorRenderHook(y, x, this.elMgr.getEditorLocationZ());
-	    final BufferedImageIcon img3 = ObjectImageManager.getImage(obj4.getName(), obj4.getBaseID(),
+	    final BufferedImageIcon img3 = ObjectImageLoader.getImage(obj4.getName(), obj4.getBaseID(),
 		    obj4.getTemplateColor(), obj4.getAttributeID(), obj4.getAttributeTemplateColor());
 	    this.drawGrid.setImageCell(ImageTransformer.getVirtualCompositeImage(img1, img2, img3), xFix, yFix);
 	} catch (final ArrayIndexOutOfBoundsException ae) {

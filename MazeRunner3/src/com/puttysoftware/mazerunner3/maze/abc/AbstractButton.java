@@ -6,12 +6,12 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractButton extends AbstractMazeObject {
     // Fields
@@ -69,7 +69,7 @@ public abstract class AbstractButton extends AbstractMazeObject {
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	Boot.getApplication().getMazeManager().getMaze().findAllObjectPairsAndSwap(this.offState, this.onState);
 	Boot.getApplication().getGameManager().redrawMaze();
-	SoundManager.playSound(SoundConstants.SOUND_BUTTON);
+	SoundLoader.playSound(SoundConstants.SOUND_BUTTON);
     }
 
     @Override

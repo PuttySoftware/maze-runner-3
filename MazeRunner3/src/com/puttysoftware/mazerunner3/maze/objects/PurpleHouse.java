@@ -7,11 +7,11 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractTeleportTo;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class PurpleHouse extends AbstractTeleportTo {
     // Constructors
@@ -23,7 +23,7 @@ public class PurpleHouse extends AbstractTeleportTo {
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	final Application app = Boot.getApplication();
-	SoundManager.playSound(SoundConstants.SOUND_UP);
+	SoundLoader.playSound(SoundConstants.SOUND_UP);
 	app.getGameManager().goToLevel(this.getDestinationLevel());
     }
 

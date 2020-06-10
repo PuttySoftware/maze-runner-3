@@ -9,7 +9,7 @@ import com.puttysoftware.mazerunner3.battle.BattleTarget;
 import com.puttysoftware.mazerunner3.creatures.StatConstants;
 import com.puttysoftware.mazerunner3.effects.Effect;
 import com.puttysoftware.mazerunner3.items.combat.CombatItem;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
 
 public class Rope extends CombatItem {
     public Rope() {

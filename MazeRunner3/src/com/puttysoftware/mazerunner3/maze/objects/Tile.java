@@ -5,10 +5,10 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractGround;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 
 public class Tile extends AbstractGround {
     // Constructors

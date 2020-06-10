@@ -8,11 +8,11 @@ package com.puttysoftware.mazerunner3.maze.objects;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class RandomInvisibleOneShotTeleport extends RandomInvisibleTeleport {
     // Constructors
@@ -38,7 +38,7 @@ public class RandomInvisibleOneShotTeleport extends RandomInvisibleTeleport {
 	} while (!app.getGameManager().tryUpdatePositionRelative(dr, dc));
 	app.getGameManager().updatePositionRelative(dr, dc, 0);
 	Boot.getApplication().showMessage("Invisible Teleport!");
-	SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+	SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
     }
 
     @Override

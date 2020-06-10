@@ -7,11 +7,11 @@ package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractBarrier extends AbstractWall {
     // Constants
@@ -26,7 +26,7 @@ public abstract class AbstractBarrier extends AbstractWall {
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	// Display impassable barrier message
 	Boot.getApplication().showMessage("The barrier is impassable!");
-	SoundManager.playSound(SoundConstants.SOUND_BARRIER);
+	SoundLoader.playSound(SoundConstants.SOUND_BARRIER);
 	// Hurt the player for trying to cross the barrier
 	PartyManager.getParty().getLeader().doDamagePercentage(AbstractBarrier.BARRIER_DAMAGE_PERCENT);
     }

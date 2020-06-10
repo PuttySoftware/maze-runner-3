@@ -7,12 +7,12 @@ package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.objects.PasswallBoots;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractLock extends AbstractMazeObject {
     // Fields
@@ -76,9 +76,9 @@ public abstract class AbstractLock extends AbstractMazeObject {
 		inv.removeItem(this.key);
 	    }
 	    app.getGameManager().decay();
-	    SoundManager.playSound(SoundConstants.SOUND_UNLOCK);
+	    SoundLoader.playSound(SoundConstants.SOUND_UNLOCK);
 	} else {
-	    SoundManager.playSound(SoundConstants.SOUND_WALK);
+	    SoundLoader.playSound(SoundConstants.SOUND_WALK);
 	}
     }
 

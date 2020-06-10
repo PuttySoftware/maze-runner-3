@@ -6,14 +6,14 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractWall;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class DamageableWall extends AbstractWall {
     // Constructors
@@ -42,7 +42,7 @@ public class DamageableWall extends AbstractWall {
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	final int z = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
 	Boot.getApplication().getGameManager().morph(new CrackedWall(), dirX, dirY, z, MazeConstants.LAYER_OBJECT);
-	SoundManager.playSound(SoundConstants.SOUND_CRACK);
+	SoundLoader.playSound(SoundConstants.SOUND_CRACK);
     }
 
     @Override

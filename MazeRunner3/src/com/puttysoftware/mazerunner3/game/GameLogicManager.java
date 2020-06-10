@@ -13,6 +13,9 @@ import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
+import com.puttysoftware.mazerunner3.loader.ImageTransformer;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.MazeManager;
@@ -30,9 +33,6 @@ import com.puttysoftware.mazerunner3.maze.objects.SunStone;
 import com.puttysoftware.mazerunner3.maze.objects.Wall;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ImageTransformer;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
 import com.puttysoftware.xio.legacy.XLegacyDataReader;
@@ -607,7 +607,7 @@ public class GameLogicManager {
 	    this.gui.updateAutoFinishProgress(ssCount);
 	    if (ssCount >= this.autoFinishThreshold) {
 		// Auto-Finish
-		SoundManager.playSound(SoundConstants.SOUND_FINISH);
+		SoundLoader.playSound(SoundConstants.SOUND_FINISH);
 		this.solvedLevel();
 	    }
 	}
@@ -617,7 +617,7 @@ public class GameLogicManager {
 	    this.gui.updateAlternateAutoFinishProgress(msCount);
 	    if (msCount >= this.alternateAutoFinishThreshold) {
 		// Auto-Finish
-		SoundManager.playSound(SoundConstants.SOUND_FINISH);
+		SoundLoader.playSound(SoundConstants.SOUND_FINISH);
 		this.solvedLevelAlternate();
 	    }
 	}
@@ -919,7 +919,7 @@ public class GameLogicManager {
     }
 
     private void gameOver() {
-	SoundManager.playSound(SoundConstants.SOUND_GAME_OVER);
+	SoundLoader.playSound(SoundConstants.SOUND_GAME_OVER);
 	CommonDialogs.showDialog("You have died - Game Over!");
 	this.st.commitScore();
 	this.exitGame();
@@ -1247,7 +1247,7 @@ public class GameLogicManager {
 		    - yOffset;
 	    final int destZ = m.getPlayerLocationZ();
 	    this.updatePositionAbsolute(destX, destY, destZ);
-	    SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+	    SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
 	    this.teleporting = false;
 	}
     }
@@ -1270,12 +1270,12 @@ public class GameLogicManager {
 	    final String gameName1 = target1.getGameName();
 	    final String gameName2 = target2.getGameName();
 	    Boot.getApplication().showMessage(gameName2 + " on " + gameName1);
-	    SoundManager.playSound(SoundConstants.SOUND_IDENTIFY);
+	    SoundLoader.playSound(SoundConstants.SOUND_IDENTIFY);
 	} catch (final ArrayIndexOutOfBoundsException ae) {
 	    final EmptyVoid ev = new EmptyVoid();
 	    ev.determineCurrentAppearance(destX, destY, destZ);
 	    Boot.getApplication().showMessage(ev.getGameName());
-	    SoundManager.playSound(SoundConstants.SOUND_IDENTIFY);
+	    SoundLoader.playSound(SoundConstants.SOUND_IDENTIFY);
 	}
     }
 

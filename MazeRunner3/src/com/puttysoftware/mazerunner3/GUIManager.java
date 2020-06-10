@@ -25,10 +25,10 @@ import javax.swing.border.EmptyBorder;
 import com.puttysoftware.fileutils.DirectoryUtilities;
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
+import com.puttysoftware.mazerunner3.loader.LogoImageLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeManager;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.LogoManager;
 
 public class GUIManager implements QuitHandler {
     // Fields
@@ -76,7 +76,7 @@ public class GUIManager implements QuitHandler {
     }
 
     public void updateLogo() {
-	final BufferedImageIcon logo = LogoManager.getLogo();
+	final BufferedImageIcon logo = LogoImageLoader.getLogo();
 	this.logoLabel.setIcon(logo);
 	final Image iconlogo = Boot.getApplication().getIconLogo();
 	this.guiFrame.setIconImage(iconlogo);

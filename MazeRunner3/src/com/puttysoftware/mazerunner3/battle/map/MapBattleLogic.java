@@ -27,14 +27,14 @@ import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
 import com.puttysoftware.mazerunner3.effects.Effect;
 import com.puttysoftware.mazerunner3.items.combat.CombatItem;
 import com.puttysoftware.mazerunner3.items.combat.CombatItemChucker;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.objects.BattleCharacter;
 import com.puttysoftware.mazerunner3.maze.objects.Empty;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.mazerunner3.spells.Spell;
 import com.puttysoftware.mazerunner3.spells.SpellCaster;
 import com.puttysoftware.randomrange.RandomRange;
@@ -148,7 +148,7 @@ public class MapBattleLogic extends AbstractBattle {
 	// Start Battle
 	this.battleGUI.getViewManager().setViewingWindowCenterX(this.bd.getActiveCharacter().getY());
 	this.battleGUI.getViewManager().setViewingWindowCenterY(this.bd.getActiveCharacter().getX());
-	SoundManager.playSound(SoundConstants.SOUND_BATTLE);
+	SoundLoader.playSound(SoundConstants.SOUND_BATTLE);
 	this.showBattle();
 	this.updateStatsAndEffects();
 	this.redrawBattle();
@@ -163,7 +163,7 @@ public class MapBattleLogic extends AbstractBattle {
 	    if (this.result == BattleResults.WON) {
 		final int gold = this.getGold();
 		this.vsd.setGoldWon(gold);
-		SoundManager.playSound(SoundConstants.SOUND_VICTORY);
+		SoundLoader.playSound(SoundConstants.SOUND_VICTORY);
 		CommonDialogs.showTitledDialog("The party is victorious!", "Victory!");
 		PartyManager.getParty().distributeVictorySpoils(this.vsd);
 		Boot.getApplication().getGameManager().addToScore(Math.max(1,
@@ -314,36 +314,36 @@ public class MapBattleLogic extends AbstractBattle {
 	if (this.damage == 0) {
 	    if (this.de.weaponMissed()) {
 		displayDamageString = activeName + " tries to hit " + enemyName + ", but MISSES!";
-		SoundManager.playSound(SoundConstants.SOUND_MISSED);
+		SoundLoader.playSound(SoundConstants.SOUND_MISSED);
 	    } else if (this.de.enemyDodged()) {
 		displayDamageString = activeName + " tries to hit " + enemyName + ", but " + enemyName
 			+ " AVOIDS the attack!";
-		SoundManager.playSound(SoundConstants.SOUND_MISSED);
+		SoundLoader.playSound(SoundConstants.SOUND_MISSED);
 	    } else {
 		displayDamageString = activeName + " tries to hit " + enemyName + ", but the attack is BLOCKED!";
-		SoundManager.playSound(SoundConstants.SOUND_MISSED);
+		SoundLoader.playSound(SoundConstants.SOUND_MISSED);
 	    }
 	} else {
 	    String displayDamagePrefix = "";
 	    if (this.de.weaponFumble()) {
-		SoundManager.playSound(SoundConstants.SOUND_FUMBLE);
+		SoundLoader.playSound(SoundConstants.SOUND_FUMBLE);
 		displayDamageString = "FUMBLE! " + activeName + " drops their weapon on themselves, doing "
 			+ damageString + " damage!";
 	    } else {
 		if (this.de.weaponCrit() && this.de.weaponPierce()) {
 		    displayDamagePrefix = "PIERCING CRITICAL HIT! ";
-		    SoundManager.playSound(SoundConstants.SOUND_COUNTER);
-		    SoundManager.playSound(SoundConstants.SOUND_CRITICAL);
+		    SoundLoader.playSound(SoundConstants.SOUND_COUNTER);
+		    SoundLoader.playSound(SoundConstants.SOUND_CRITICAL);
 		} else if (this.de.weaponCrit()) {
 		    displayDamagePrefix = "CRITICAL HIT! ";
-		    SoundManager.playSound(SoundConstants.SOUND_CRITICAL);
+		    SoundLoader.playSound(SoundConstants.SOUND_CRITICAL);
 		} else if (this.de.weaponPierce()) {
 		    displayDamagePrefix = "PIERCING HIT! ";
-		    SoundManager.playSound(SoundConstants.SOUND_COUNTER);
+		    SoundLoader.playSound(SoundConstants.SOUND_COUNTER);
 		}
 		displayDamageString = displayDamagePrefix + activeName + " hits " + enemyName + " for " + damageString
 			+ " damage!";
-		SoundManager.playSound(SoundConstants.SOUND_HIT);
+		SoundLoader.playSound(SoundConstants.SOUND_HIT);
 	    }
 	}
 	this.setStatusMessage(displayDamageString);
@@ -446,7 +446,7 @@ public class MapBattleLogic extends AbstractBattle {
 		this.ait.start();
 	    } else {
 		// No AI
-		SoundManager.playSound(SoundConstants.SOUND_PLAYER_UP);
+		SoundLoader.playSound(SoundConstants.SOUND_PLAYER_UP);
 	    }
 	    return false;
 	} else {
@@ -460,7 +460,7 @@ public class MapBattleLogic extends AbstractBattle {
 	    // Perform new round actions
 	    this.performNewRoundActions();
 	    // Play new round sound
-	    SoundManager.playSound(SoundConstants.SOUND_NEXT_ROUND);
+	    SoundLoader.playSound(SoundConstants.SOUND_NEXT_ROUND);
 	    // Nobody to act next, set new round flag
 	    return true;
 	}
@@ -789,7 +789,7 @@ public class MapBattleLogic extends AbstractBattle {
 		    active.setSavedObject(m.getBattleCell(px, py));
 		    m.setBattleCell(active, px, py);
 		    this.decrementActiveActionCounterBy(AbstractMazeObject.getBattleAPCost());
-		    SoundManager.playSound(SoundConstants.SOUND_WALK);
+		    SoundLoader.playSound(SoundConstants.SOUND_WALK);
 		    // If the random battle environment is enabled...
 		    if (PreferencesManager.getRandomBattleEnvironment()) {
 			// Run any script attached to ground
@@ -832,7 +832,7 @@ public class MapBattleLogic extends AbstractBattle {
 			// Handle low health for party members
 			if (enemy.isAlive() && enemy.getTeamID() == AbstractCreature.TEAM_PARTY
 				&& enemy.getCurrentHP() <= enemy.getMaximumHP() * 3 / 10) {
-			    SoundManager.playSound(SoundConstants.SOUND_LOW_HEALTH);
+			    SoundLoader.playSound(SoundConstants.SOUND_LOW_HEALTH);
 			}
 			// Handle enemy death
 			if (!enemy.isAlive()) {
@@ -883,7 +883,7 @@ public class MapBattleLogic extends AbstractBattle {
 	} else {
 	    // Confirm Flee
 	    if (!active.getTemplate().hasAI() || Boot.inDebugMode()) {
-		SoundManager.playSound(SoundConstants.SOUND_SPECIAL);
+		SoundLoader.playSound(SoundConstants.SOUND_SPECIAL);
 		final int confirm = CommonDialogs.showConfirmDialog("Embrace Cowardice?", "Battle");
 		if (confirm != JOptionPane.YES_OPTION) {
 		    this.battleGUI.getViewManager().restoreViewingWindow();
@@ -1279,7 +1279,7 @@ public class MapBattleLogic extends AbstractBattle {
 		// Handle low health for party members
 		if (active.isAlive() && active.getTeamID() == AbstractCreature.TEAM_PARTY
 			&& active.getCurrentHP() <= active.getMaximumHP() * 3 / 10) {
-		    SoundManager.playSound(SoundConstants.SOUND_LOW_HEALTH);
+		    SoundLoader.playSound(SoundConstants.SOUND_LOW_HEALTH);
 		}
 		// Cull Inactive Effects
 		active.cullInactiveEffects();

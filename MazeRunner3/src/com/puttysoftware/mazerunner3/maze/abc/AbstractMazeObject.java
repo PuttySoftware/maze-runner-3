@@ -12,6 +12,10 @@ import java.util.BitSet;
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.editor.rulesets.RuleSet;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.ObjectImageLoader;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.FormatConstants;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
@@ -25,10 +29,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.RandomGenerationRule;
 import com.puttysoftware.mazerunner3.maze.utilities.SolidProperties;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.randomrange.RandomRange;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
@@ -583,7 +583,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
      * @param inv
      */
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
+	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
 	Boot.getApplication().showMessage("Can't go that way");
     }
 
@@ -730,7 +730,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
     public void pushFailedAction(final MazeObjectInventory inv, final int x, final int y, final int pushX,
 	    final int pushY) {
 	// Play push failed sound, if it's enabled
-	SoundManager.playSound(SoundConstants.SOUND_ACTION_FAILED);
+	SoundLoader.playSound(SoundConstants.SOUND_ACTION_FAILED);
 	Boot.getApplication().getGameManager().keepNextMessage();
 	Boot.getApplication().showMessage("Can't push that");
     }
@@ -785,7 +785,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
      */
     public void pullFailedAction(final MazeObjectInventory inv, final int x, final int y, final int pullX,
 	    final int pullY) {
-	SoundManager.playSound(SoundConstants.SOUND_ACTION_FAILED);
+	SoundLoader.playSound(SoundConstants.SOUND_ACTION_FAILED);
 	Boot.getApplication().getGameManager().keepNextMessage();
 	Boot.getApplication().showMessage("Can't pull that");
     }
@@ -817,7 +817,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
     }
 
     public BufferedImageIcon battleRenderHook() {
-	return ObjectImageManager.getImage(this.getName(), this.getBattleBaseID(), this.getTemplateColor(),
+	return ObjectImageLoader.getImage(this.getName(), this.getBattleBaseID(), this.getTemplateColor(),
 		this.getAttributeID(), this.getAttributeTemplateColor());
     }
 

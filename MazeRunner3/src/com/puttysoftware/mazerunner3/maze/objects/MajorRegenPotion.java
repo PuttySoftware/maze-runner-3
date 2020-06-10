@@ -19,8 +19,8 @@ Any questions should be directed to the author via email at: fantastle@worldwiza
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.creatures.StatConstants;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractPotion;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 
 public class MajorRegenPotion extends AbstractPotion {
     // Fields

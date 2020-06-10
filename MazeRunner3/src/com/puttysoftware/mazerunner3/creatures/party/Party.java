@@ -12,9 +12,9 @@ import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.battle.VictorySpoilsDescription;
 import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
 import com.puttysoftware.mazerunner3.creatures.characterfiles.CharacterLoader;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.objects.BattleCharacter;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
 import com.puttysoftware.xio.legacy.XLegacyDataReader;
@@ -80,7 +80,7 @@ public class Party {
 	    // Level Up Check
 	    if (battler.getTemplate().checkLevelUp()) {
 		battler.getTemplate().levelUp();
-		SoundManager.playSound(SoundConstants.SOUND_LEVEL_UP);
+		SoundLoader.playSound(SoundConstants.SOUND_LEVEL_UP);
 		CommonDialogs.showTitledDialog(
 			battler.getTemplate().getName() + " reached level " + battler.getTemplate().getLevel() + "!",
 			"Level Up");

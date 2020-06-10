@@ -8,7 +8,7 @@ package com.puttysoftware.mazerunner3.names;
 import java.util.ArrayList;
 
 import com.puttysoftware.mazerunner3.Boot;
-import com.puttysoftware.mazerunner3.datamanagers.NamesDataManager;
+import com.puttysoftware.mazerunner3.loader.data.NameDataLoader;
 
 public class NamesManager {
     private static boolean CACHE_CREATED = false;
@@ -78,7 +78,7 @@ public class NamesManager {
     private static void createCache() {
 	if (!NamesManager.CACHE_CREATED) {
 	    // Create raw cache
-	    NamesManager.RAW_CACHE = NamesDataManager.getNamesData();
+	    NamesManager.RAW_CACHE = NameDataLoader.getNamesData();
 	    if (NamesManager.RAW_CACHE != null) {
 		NamesManager.CACHE = new String[NamesManager.RAW_CACHE.length][2];
 		for (int x = 0; x < NamesManager.RAW_CACHE.length; x++) {

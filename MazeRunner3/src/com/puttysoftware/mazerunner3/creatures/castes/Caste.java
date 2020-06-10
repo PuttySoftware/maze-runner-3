@@ -5,14 +5,14 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.creatures.castes;
 
-import com.puttysoftware.mazerunner3.descriptionmanagers.CasteDescriptionManager;
+import com.puttysoftware.mazerunner3.loader.description.CasteDescriptionLoader;
 
 public class Caste {
     private final int casteID;
     private final String desc;
 
     public Caste(final int cid) {
-	this.desc = CasteDescriptionManager.getCasteDescription(cid);
+	this.desc = CasteDescriptionLoader.getCasteDescription(cid);
 	this.casteID = cid;
     }
 

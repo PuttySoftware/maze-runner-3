@@ -23,17 +23,17 @@ import com.puttysoftware.mazerunner3.editor.rulesets.RuleSetPicker;
 import com.puttysoftware.mazerunner3.game.GameLogicManager;
 import com.puttysoftware.mazerunner3.items.Shop;
 import com.puttysoftware.mazerunner3.items.ShopTypes;
+import com.puttysoftware.mazerunner3.loader.ImageTransformer;
+import com.puttysoftware.mazerunner3.loader.LogoImageLoader;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.ObjectImageLoader;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeManager;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.objects.GeneratedEdge;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectList;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.ImageTransformer;
-import com.puttysoftware.mazerunner3.resourcemanagers.LogoManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.mazerunner3.scenario.ScenarioManager;
 import com.puttysoftware.updater.ProductData;
 
@@ -90,16 +90,16 @@ public class Application {
 		    continue;
 		}
 		final BufferedImageIcon[] edges = EdgeGenerator.generateAllEdgedImages(
-			ObjectImageManager.getImage(groundTypes[x].getName(), groundTypes[x].getBaseID(),
+			ObjectImageLoader.getImage(groundTypes[x].getName(), groundTypes[x].getBaseID(),
 				groundTypes[x].getTemplateColor(), groundTypes[x].getAttributeID(),
 				groundTypes[x].getAttributeTemplateColor()),
-			ObjectImageManager.getImage(groundTypes[y].getName(), groundTypes[y].getBaseID(),
+			ObjectImageLoader.getImage(groundTypes[y].getName(), groundTypes[y].getBaseID(),
 				groundTypes[y].getTemplateColor(), groundTypes[y].getAttributeID(),
 				groundTypes[y].getAttributeTemplateColor()),
 			ImageTransformer.generateEdgeColor(groundTypes[x].getTemplateColor(),
 				groundTypes[y].getTemplateColor()));
 		for (int z = 0; z < edges.length; z++) {
-		    ObjectImageManager.addImageToCache(groundTypes[x].getName() + "/" + groundTypes[y].getName()
+		    ObjectImageLoader.addImageToCache(groundTypes[x].getName() + "/" + groundTypes[y].getName()
 			    + " Transition " + edgeFriendlyNameSuffixes[z], edges[z]);
 		    final GeneratedEdge ge = new GeneratedEdge(
 			    groundTypes[x].getName()
@@ -259,15 +259,15 @@ public class Application {
     }
 
     public BufferedImageIcon getMicroLogo() {
-	return LogoManager.getMicroLogo();
+	return LogoImageLoader.getMicroLogo();
     }
 
     public Image getIconLogo() {
-	return LogoManager.getIconLogo();
+	return LogoImageLoader.getIconLogo();
     }
 
     public void playLogoSound() {
-	SoundManager.playSound(SoundConstants.SOUND_LOGO);
+	SoundLoader.playSound(SoundConstants.SOUND_LOGO);
     }
 
     private static String getVersionString() {

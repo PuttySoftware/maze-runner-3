@@ -9,14 +9,14 @@ import java.io.IOException;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.effects.MazeEffectConstants;
 import com.puttysoftware.mazerunner3.maze.objects.Empty;
 import com.puttysoftware.mazerunner3.maze.objects.PasswallBoots;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectList;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
 import com.puttysoftware.xio.legacy.XLegacyDataReader;
@@ -88,11 +88,11 @@ public abstract class AbstractContainer extends AbstractLock {
 	    } else {
 		app.getGameManager().decay();
 	    }
-	    SoundManager.playSound(SoundConstants.SOUND_UNLOCK);
+	    SoundLoader.playSound(SoundConstants.SOUND_UNLOCK);
 	    app.getGameManager().backUpPlayer(this);
 	    Boot.getApplication().getGameManager().addToScore(AbstractLock.SCORE_UNLOCK);
 	} else {
-	    SoundManager.playSound(SoundConstants.SOUND_WALK);
+	    SoundLoader.playSound(SoundConstants.SOUND_WALK);
 	}
     }
 

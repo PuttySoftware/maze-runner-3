@@ -2,6 +2,9 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMovingObject;
@@ -9,9 +12,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.ArrowTypeConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.randomrange.RandomRange;
 
 public class Monster extends AbstractMovingObject {
@@ -36,7 +36,7 @@ public class Monster extends AbstractMovingObject {
 		Boot.getApplication().getMazeManager().getMaze().postBattle(this, dirX, dirY, true);
 	    }
 	} else {
-	    SoundManager.playSound(SoundConstants.SOUND_WALK);
+	    SoundLoader.playSound(SoundConstants.SOUND_WALK);
 	}
     }
 

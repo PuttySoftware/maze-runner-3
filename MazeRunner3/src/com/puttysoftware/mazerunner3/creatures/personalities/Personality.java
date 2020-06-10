@@ -7,8 +7,8 @@ package com.puttysoftware.mazerunner3.creatures.personalities;
 
 import java.util.Arrays;
 
-import com.puttysoftware.mazerunner3.datamanagers.PersonalityDataManager;
-import com.puttysoftware.mazerunner3.descriptionmanagers.PersonalityDescriptionManager;
+import com.puttysoftware.mazerunner3.loader.data.PersonalityDataLoader;
+import com.puttysoftware.mazerunner3.loader.description.PersonalityDescriptionLoader;
 
 public final class Personality {
     private final int personalityID;
@@ -16,8 +16,8 @@ public final class Personality {
     private final String desc;
 
     Personality(final int pid) {
-	this.data = PersonalityDataManager.getPersonalityData(pid);
-	this.desc = PersonalityDescriptionManager.getPersonalityDescription(pid);
+	this.data = PersonalityDataLoader.getPersonalityData(pid);
+	this.desc = PersonalityDescriptionLoader.getPersonalityDescription(pid);
 	this.personalityID = pid;
     }
 

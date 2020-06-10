@@ -8,7 +8,7 @@ package com.puttysoftware.mazerunner3.creatures.races;
 import javax.swing.JFrame;
 
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
-import com.puttysoftware.mazerunner3.datamanagers.RaceDataManager;
+import com.puttysoftware.mazerunner3.loader.data.RaceDataLoader;
 
 public class RaceManager {
     private static boolean CACHE_CREATED = false;
@@ -51,7 +51,7 @@ public class RaceManager {
 	    RaceManager.CACHE = new Race[RaceConstants.getRacesCount()];
 	    RaceManager.DESC_CACHE = new String[RaceConstants.getRacesCount()];
 	    for (int x = 0; x < RaceConstants.getRacesCount(); x++) {
-		final int[] rdata = RaceDataManager.getRaceData(x);
+		final int[] rdata = RaceDataLoader.getRaceData(x);
 		RaceManager.CACHE[x] = new Race(x, rdata);
 		RaceManager.DESC_CACHE[x] = RaceManager.CACHE[x].getDescription();
 	    }

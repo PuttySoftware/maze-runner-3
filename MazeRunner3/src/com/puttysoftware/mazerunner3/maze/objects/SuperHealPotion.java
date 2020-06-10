@@ -7,8 +7,8 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.creatures.StatConstants;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractPotion;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 
 public class SuperHealPotion extends AbstractPotion {
     // Constructors

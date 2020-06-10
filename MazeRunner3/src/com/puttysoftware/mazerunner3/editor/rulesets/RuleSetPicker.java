@@ -23,9 +23,9 @@ import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ImageTransformer;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectList;
-import com.puttysoftware.mazerunner3.resourcemanagers.ImageTransformer;
 import com.puttysoftware.picturepicker.PicturePicker;
 
 public class RuleSetPicker {

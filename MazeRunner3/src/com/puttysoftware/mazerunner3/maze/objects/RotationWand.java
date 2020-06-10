@@ -8,11 +8,11 @@ package com.puttysoftware.mazerunner3.maze.objects;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractWand;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class RotationWand extends AbstractWand {
     // Fields
@@ -72,7 +72,7 @@ public class RotationWand extends AbstractWand {
 	} else {
 	    Boot.getApplication().getGameManager().doCounterclockwiseRotate(r);
 	}
-	SoundManager.playSound(SoundConstants.SOUND_CHANGE);
+	SoundLoader.playSound(SoundConstants.SOUND_CHANGE);
     }
 
     @Override

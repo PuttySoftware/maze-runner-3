@@ -12,8 +12,8 @@ import com.puttysoftware.mazerunner3.battle.map.MapBattleDefinitions;
 import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.effects.Effect;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 
 public class SpellCaster {
     // Fields
@@ -49,7 +49,7 @@ public class SpellCaster {
 		final Effect b = cast.getEffect();
 		// Play spell's associated sound effect, if it has one
 		final int snd = cast.getSound();
-		SoundManager.playSound(snd);
+		SoundLoader.playSound(snd);
 		b.resetEffect();
 		final AbstractCreature target = SpellCaster.resolveTarget(cast, caster.getTeamID());
 		if (target.isEffectActive(b)) {
@@ -93,7 +93,7 @@ public class SpellCaster {
 	    final String[] displayNames = book.getAllSpellNamesWithCosts();
 	    if (names != null && displayNames != null) {
 		// Play casting spell sound
-		SoundManager.playSound(SoundConstants.SOUND_SPELL);
+		SoundLoader.playSound(SoundConstants.SOUND_SPELL);
 		String dialogResult = null;
 		dialogResult = CommonDialogs.showInputDialog("Select a Spell to Cast", "Select Spell", displayNames,
 			displayNames[0]);
@@ -149,7 +149,7 @@ public class SpellCaster {
 		final Effect eff = cast.getEffect();
 		eff.setSource(caster);
 		// Play spell's associated sound effect, if it has one
-		SoundManager.playSound(cast.getSound());
+		SoundLoader.playSound(cast.getSound());
 		eff.resetEffect();
 		final AbstractCreature[] targets = SpellCaster.resolveTarget(cast, caster, teamID, aiEnabled, battle);
 		for (final AbstractCreature target : targets) {
@@ -181,7 +181,7 @@ public class SpellCaster {
 		final Effect eff = cast.getEffect();
 		eff.setSource(caster);
 		// Play spell's associated sound effect, if it has one
-		SoundManager.playSound(cast.getSound());
+		SoundLoader.playSound(cast.getSound());
 		eff.resetEffect();
 		eff.modifyEffectForPower(power);
 		final AbstractCreature[] targets = SpellCaster.resolveTarget(cast, caster, teamID, aiEnabled, battle);
@@ -240,7 +240,7 @@ public class SpellCaster {
 	    if (useAI) {
 		return new AbstractCreature[] { battle.pickOneFriendOfTeamRandomly(teamID) };
 	    } else {
-		SoundManager.playSound(SoundConstants.SOUND_ON_WHO);
+		SoundLoader.playSound(SoundConstants.SOUND_ON_WHO);
 		return new AbstractCreature[] { battle.pickOneFriendOfTeam(teamID) };
 	    }
 	case ONE_ENEMY:
@@ -248,7 +248,7 @@ public class SpellCaster {
 	    if (useAI) {
 		return new AbstractCreature[] { battle.pickOneEnemyOfTeamRandomly(teamID) };
 	    } else {
-		SoundManager.playSound(SoundConstants.SOUND_ON_WHO);
+		SoundLoader.playSound(SoundConstants.SOUND_ON_WHO);
 		return new AbstractCreature[] { battle.pickOneEnemyOfTeam(teamID) };
 	    }
 	case ALL_ALLIES:

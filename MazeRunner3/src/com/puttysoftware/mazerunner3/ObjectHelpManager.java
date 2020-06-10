@@ -17,8 +17,8 @@ import javax.swing.WindowConstants;
 
 import com.puttysoftware.diane.gui.GraphicalHelpViewer;
 import com.puttysoftware.images.BufferedImageIcon;
+import com.puttysoftware.mazerunner3.loader.ImageTransformer;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectList;
-import com.puttysoftware.mazerunner3.resourcemanagers.ImageTransformer;
 
 public class ObjectHelpManager {
     // Fields

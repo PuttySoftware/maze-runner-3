@@ -8,11 +8,11 @@ package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.objects.Empty;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 
 public abstract class AbstractBattleCharacter extends AbstractMazeObject {
     // Fields

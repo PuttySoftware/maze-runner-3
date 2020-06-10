@@ -21,8 +21,8 @@ import javax.swing.SwingConstants;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
-import com.puttysoftware.mazerunner3.datamanagers.NamesDataManager;
 import com.puttysoftware.mazerunner3.editor.namer.abc.AbstractObjectEditor;
+import com.puttysoftware.mazerunner3.loader.data.NameDataLoader;
 import com.puttysoftware.mazerunner3.names.NamesConstants;
 import com.puttysoftware.mazerunner3.names.NamesManager;
 
@@ -181,7 +181,7 @@ public class NameEditor extends AbstractObjectEditor {
 			me.edit();
 		    }
 		} else if (cmd.equals("Reset Names")) {
-		    NamesDataManager.resetNames();
+		    NameDataLoader.resetNames();
 		    NamesManager.invalidateNamesCache();
 		    CommonDialogs.showDialog("Names Reset.");
 		}

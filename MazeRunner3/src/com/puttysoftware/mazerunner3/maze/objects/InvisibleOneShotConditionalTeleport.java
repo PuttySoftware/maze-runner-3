@@ -6,8 +6,8 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractInvisibleConditionalTeleport;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 
 public class InvisibleOneShotConditionalTeleport extends AbstractInvisibleConditionalTeleport {
     // Constructors

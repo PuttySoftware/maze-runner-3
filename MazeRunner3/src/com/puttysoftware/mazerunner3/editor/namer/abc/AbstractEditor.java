@@ -20,8 +20,8 @@ import javax.swing.WindowConstants;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.editor.namer.EditorProperties;
-import com.puttysoftware.mazerunner3.resourcemanagers.ImageTransformer;
-import com.puttysoftware.mazerunner3.resourcemanagers.LogoManager;
+import com.puttysoftware.mazerunner3.loader.ImageTransformer;
+import com.puttysoftware.mazerunner3.loader.LogoImageLoader;
 
 public abstract class AbstractEditor implements EditorProperties {
     // Fields
@@ -169,7 +169,7 @@ public abstract class AbstractEditor implements EditorProperties {
 	}
 	this.messageLabel = new JLabel(" ");
 	this.outputFrame = new JFrame(this.getEditorSource());
-	final Image iconlogo = LogoManager.getIconLogo();
+	final Image iconlogo = LogoImageLoader.getIconLogo();
 	this.outputFrame.setIconImage(iconlogo);
 	this.outputPane = new Container();
 	this.borderPane = new Container();
@@ -210,7 +210,7 @@ public abstract class AbstractEditor implements EditorProperties {
 	}
 	this.messageLabel = new JLabel(" ");
 	this.outputFrame = new JFrame(this.getEditorSource());
-	final Image iconlogo = LogoManager.getIconLogo();
+	final Image iconlogo = LogoImageLoader.getIconLogo();
 	this.outputFrame.setIconImage(iconlogo);
 	this.outputPane = new Container();
 	this.borderPane = new Container();

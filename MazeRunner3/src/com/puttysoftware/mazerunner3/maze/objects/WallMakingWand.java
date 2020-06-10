@@ -5,10 +5,10 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractWand;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class WallMakingWand extends AbstractWand {
     public WallMakingWand() {
@@ -28,7 +28,7 @@ public class WallMakingWand extends AbstractWand {
     @Override
     public void useHelper(final int x, final int y, final int z) {
 	this.useAction(new Wall(), x, y, z);
-	SoundManager.playSound(SoundConstants.SOUND_CREATE);
+	SoundLoader.playSound(SoundConstants.SOUND_CREATE);
     }
 
     @Override

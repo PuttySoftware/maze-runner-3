@@ -7,6 +7,9 @@ package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.objects.Empty;
 import com.puttysoftware.mazerunner3.maze.objects.EmptyVoid;
@@ -16,9 +19,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.ArrowTypeConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.DirectionConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractGenerator extends AbstractWall {
     // Fields
@@ -115,7 +115,7 @@ public abstract class AbstractGenerator extends AbstractWall {
 	    }
 	}
 	if (flag) {
-	    SoundManager.playSound(SoundConstants.SOUND_GENERATE);
+	    SoundLoader.playSound(SoundConstants.SOUND_GENERATE);
 	    this.activateTimer(this.TIMER_DELAY);
 	    app.getGameManager().redrawMaze();
 	}
@@ -203,7 +203,7 @@ public abstract class AbstractGenerator extends AbstractWall {
 	    }
 	}
 	if (flag) {
-	    SoundManager.playSound(SoundConstants.SOUND_GENERATE);
+	    SoundLoader.playSound(SoundConstants.SOUND_GENERATE);
 	    app.getGameManager().redrawMaze();
 	}
 	// Activate the timer again

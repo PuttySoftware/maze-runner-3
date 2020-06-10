@@ -15,9 +15,9 @@ import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
+import com.puttysoftware.mazerunner3.loader.EffectImageConstants;
+import com.puttysoftware.mazerunner3.loader.EffectImageLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
-import com.puttysoftware.mazerunner3.resourcemanagers.StatImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.StatImageManager;
 
 class StatGUI {
     // Fields
@@ -76,21 +76,21 @@ class StatGUI {
     }
 
     void updateImages() {
-	final BufferedImageIcon hpImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_HEALTH);
+	final BufferedImageIcon hpImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_HEALTH);
 	this.hpLabel.setIcon(hpImage);
-	final BufferedImageIcon mpImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_MAGIC);
+	final BufferedImageIcon mpImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_MAGIC);
 	this.mpLabel.setIcon(mpImage);
-	final BufferedImageIcon goldImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_GOLD);
+	final BufferedImageIcon goldImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_GOLD);
 	this.goldLabel.setIcon(goldImage);
-	final BufferedImageIcon attackImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_ATTACK);
+	final BufferedImageIcon attackImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_ATTACK);
 	this.attackLabel.setIcon(attackImage);
-	final BufferedImageIcon defenseImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_DEFENSE);
+	final BufferedImageIcon defenseImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_DEFENSE);
 	this.defenseLabel.setIcon(defenseImage);
-	final BufferedImageIcon xpImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_XP);
+	final BufferedImageIcon xpImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_XP);
 	this.xpLabel.setIcon(xpImage);
-	final BufferedImageIcon poisonImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_POISON);
+	final BufferedImageIcon poisonImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_POISON);
 	this.poisonLabel.setIcon(poisonImage);
-	final BufferedImageIcon timeImage = StatImageManager.getImage(StatImageConstants.STAT_IMAGE_TIME);
+	final BufferedImageIcon timeImage = EffectImageLoader.getImage(EffectImageConstants.STAT_IMAGE_TIME);
 	this.timeLabel.setIcon(timeImage);
     }
 }

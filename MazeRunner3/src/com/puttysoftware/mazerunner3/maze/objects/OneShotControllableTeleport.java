@@ -7,12 +7,12 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractTeleport;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class OneShotControllableTeleport extends AbstractTeleport {
     // Constructors
@@ -24,7 +24,7 @@ public class OneShotControllableTeleport extends AbstractTeleport {
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	final Application app = Boot.getApplication();
-	SoundManager.playSound(SoundConstants.SOUND_WALK);
+	SoundLoader.playSound(SoundConstants.SOUND_WALK);
 	app.getGameManager().controllableTeleport();
 	app.getGameManager().decay();
     }

@@ -7,12 +7,12 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractTrap;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.randomrange.RandomRange;
 
 public class WarpTrap extends AbstractTrap {
@@ -50,7 +50,7 @@ public class WarpTrap extends AbstractTrap {
 	    rFloor = this.rf.generate();
 	} while (!app.getGameManager().tryUpdatePositionAbsolute(rRow, rCol, rFloor));
 	app.getGameManager().updatePositionAbsolute(rRow, rCol, rFloor);
-	SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+	SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
     }
 
     @Override

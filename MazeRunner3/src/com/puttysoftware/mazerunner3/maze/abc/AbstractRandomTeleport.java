@@ -10,13 +10,13 @@ import java.util.Random;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractRandomTeleport extends AbstractMazeObject {
     // Fields
@@ -115,7 +115,7 @@ public abstract class AbstractRandomTeleport extends AbstractMazeObject {
 	    dc = this.getDestinationColumn();
 	} while (!app.getGameManager().tryUpdatePositionRelative(dr, dc));
 	app.getGameManager().updatePositionRelative(dr, dc, 0);
-	SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+	SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
     }
 
     @Override

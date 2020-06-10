@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-import com.puttysoftware.mazerunner3.resourcemanagers.LogoManager;
+import com.puttysoftware.mazerunner3.loader.LogoImageLoader;
 
 public class AboutDialog implements AboutHandler {
     // Fields
@@ -51,7 +51,7 @@ public class AboutDialog implements AboutHandler {
 	final Container buttonPane = new Container();
 	final Container logoPane = new Container();
 	final JButton aboutOK = new JButton("OK");
-	final JLabel miniLabel = new JLabel("", LogoManager.getMiniatureLogo(), SwingConstants.LEFT);
+	final JLabel miniLabel = new JLabel("", LogoImageLoader.getMiniatureLogo(), SwingConstants.LEFT);
 	miniLabel.setLabelFor(null);
 	aboutOK.setDefaultCapable(true);
 	this.aboutFrame.getRootPane().setDefaultButton(aboutOK);

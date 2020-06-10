@@ -10,6 +10,8 @@ import java.io.IOException;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.effects.MazeEffectConstants;
 import com.puttysoftware.mazerunner3.maze.objects.GhostAmulet;
 import com.puttysoftware.mazerunner3.maze.objects.PasswallBoots;
@@ -17,8 +19,6 @@ import com.puttysoftware.mazerunner3.maze.objects.SignalCrystal;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectList;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
 import com.puttysoftware.xio.legacy.XLegacyDataReader;
@@ -50,10 +50,10 @@ public abstract class AbstractProgrammableLock extends AbstractSingleLock {
 	    }
 	    app.getGameManager().decay();
 	    // Play unlock sound, if it's enabled
-	    SoundManager.playSound(SoundConstants.SOUND_WALK);
+	    SoundLoader.playSound(SoundConstants.SOUND_WALK);
 	    Boot.getApplication().getGameManager().addToScore(AbstractLock.SCORE_UNLOCK);
 	} else {
-	    SoundManager.playSound(SoundConstants.SOUND_WALK);
+	    SoundLoader.playSound(SoundConstants.SOUND_WALK);
 	}
     }
 
@@ -66,7 +66,7 @@ public abstract class AbstractProgrammableLock extends AbstractSingleLock {
 		Boot.getApplication().showMessage("You need a " + this.getKey().getName());
 	    }
 	}
-	SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
+	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
 
     @Override

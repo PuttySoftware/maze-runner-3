@@ -6,10 +6,10 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractGem;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class DimnessGem extends AbstractGem {
     // Constructors
@@ -30,7 +30,7 @@ public class DimnessGem extends AbstractGem {
     @Override
     public void postMoveActionHook() {
 	Boot.getApplication().getMazeManager().getMaze().decrementVisionRadius();
-	SoundManager.playSound(SoundConstants.SOUND_DARKNESS);
+	SoundLoader.playSound(SoundConstants.SOUND_DARKNESS);
     }
 
     @Override

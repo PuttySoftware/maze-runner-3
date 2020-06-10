@@ -20,7 +20,7 @@ import com.puttysoftware.mazerunner3.creatures.personalities.PersonalityConstant
 import com.puttysoftware.mazerunner3.creatures.races.Race;
 import com.puttysoftware.mazerunner3.creatures.races.RaceConstants;
 import com.puttysoftware.mazerunner3.items.ItemInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.PlayerImageManager;
+import com.puttysoftware.mazerunner3.loader.PlayerImageLoader;
 import com.puttysoftware.mazerunner3.spells.SpellBook;
 import com.puttysoftware.polytable.PolyTable;
 import com.puttysoftware.xio.XDataReader;
@@ -86,7 +86,7 @@ public class PartyMember extends AbstractCreature {
     // Methods
     @Override
     public BufferedImageIcon getInitialImage() {
-	return PlayerImageManager.getImage(this);
+	return PlayerImageLoader.getImage(this);
     }
 
     public String getXPString() {

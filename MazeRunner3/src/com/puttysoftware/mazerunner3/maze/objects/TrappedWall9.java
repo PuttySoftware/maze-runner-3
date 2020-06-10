@@ -5,8 +5,8 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractTrappedWall;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 
 public class TrappedWall9 extends AbstractTrappedWall {
     public TrappedWall9() {

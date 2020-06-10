@@ -20,13 +20,13 @@ import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.DrawGrid;
 import com.puttysoftware.mazerunner3.battle.AbstractBattle;
+import com.puttysoftware.mazerunner3.loader.ImageTransformer;
+import com.puttysoftware.mazerunner3.loader.MusicLoader;
+import com.puttysoftware.mazerunner3.loader.ObjectImageLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.objects.Darkness;
 import com.puttysoftware.mazerunner3.maze.objects.EmptyVoid;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.ImageTransformer;
-import com.puttysoftware.mazerunner3.resourcemanagers.MusicManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageManager;
 
 class MapBattleGUI {
     // Fields
@@ -70,16 +70,16 @@ class MapBattleGUI {
     void showBattle() {
 	Boot.getApplication().getMenuManager().setBattleMenus();
 	if (PreferencesManager.getMusicEnabled(PreferencesManager.MUSIC_BATTLE)) {
-	    MusicManager.stopMusic();
-	    MusicManager.playMusic("battle");
+	    MusicLoader.stopMusic();
+	    MusicLoader.playMusic("battle");
 	}
 	this.battleFrame.setVisible(true);
 	this.battleFrame.setJMenuBar(Boot.getApplication().getMenuManager().getMainMenuBar());
     }
 
     void hideBattle() {
-	if (MusicManager.isMusicPlaying()) {
-	    MusicManager.stopMusic();
+	if (MusicLoader.isMusicPlaying()) {
+	    MusicLoader.stopMusic();
 	}
 	if (this.battleFrame != null) {
 	    this.battleFrame.setVisible(false);
@@ -163,7 +163,7 @@ class MapBattleGUI {
 	for (int x = 0; x < MapBattleViewingWindowManager.getViewingWindowSize(); x++) {
 	    for (int y = 0; y < MapBattleViewingWindowManager.getViewingWindowSize(); y++) {
 		final AbstractMazeObject dark = new Darkness().gameRenderHook(y, x, 0);
-		this.drawGrid.setImageCell(ObjectImageManager.getImage(dark.getName(), dark.getGameBaseID(),
+		this.drawGrid.setImageCell(ObjectImageLoader.getImage(dark.getName(), dark.getGameBaseID(),
 			dark.getGameTemplateColor(), dark.getGameAttributeID(), dark.getGameAttributeTemplateColor()),
 			x, y);
 	    }

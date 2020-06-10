@@ -7,6 +7,8 @@ package com.puttysoftware.mazerunner3.game;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
@@ -22,8 +24,6 @@ import com.puttysoftware.mazerunner3.maze.objects.Wall;
 import com.puttysoftware.mazerunner3.maze.utilities.ArrowTypeConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.DirectionResolver;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class GameArrowTask extends Thread {
     // Fields
@@ -65,7 +65,7 @@ public class GameArrowTask extends Thread {
 	    final AbstractTransientObject a = GameArrowTask.createArrowForType(this.at);
 	    final int newDir = DirectionResolver.resolveRelativeDirection(incX, incY);
 	    a.setDirection(newDir);
-	    SoundManager.playSound(SoundConstants.SOUND_ARROW);
+	    SoundLoader.playSound(SoundConstants.SOUND_ARROW);
 	    while (res) {
 		res = o.arrowHitAction(px + cumX, py + cumY, pz, incX, incY, this.at, inv);
 		if (!res) {
@@ -86,7 +86,7 @@ public class GameArrowTask extends Thread {
 	    if (res) {
 		o.arrowHitAction(px + cumX, py + cumY, pz, incX, incY, this.at, inv);
 	    }
-	    SoundManager.playSound(SoundConstants.SOUND_ARROW_DIE);
+	    SoundLoader.playSound(SoundConstants.SOUND_ARROW_DIE);
 	    app.getGameManager().arrowDone();
 	} catch (final Throwable t) {
 	    Boot.getErrorLogger().logError(t);

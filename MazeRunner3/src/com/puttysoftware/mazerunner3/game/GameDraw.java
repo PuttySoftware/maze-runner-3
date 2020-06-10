@@ -6,8 +6,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import com.puttysoftware.mazerunner3.DrawGrid;
+import com.puttysoftware.mazerunner3.loader.ImageTransformer;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.ImageTransformer;
 
 class GameDraw extends JPanel {
     private static final long serialVersionUID = 35935343464625L;

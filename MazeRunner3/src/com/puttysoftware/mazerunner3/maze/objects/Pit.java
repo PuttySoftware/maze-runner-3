@@ -8,13 +8,13 @@ package com.puttysoftware.mazerunner3.maze.objects;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.game.InfiniteRecursionException;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMovableObject;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class Pit extends StairsDown {
     // Constructors
@@ -74,7 +74,7 @@ public class Pit extends StairsDown {
 	final Application app = Boot.getApplication();
 	app.getGameManager().updatePositionAbsolute(this.getDestinationRow(), this.getDestinationColumn(),
 		this.getDestinationFloor());
-	SoundManager.playSound(SoundConstants.SOUND_FALLING);
+	SoundLoader.playSound(SoundConstants.SOUND_FALLING);
     }
 
     @Override
@@ -86,10 +86,10 @@ public class Pit extends StairsDown {
 	    if (pushed.isPushable()) {
 		final AbstractMovableObject pushedInto = (AbstractMovableObject) pushed;
 		app.getGameManager().updatePushedIntoPositionAbsolute(x, y, z - 1, x, y, z, pushedInto, this);
-		SoundManager.playSound(SoundConstants.SOUND_INTO_PIT);
+		SoundLoader.playSound(SoundConstants.SOUND_INTO_PIT);
 	    }
 	} catch (final InfiniteRecursionException ir) {
-	    SoundManager.playSound(SoundConstants.SOUND_INTO_PIT);
+	    SoundLoader.playSound(SoundConstants.SOUND_INTO_PIT);
 	    Boot.getApplication().getMazeManager().getMaze().setCell(new Empty(), x, y, z, MazeConstants.LAYER_OBJECT);
 	}
     }

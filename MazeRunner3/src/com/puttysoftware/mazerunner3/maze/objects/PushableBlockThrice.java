@@ -7,14 +7,14 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMovableObject;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class PushableBlockThrice extends AbstractMovableObject {
     // Constructors
@@ -38,7 +38,7 @@ public class PushableBlockThrice extends AbstractMovableObject {
 	    final int pushX, final int pushY) {
 	final Application app = Boot.getApplication();
 	app.getGameManager().updatePushedPosition(x, y, pushX, pushY, this);
-	SoundManager.playSound(SoundConstants.SOUND_PUSH_PULL);
+	SoundLoader.playSound(SoundConstants.SOUND_PUSH_PULL);
 	app.getGameManager().morphOther(new PushableBlockTwice(), pushX, pushY, MazeConstants.LAYER_OBJECT);
     }
 

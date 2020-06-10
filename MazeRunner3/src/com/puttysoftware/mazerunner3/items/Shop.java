@@ -13,8 +13,8 @@ import com.puttysoftware.mazerunner3.creatures.faiths.FaithConstants;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
 import com.puttysoftware.mazerunner3.items.combat.CombatItemList;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 
 public class Shop implements ShopTypes {
     // Fields
@@ -139,7 +139,7 @@ public class Shop implements ShopTypes {
     private boolean shopStage1() {
 	// Stage 1
 	// Play enter shop sound
-	SoundManager.playSound(SoundConstants.SOUND_SHOP);
+	SoundLoader.playSound(SoundConstants.SOUND_SHOP);
 	if (this.type == ShopTypes.SHOP_TYPE_WEAPONS) {
 	    this.typeChoices = WeaponConstants.getWeaponChoices();
 	    this.typeDefault = 0;
@@ -423,7 +423,7 @@ public class Shop implements ShopTypes {
 	// Stage 6
 	final PartyMember playerCharacter = PartyManager.getParty().getLeader();
 	// Play transact sound
-	SoundManager.playSound(SoundConstants.SOUND_TRANSACT);
+	SoundLoader.playSound(SoundConstants.SOUND_TRANSACT);
 	if (this.type == ShopTypes.SHOP_TYPE_WEAPONS) {
 	    playerCharacter.offsetGold(-this.cost);
 	    if (this.typeResult.equals(this.typeChoices[0])) {

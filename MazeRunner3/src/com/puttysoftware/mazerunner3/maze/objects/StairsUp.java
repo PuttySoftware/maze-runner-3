@@ -8,13 +8,13 @@ package com.puttysoftware.mazerunner3.maze.objects;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractTeleport;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class StairsUp extends AbstractTeleport {
     // Constructors
@@ -75,7 +75,7 @@ public class StairsUp extends AbstractTeleport {
 	final Application app = Boot.getApplication();
 	app.getGameManager().updatePositionAbsoluteNoEvents(this.getDestinationRow(), this.getDestinationColumn(),
 		this.getDestinationFloor(), this.getDestinationLevel());
-	SoundManager.playSound(SoundConstants.SOUND_UP);
+	SoundLoader.playSound(SoundConstants.SOUND_UP);
     }
 
     @Override

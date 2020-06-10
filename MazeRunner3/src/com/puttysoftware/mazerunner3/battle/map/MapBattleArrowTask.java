@@ -10,6 +10,8 @@ import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.battle.AbstractBattle;
 import com.puttysoftware.mazerunner3.creatures.faiths.Faith;
 import com.puttysoftware.mazerunner3.creatures.faiths.FaithConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractTransientObject;
@@ -18,8 +20,6 @@ import com.puttysoftware.mazerunner3.maze.objects.BattleCharacter;
 import com.puttysoftware.mazerunner3.maze.objects.Empty;
 import com.puttysoftware.mazerunner3.maze.objects.Wall;
 import com.puttysoftware.mazerunner3.maze.utilities.DirectionResolver;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 class MapBattleArrowTask extends Thread {
     // Fields
@@ -56,7 +56,7 @@ class MapBattleArrowTask extends Thread {
 	    final AbstractTransientObject a = MapBattleArrowTask.createArrowForType(this.at);
 	    final int newDir = DirectionResolver.resolveRelativeDirection(incX, incY);
 	    a.setDirection(newDir);
-	    SoundManager.playSound(SoundConstants.SOUND_ARROW);
+	    SoundLoader.playSound(SoundConstants.SOUND_ARROW);
 	    while (res) {
 		res = o.arrowHitBattleCheck();
 		if (!res) {
@@ -80,7 +80,7 @@ class MapBattleArrowTask extends Thread {
 	    BattleCharacter hit = null;
 	    if (o instanceof BattleCharacter) {
 		// Arrow hit a creature, hurt it
-		SoundManager.playSound(SoundConstants.SOUND_ARROW_DIE);
+		SoundLoader.playSound(SoundConstants.SOUND_ARROW_DIE);
 		hit = (BattleCharacter) o;
 		final Faith shooter = this.bd.getActiveCharacter().getTemplate().getFaith();
 		final Faith target = hit.getTemplate().getFaith();
@@ -101,7 +101,7 @@ class MapBattleArrowTask extends Thread {
 		}
 	    } else {
 		// Arrow has died
-		SoundManager.playSound(SoundConstants.SOUND_ARROW_DIE);
+		SoundLoader.playSound(SoundConstants.SOUND_ARROW_DIE);
 	    }
 	    app.getBattle().arrowDone(hit);
 	} catch (final Throwable t) {

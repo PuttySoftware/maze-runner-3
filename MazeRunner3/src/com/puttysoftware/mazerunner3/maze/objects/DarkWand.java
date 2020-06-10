@@ -6,13 +6,13 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractWand;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class DarkWand extends AbstractWand {
     // Constructors
@@ -37,11 +37,11 @@ public class DarkWand extends AbstractWand {
 	if (obj.getName().equals("Empty")) {
 	    // Create a Dark Gem
 	    this.useAction(new DarkGem(), x, y, z);
-	    SoundManager.playSound(SoundConstants.SOUND_DARKNESS);
+	    SoundLoader.playSound(SoundConstants.SOUND_DARKNESS);
 	} else if (obj.getName().equals("Light Gem")) {
 	    // Destroy the Light Gem
 	    this.useAction(new Empty(), x, y, z);
-	    SoundManager.playSound(SoundConstants.SOUND_SHATTER);
+	    SoundLoader.playSound(SoundConstants.SOUND_SHATTER);
 	}
     }
 

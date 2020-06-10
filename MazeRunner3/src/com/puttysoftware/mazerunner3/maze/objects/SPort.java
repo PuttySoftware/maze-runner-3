@@ -5,8 +5,8 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractPort;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 
 public class SPort extends AbstractPort {
     // Constructors

@@ -9,13 +9,13 @@ import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class MovingFinish extends Finish {
     // Fields
@@ -40,10 +40,10 @@ public class MovingFinish extends Finish {
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	if (this.active) {
 	    final Application app = Boot.getApplication();
-	    SoundManager.playSound(SoundConstants.SOUND_FINISH);
+	    SoundLoader.playSound(SoundConstants.SOUND_FINISH);
 	    app.getGameManager().solvedLevel();
 	} else {
-	    SoundManager.playSound(SoundConstants.SOUND_WALK);
+	    SoundLoader.playSound(SoundConstants.SOUND_WALK);
 	}
     }
 
@@ -64,7 +64,7 @@ public class MovingFinish extends Finish {
 		this.getDestinationColumn(), this.getDestinationFloor(), MazeConstants.LAYER_OBJECT);
 	if (obj instanceof MovingFinish) {
 	    final MovingFinish mf = (MovingFinish) obj;
-	    SoundManager.playSound(SoundConstants.SOUND_CHANGE);
+	    SoundLoader.playSound(SoundConstants.SOUND_CHANGE);
 	    mf.activate();
 	} else {
 	    final Application app = Boot.getApplication();
@@ -76,7 +76,7 @@ public class MovingFinish extends Finish {
 	    final int ay = this.getDestinationColumn();
 	    final int az = this.getDestinationFloor();
 	    if (saved instanceof MovingFinish && px == ax && py == ay && pz == az) {
-		SoundManager.playSound(SoundConstants.SOUND_FINISH);
+		SoundLoader.playSound(SoundConstants.SOUND_FINISH);
 		CommonDialogs.showDialog("A finish opens under your feet!");
 		app.getGameManager().solvedLevel();
 	    }

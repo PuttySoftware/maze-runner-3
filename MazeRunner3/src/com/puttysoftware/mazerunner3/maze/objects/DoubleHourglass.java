@@ -6,12 +6,12 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractTimeModifier;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class DoubleHourglass extends AbstractTimeModifier {
     // Fields
@@ -36,7 +36,7 @@ public class DoubleHourglass extends AbstractTimeModifier {
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	Boot.getApplication().getGameManager().decay();
 	Boot.getApplication().getMazeManager().getMaze().extendTimerByInitialValueDoubled();
-	SoundManager.playSound(SoundConstants.SOUND_GRAB);
+	SoundLoader.playSound(SoundConstants.SOUND_GRAB);
 	Boot.getApplication().getGameManager().addToScore(DoubleHourglass.SCORE_GRAB);
     }
 

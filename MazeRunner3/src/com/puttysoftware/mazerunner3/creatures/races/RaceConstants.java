@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.puttysoftware.fileutils.ResourceStreamReader;
-import com.puttysoftware.mazerunner3.datamanagers.RaceDataManager;
+import com.puttysoftware.mazerunner3.loader.data.RaceDataLoader;
 
 public class RaceConstants {
     public static final int RACE_ATTRIBUTE_STRENGTH_PER_LEVEL = 0;
@@ -42,7 +42,7 @@ public class RaceConstants {
     static void initRaces() {
 	if (!RaceConstants.INITED) {
 	    try (final ResourceStreamReader rsr = new ResourceStreamReader(
-		    RaceDataManager.class.getResourceAsStream("/assets/data/race/catalog.txt"))) {
+		    RaceDataLoader.class.getResourceAsStream("/assets/data/race/catalog.txt"))) {
 		// Fetch data
 		final ArrayList<String> tempNames = new ArrayList<>();
 		String input = "";

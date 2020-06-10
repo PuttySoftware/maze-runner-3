@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.puttysoftware.fileutils.ResourceStreamReader;
-import com.puttysoftware.mazerunner3.datamanagers.PersonalityDataManager;
+import com.puttysoftware.mazerunner3.loader.data.PersonalityDataLoader;
 
 public class PersonalityConstants {
     // Fields
@@ -53,7 +53,7 @@ public class PersonalityConstants {
     static void initPersonalities() {
 	if (!PersonalityConstants.INITED) {
 	    try (final ResourceStreamReader rsr = new ResourceStreamReader(
-		    PersonalityDataManager.class.getResourceAsStream("/assets/data/personality/catalog.txt"))) {
+		    PersonalityDataLoader.class.getResourceAsStream("/assets/data/personality/catalog.txt"))) {
 		// Fetch data
 		final ArrayList<String> tempNames = new ArrayList<>();
 		String input = "";

@@ -11,7 +11,7 @@ import java.io.IOException;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
-import com.puttysoftware.mazerunner3.datamanagers.NamesDataManager;
+import com.puttysoftware.mazerunner3.loader.data.NameDataLoader;
 import com.puttysoftware.mazerunner3.names.NamesManager;
 
 public class NamesFileManager {
@@ -50,7 +50,7 @@ public class NamesFileManager {
     public void saveNames() {
 	String lastUsedNamesFile = "";
 	if (this.gameNames != null) {
-	    lastUsedNamesFile = NamesDataManager.getNamesOverrideFile().toString();
+	    lastUsedNamesFile = NameDataLoader.getNamesOverrideFile().toString();
 	} else {
 	    lastUsedNamesFile = null;
 	}

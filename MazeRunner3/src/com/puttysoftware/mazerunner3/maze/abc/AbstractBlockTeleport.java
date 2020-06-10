@@ -7,10 +7,10 @@ package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractBlockTeleport extends AbstractTeleport {
     // Constructors
@@ -23,7 +23,7 @@ public abstract class AbstractBlockTeleport extends AbstractTeleport {
 
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	SoundManager.playSound(SoundConstants.SOUND_WALK);
+	SoundLoader.playSound(SoundConstants.SOUND_WALK);
     }
 
     @Override
@@ -33,7 +33,7 @@ public abstract class AbstractBlockTeleport extends AbstractTeleport {
 	final AbstractMovableObject pushedInto = (AbstractMovableObject) mo;
 	app.getGameManager().updatePushedIntoPositionAbsolute(this.getDestinationRow(), this.getDestinationColumn(),
 		this.getDestinationFloor(), x, y, z, pushedInto, this);
-	SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+	SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
     }
 
     @Override
@@ -43,6 +43,6 @@ public abstract class AbstractBlockTeleport extends AbstractTeleport {
 	final AbstractMovableObject pushedInto = (AbstractMovableObject) mo;
 	app.getGameManager().updatePushedIntoPositionAbsolute(this.getDestinationRow(), this.getDestinationColumn(),
 		this.getDestinationFloor(), x, y, z, pushedInto, this);
-	SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+	SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
     }
 }

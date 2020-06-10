@@ -6,12 +6,12 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractSingleLock;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class BrickWall extends AbstractSingleLock {
     // Constructors
@@ -24,7 +24,7 @@ public class BrickWall extends AbstractSingleLock {
 	if (this.isConditionallyDirectionallySolid(ie, dirX, dirY, inv)) {
 	    Boot.getApplication().showMessage("You need a hammer");
 	}
-	SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
+	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
 
     @Override

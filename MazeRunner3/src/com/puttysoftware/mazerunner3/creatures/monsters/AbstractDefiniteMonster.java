@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.creatures.monsters;
 
 import com.puttysoftware.images.BufferedImageIcon;
-import com.puttysoftware.mazerunner3.resourcemanagers.MonsterImageManager;
+import com.puttysoftware.mazerunner3.loader.MonsterImageLoader;
 
 abstract class AbstractDefiniteMonster extends AbstractMonster {
     // Constructors
@@ -30,7 +30,7 @@ abstract class AbstractDefiniteMonster extends AbstractMonster {
 	if (this.getLevel() == 0) {
 	    return null;
 	} else {
-	    return MonsterImageManager.getImage(this.getType(), this.getElement());
+	    return MonsterImageLoader.getImage(this.getType(), this.getElement());
 	}
     }
 

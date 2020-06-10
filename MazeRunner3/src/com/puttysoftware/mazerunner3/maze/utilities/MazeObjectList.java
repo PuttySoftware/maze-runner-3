@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ImageTransformer;
+import com.puttysoftware.mazerunner3.loader.ObjectImageLoader;
 import com.puttysoftware.mazerunner3.maze.FormatConstants;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.legacy.LegacyFormatConstants;
 import com.puttysoftware.mazerunner3.maze.objects.*;
-import com.puttysoftware.mazerunner3.resourcemanagers.ImageTransformer;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageManager;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
 import com.puttysoftware.xio.legacy.XLegacyDataReader;
@@ -360,7 +360,7 @@ public class MazeObjectList {
 	final AbstractMazeObject[] objects = this.getAllObjects();
 	final BufferedImageIcon[] allEditorAppearances = new BufferedImageIcon[objects.length];
 	for (int x = 0; x < allEditorAppearances.length; x++) {
-	    allEditorAppearances[x] = ImageTransformer.getTransformedImage(ObjectImageManager.getImage(
+	    allEditorAppearances[x] = ImageTransformer.getTransformedImage(ObjectImageLoader.getImage(
 		    objects[x].getName(), objects[x].getBaseID(), objects[x].getTemplateColor(),
 		    objects[x].getAttributeID(), objects[x].getAttributeTemplateColor()));
 	}
@@ -373,7 +373,7 @@ public class MazeObjectList {
 	int objectCount = 0;
 	for (int x = 0; x < objects.length; x++) {
 	    if (objects[x].getLayer() == MazeConstants.LAYER_GROUND) {
-		tempAllGroundLayerEditorAppearances[x] = ImageTransformer.getTransformedImage(ObjectImageManager
+		tempAllGroundLayerEditorAppearances[x] = ImageTransformer.getTransformedImage(ObjectImageLoader
 			.getImage(objects[x].getName(), objects[x].getBaseID(), objects[x].getTemplateColor(),
 				objects[x].getAttributeID(), objects[x].getAttributeTemplateColor()));
 	    }
@@ -400,7 +400,7 @@ public class MazeObjectList {
 	int objectCount = 0;
 	for (int x = 0; x < objects.length; x++) {
 	    if (objects[x].getLayer() == MazeConstants.LAYER_OBJECT) {
-		tempAllObjectLayerEditorAppearances[x] = ImageTransformer.getTransformedImage(ObjectImageManager
+		tempAllObjectLayerEditorAppearances[x] = ImageTransformer.getTransformedImage(ObjectImageLoader
 			.getImage(objects[x].getName(), objects[x].getBaseID(), objects[x].getTemplateColor(),
 				objects[x].getAttributeID(), objects[x].getAttributeTemplateColor()));
 	    }
@@ -427,7 +427,7 @@ public class MazeObjectList {
 	int objectCount = 0;
 	for (int x = 0; x < objects.length; x++) {
 	    if (objects[x].isOfType(TypeConstants.TYPE_CONTAINABLE)) {
-		tempAllContainableObjectEditorAppearances[x] = ImageTransformer.getTransformedImage(ObjectImageManager
+		tempAllContainableObjectEditorAppearances[x] = ImageTransformer.getTransformedImage(ObjectImageLoader
 			.getImage(objects[x].getName(), objects[x].getBaseID(), objects[x].getTemplateColor(),
 				objects[x].getAttributeID(), objects[x].getAttributeTemplateColor()));
 	    }

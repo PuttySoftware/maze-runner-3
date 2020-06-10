@@ -6,12 +6,12 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
 package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.objects.Empty;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractBomb extends AbstractUsableObject {
     // Fields
@@ -44,7 +44,7 @@ public abstract class AbstractBomb extends AbstractUsableObject {
 
     @Override
     public final void useAction(final AbstractMazeObject mo, final int x, final int y, final int z) {
-	SoundManager.playSound(SoundConstants.SOUND_EXPLODE);
+	SoundLoader.playSound(SoundConstants.SOUND_EXPLODE);
 	this.useActionHook(x, y, z);
     }
 

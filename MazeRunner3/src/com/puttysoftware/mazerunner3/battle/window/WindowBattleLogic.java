@@ -16,12 +16,12 @@ import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
 import com.puttysoftware.mazerunner3.effects.Effect;
 import com.puttysoftware.mazerunner3.items.combat.CombatItemChucker;
+import com.puttysoftware.mazerunner3.loader.MusicLoader;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.objects.BattleCharacter;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.MusicManager;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.mazerunner3.spells.SpellCaster;
 import com.puttysoftware.randomrange.RandomRange;
 
@@ -83,19 +83,19 @@ public class WindowBattleLogic extends AbstractBattle {
 	} else if (actionToPerform == AbstractWindowAIRoutine.ACTION_STEAL) {
 	    success = this.steal();
 	    if (success) {
-		SoundManager.playSound(SoundConstants.SOUND_DRAIN);
+		SoundLoader.playSound(SoundConstants.SOUND_DRAIN);
 		this.updateMessageAreaPostSteal();
 	    } else {
-		SoundManager.playSound(SoundConstants.SOUND_ACTION_FAILED);
+		SoundLoader.playSound(SoundConstants.SOUND_ACTION_FAILED);
 		this.updateMessageAreaStealFailed();
 	    }
 	} else if (actionToPerform == AbstractWindowAIRoutine.ACTION_DRAIN) {
 	    success = this.drain();
 	    if (success) {
-		SoundManager.playSound(SoundConstants.SOUND_DRAIN);
+		SoundLoader.playSound(SoundConstants.SOUND_DRAIN);
 		this.updateMessageAreaPostDrain();
 	    } else {
-		SoundManager.playSound(SoundConstants.SOUND_ACTION_FAILED);
+		SoundLoader.playSound(SoundConstants.SOUND_ACTION_FAILED);
 		this.updateMessageAreaDrainFailed();
 	    }
 	} else if (actionToPerform == AbstractWindowAIRoutine.ACTION_USE_ITEM) {
@@ -219,22 +219,22 @@ public class WindowBattleLogic extends AbstractBattle {
 	    if (this.de.weaponFumble()) {
 		displayPlayerDamageString = "FUMBLE! You drop your weapon, doing " + playerFumbleDamageString
 			+ " damage to yourself!";
-		SoundManager.playSound(SoundConstants.SOUND_FUMBLE);
+		SoundLoader.playSound(SoundConstants.SOUND_FUMBLE);
 	    } else {
 		if (this.damage == 0) {
 		    displayPlayerDamageString = "You try to hit the " + enemyName + ", but MISS!";
-		    SoundManager.playSound(SoundConstants.SOUND_MISSED);
+		    SoundLoader.playSound(SoundConstants.SOUND_MISSED);
 		} else if (this.damage < 0) {
 		    displayPlayerDamageString = "You try to hit the " + enemyName + ", but are RIPOSTED for "
 			    + -this.damage + " damage!";
-		    SoundManager.playSound(SoundConstants.SOUND_COUNTER);
+		    SoundLoader.playSound(SoundConstants.SOUND_COUNTER);
 		} else {
 		    displayPlayerDamageString = "You hit the " + enemyName + " for " + playerDamageString + " damage!";
-		    SoundManager.playSound(SoundConstants.SOUND_HIT);
+		    SoundLoader.playSound(SoundConstants.SOUND_HIT);
 		}
 		if (this.de.weaponCrit()) {
 		    playerWhackString += "CRITICAL HIT!\n";
-		    SoundManager.playSound(SoundConstants.SOUND_CRITICAL);
+		    SoundLoader.playSound(SoundConstants.SOUND_CRITICAL);
 		}
 		if (this.de.weaponPierce()) {
 		    playerWhackString += "Your attack pierces the " + enemyName + "'s armor!\n";
@@ -256,23 +256,23 @@ public class WindowBattleLogic extends AbstractBattle {
 	    if (this.de.weaponFumble()) {
 		displayEnemyDamageString = "FUMBLE! The " + enemyName + " drops its weapon, doing "
 			+ enemyFumbleDamageString + " damage to itself!";
-		SoundManager.playSound(SoundConstants.SOUND_FUMBLE);
+		SoundLoader.playSound(SoundConstants.SOUND_FUMBLE);
 		enemyWhackString = "";
 	    } else {
 		if (this.damage == 0) {
 		    displayEnemyDamageString = "The " + enemyName + " tries to hit you, but MISSES!";
-		    SoundManager.playSound(SoundConstants.SOUND_MISSED);
+		    SoundLoader.playSound(SoundConstants.SOUND_MISSED);
 		} else if (this.damage < 0) {
 		    displayEnemyDamageString = "The " + enemyName + " tries to hit you, but you RIPOSTE for "
 			    + -this.damage + " damage!";
-		    SoundManager.playSound(SoundConstants.SOUND_COUNTER);
+		    SoundLoader.playSound(SoundConstants.SOUND_COUNTER);
 		} else {
 		    displayEnemyDamageString = "The " + enemyName + " hits you for " + enemyDamageString + " damage!";
-		    SoundManager.playSound(SoundConstants.SOUND_HIT);
+		    SoundLoader.playSound(SoundConstants.SOUND_HIT);
 		}
 		if (this.de.weaponCrit()) {
 		    enemyWhackString += "CRITICAL HIT!\n";
-		    SoundManager.playSound(SoundConstants.SOUND_CRITICAL);
+		    SoundLoader.playSound(SoundConstants.SOUND_CRITICAL);
 		}
 		if (this.de.weaponPierce()) {
 		    enemyWhackString += "The " + enemyName + "'s attack pierces YOUR armor!\n";
@@ -288,9 +288,9 @@ public class WindowBattleLogic extends AbstractBattle {
     public void doBattle() {
 	Boot.getApplication().getGameManager().hideOutput();
 	if (PreferencesManager.getMusicEnabled(PreferencesManager.MUSIC_BATTLE)) {
-	    MusicManager.playMusic("battle");
+	    MusicLoader.playMusic("battle");
 	}
-	SoundManager.playSound(SoundConstants.SOUND_BATTLE);
+	SoundLoader.playSound(SoundConstants.SOUND_BATTLE);
 	this.enemy = MonsterFactory.getNewMonsterInstance(true, true, true, false);
 	this.enemy.loadMonster();
 	this.enemyDidDamage = false;
@@ -500,7 +500,7 @@ public class WindowBattleLogic extends AbstractBattle {
     @Override
     public void doResult() {
 	if (PreferencesManager.getMusicEnabled(PreferencesManager.MUSIC_BATTLE)) {
-	    MusicManager.stopMusic();
+	    MusicLoader.stopMusic();
 	}
 	final PartyMember playerCharacter = PartyManager.getParty().getLeader();
 	final AbstractMonster m = this.enemy;
@@ -508,14 +508,14 @@ public class WindowBattleLogic extends AbstractBattle {
 	    this.setStatusMessage("You gain " + m.getExperience() + " experience and " + m.getGold() + " Gold.");
 	    playerCharacter.offsetExperience(m.getExperience());
 	    playerCharacter.offsetGold(m.getGold());
-	    SoundManager.playSound(SoundConstants.SOUND_VICTORY);
+	    SoundLoader.playSound(SoundConstants.SOUND_VICTORY);
 	    Boot.getApplication().getGameManager().addToScore(m.getExperience() + m.getGold());
 	} else if (this.result == BattleResults.PERFECT) {
 	    this.setStatusMessage("You gain " + m.getExperience() + " experience and " + m.getGold() + " Gold,\nplus "
 		    + m.getPerfectBonusGold() + " extra gold for a perfect fight!");
 	    playerCharacter.offsetExperience(m.getExperience());
 	    playerCharacter.offsetGold(m.getGold() + m.getPerfectBonusGold());
-	    SoundManager.playSound(SoundConstants.SOUND_VICTORY);
+	    SoundLoader.playSound(SoundConstants.SOUND_VICTORY);
 	    Boot.getApplication().getGameManager()
 		    .addToScore(m.getExperience() + m.getGold() + m.getPerfectBonusGold());
 	} else if (this.result == BattleResults.LOST) {
@@ -540,7 +540,7 @@ public class WindowBattleLogic extends AbstractBattle {
 	if (playerCharacter.checkLevelUp()) {
 	    playerCharacter.levelUp();
 	    if (PreferencesManager.getSoundsEnabled()) {
-		SoundManager.playSound(SoundConstants.SOUND_LEVEL_UP);
+		SoundLoader.playSound(SoundConstants.SOUND_LEVEL_UP);
 	    }
 	    this.setStatusMessage("You reached level " + playerCharacter.getLevel() + ".");
 	}

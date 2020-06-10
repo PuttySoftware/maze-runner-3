@@ -8,7 +8,7 @@ package com.puttysoftware.mazerunner3.creatures.monsters;
 import com.puttysoftware.mazerunner3.battle.BattleTarget;
 import com.puttysoftware.mazerunner3.creatures.StatConstants;
 import com.puttysoftware.mazerunner3.effects.Effect;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.spells.Spell;
 import com.puttysoftware.mazerunner3.spells.SpellBook;
 

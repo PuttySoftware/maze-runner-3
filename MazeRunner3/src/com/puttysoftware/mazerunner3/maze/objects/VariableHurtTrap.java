@@ -7,12 +7,12 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractTrap;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.randomrange.RandomRange;
 
 public class VariableHurtTrap extends AbstractTrap {
@@ -45,7 +45,7 @@ public class VariableHurtTrap extends AbstractTrap {
 	}
 	this.damageDealt = new RandomRange(VariableHurtTrap.MIN_DAMAGE, this.maxDamage);
 	PartyManager.getParty().getLeader().doDamage(this.damageDealt.generate());
-	SoundManager.playSound(SoundConstants.SOUND_BARRIER);
+	SoundLoader.playSound(SoundConstants.SOUND_BARRIER);
 	Boot.getApplication().getGameManager().decay();
     }
 

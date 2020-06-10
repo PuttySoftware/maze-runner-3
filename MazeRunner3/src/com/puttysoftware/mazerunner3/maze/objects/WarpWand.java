@@ -7,12 +7,12 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractWand;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class WarpWand extends AbstractWand {
     public WarpWand() {
@@ -32,7 +32,7 @@ public class WarpWand extends AbstractWand {
     @Override
     public void useHelper(final int x, final int y, final int z) {
 	this.useAction(null, x, y, z);
-	SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+	SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
     }
 
     @Override

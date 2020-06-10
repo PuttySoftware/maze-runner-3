@@ -8,8 +8,8 @@ package com.puttysoftware.mazerunner3.creatures.faiths;
 import java.awt.Color;
 import java.util.Arrays;
 
-import com.puttysoftware.mazerunner3.datamanagers.FaithDataManager;
-import com.puttysoftware.mazerunner3.descriptionmanagers.FaithDescriptionManager;
+import com.puttysoftware.mazerunner3.loader.data.FaithDataLoader;
+import com.puttysoftware.mazerunner3.loader.description.FaithDescriptionLoader;
 
 public final class Faith {
     private final int faithID;
@@ -17,8 +17,8 @@ public final class Faith {
     private final String desc;
 
     Faith(final int fid) {
-	this.multipliers = FaithDataManager.getFaithData(fid);
-	this.desc = FaithDescriptionManager.getFaithDescription(fid);
+	this.multipliers = FaithDataLoader.getFaithData(fid);
+	this.desc = FaithDescriptionLoader.getFaithDescription(fid);
 	this.faithID = fid;
     }
 

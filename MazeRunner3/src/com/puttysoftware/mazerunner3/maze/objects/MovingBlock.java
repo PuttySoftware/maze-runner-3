@@ -1,9 +1,9 @@
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMovingObject;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 import com.puttysoftware.randomrange.RandomRange;
 
 public class MovingBlock extends AbstractMovingObject {

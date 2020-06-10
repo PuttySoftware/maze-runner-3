@@ -13,8 +13,8 @@ import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.effects.Effect;
 import com.puttysoftware.mazerunner3.items.ItemInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 
 public class CombatItemChucker {
     // Fields
@@ -40,7 +40,7 @@ public class CombatItemChucker {
 	    final Effect e = used.getEffect();
 	    // Play item's associated sound effect, if it has one
 	    final int snd = used.getSound();
-	    SoundManager.playSound(snd);
+	    SoundLoader.playSound(snd);
 	    e.resetEffect();
 	    final AbstractCreature target = CombatItemChucker.resolveTarget(used, user.getTeamID());
 	    used.use();
@@ -93,7 +93,7 @@ public class CombatItemChucker {
 	    final String[] displayNames = ii.generateCombatUsableDisplayStringArray();
 	    if (names != null && displayNames != null) {
 		// Play using item sound
-		SoundManager.playSound(SoundConstants.SOUND_SPELL);
+		SoundLoader.playSound(SoundConstants.SOUND_SPELL);
 		String dialogResult = null;
 		dialogResult = CommonDialogs.showInputDialog("Select an Item to Use", "Select Item", displayNames,
 			displayNames[0]);
@@ -131,7 +131,7 @@ public class CombatItemChucker {
 	    final Effect e = used.getEffect();
 	    e.setSource(CombatItemChucker.SOURCE);
 	    // Play item's associated sound effect, if it has one
-	    SoundManager.playSound(used.getSound());
+	    SoundLoader.playSound(used.getSound());
 	    used.use();
 	    e.resetEffect();
 	    final AbstractCreature[] targets = CombatItemChucker.resolveTarget(used, user, teamID, aiEnabled, battle);
@@ -163,7 +163,7 @@ public class CombatItemChucker {
 	    if (useAI) {
 		return new AbstractCreature[] { battle.pickOneFriendOfTeamRandomly(teamID) };
 	    } else {
-		SoundManager.playSound(SoundConstants.SOUND_ON_WHO);
+		SoundLoader.playSound(SoundConstants.SOUND_ON_WHO);
 		return new AbstractCreature[] { battle.pickOneFriendOfTeam(teamID) };
 	    }
 	case ONE_ENEMY:
@@ -171,7 +171,7 @@ public class CombatItemChucker {
 	    if (useAI) {
 		return new AbstractCreature[] { battle.pickOneEnemyOfTeamRandomly(teamID) };
 	    } else {
-		SoundManager.playSound(SoundConstants.SOUND_ON_WHO);
+		SoundLoader.playSound(SoundConstants.SOUND_ON_WHO);
 		return new AbstractCreature[] { battle.pickOneEnemyOfTeam(teamID) };
 	    }
 	case ALL_ALLIES:

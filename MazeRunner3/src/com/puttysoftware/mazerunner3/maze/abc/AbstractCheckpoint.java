@@ -8,11 +8,11 @@ package com.puttysoftware.mazerunner3.maze.abc;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractCheckpoint extends AbstractMazeObject {
     // Fields
@@ -79,14 +79,14 @@ public abstract class AbstractCheckpoint extends AbstractMazeObject {
 	final Application app = Boot.getApplication();
 	app.showMessage(
 		"You may NOT pass: you need " + this.keyCount + " " + this.key.getPluralName() + " to continue.");
-	SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
+	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
 
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	final Application app = Boot.getApplication();
 	app.showMessage("You may pass.");
-	SoundManager.playSound(SoundConstants.SOUND_WALK);
+	SoundLoader.playSound(SoundConstants.SOUND_WALK);
     }
 
     @Override

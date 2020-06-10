@@ -6,13 +6,13 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractTrap;
 import com.puttysoftware.mazerunner3.maze.effects.MazeEffectConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class DizzinessTrap extends AbstractTrap {
     // Fields
@@ -39,7 +39,7 @@ public class DizzinessTrap extends AbstractTrap {
 	Boot.getApplication().showMessage("You feel dizzy!");
 	Boot.getApplication().getGameManager().activateEffect(MazeEffectConstants.EFFECT_DIZZY,
 		DizzinessTrap.EFFECT_DURATION);
-	SoundManager.playSound(SoundConstants.SOUND_DIZZY);
+	SoundLoader.playSound(SoundConstants.SOUND_DIZZY);
     }
 
     @Override

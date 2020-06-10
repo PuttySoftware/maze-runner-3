@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.puttysoftware.fileutils.ResourceStreamReader;
-import com.puttysoftware.mazerunner3.datamanagers.FaithDataManager;
+import com.puttysoftware.mazerunner3.loader.data.FaithDataLoader;
 import com.puttysoftware.mazerunner3.names.NamesConstants;
 import com.puttysoftware.mazerunner3.names.NamesManager;
 
@@ -83,7 +83,7 @@ public class FaithConstants {
 		// Fetch data
 		final ArrayList<String> tempNames = new ArrayList<>();
 		try (final ResourceStreamReader rsr1 = new ResourceStreamReader(
-			FaithDataManager.class.getResourceAsStream("/assets/data/faith/catalog.txt"))) {
+			FaithDataLoader.class.getResourceAsStream("/assets/data/faith/catalog.txt"))) {
 		    String input1 = "";
 		    while (input1 != null) {
 			input1 = rsr1.readString();
@@ -96,7 +96,7 @@ public class FaithConstants {
 		FaithConstants.FAITHS_COUNT = FaithConstants.FAITH_NAMES.length;
 		final ArrayList<String> tempColors = new ArrayList<>();
 		try (final ResourceStreamReader rsr2 = new ResourceStreamReader(
-			FaithDataManager.class.getResourceAsStream("/assets/data/faith/colors.txt"))) {
+			FaithDataLoader.class.getResourceAsStream("/assets/data/faith/colors.txt"))) {
 		    String input2 = "";
 		    while (input2 != null) {
 			input2 = rsr2.readString();

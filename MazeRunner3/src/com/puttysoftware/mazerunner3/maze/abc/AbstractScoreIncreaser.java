@@ -6,13 +6,13 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
 package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.objects.Empty;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractScoreIncreaser extends AbstractMazeObject {
     // Constructors
@@ -29,7 +29,7 @@ public abstract class AbstractScoreIncreaser extends AbstractMazeObject {
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	Boot.getApplication().getGameManager().decay();
-	SoundManager.playSound(SoundConstants.SOUND_GRAB);
+	SoundLoader.playSound(SoundConstants.SOUND_GRAB);
 	this.postMoveActionHook();
 	Boot.getApplication().getGameManager().redrawMaze();
     }
@@ -51,7 +51,7 @@ public abstract class AbstractScoreIncreaser extends AbstractMazeObject {
     public boolean arrowHitAction(final int locX, final int locY, final int locZ, final int dirX, final int dirY,
 	    final int arrowType, final MazeObjectInventory inv) {
 	Boot.getApplication().getGameManager().morph(new Empty(), locX, locY, locZ);
-	SoundManager.playSound(SoundConstants.SOUND_SHATTER);
+	SoundLoader.playSound(SoundConstants.SOUND_SHATTER);
 	return false;
     }
 

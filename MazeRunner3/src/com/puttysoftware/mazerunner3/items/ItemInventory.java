@@ -13,8 +13,8 @@ import java.util.Arrays;
 import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
 import com.puttysoftware.mazerunner3.creatures.StatConstants;
 import com.puttysoftware.mazerunner3.items.combat.CombatItemList;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
 import com.puttysoftware.xio.legacy.XLegacyDataReader;
@@ -89,7 +89,7 @@ public class ItemInventory {
 	    this.equipment[ei.getSecondSlotUsed()] = ei;
 	}
 	if (playSound) {
-	    SoundManager.playSound(SoundConstants.SOUND_EQUIP);
+	    SoundLoader.playSound(SoundConstants.SOUND_EQUIP);
 	}
     }
 
@@ -104,7 +104,7 @@ public class ItemInventory {
 	// Equip it in second slot
 	this.equipment[ei.getSecondSlotUsed()] = ei;
 	if (playSound) {
-	    SoundManager.playSound(SoundConstants.SOUND_EQUIP);
+	    SoundLoader.playSound(SoundConstants.SOUND_EQUIP);
 	}
     }
 
@@ -143,7 +143,7 @@ public class ItemInventory {
 	    this.equipment[ei.getFirstSlotUsed()] = ei;
 	}
 	if (playSound) {
-	    SoundManager.playSound(SoundConstants.SOUND_EQUIP);
+	    SoundLoader.playSound(SoundConstants.SOUND_EQUIP);
 	}
     }
 

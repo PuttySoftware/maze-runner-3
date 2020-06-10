@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import com.puttysoftware.mazerunner3.DrawGrid;
-import com.puttysoftware.mazerunner3.resourcemanagers.ImageTransformer;
+import com.puttysoftware.mazerunner3.loader.ImageTransformer;
 
 class MapBattleDraw extends JPanel {
     private static final long serialVersionUID = 35935343464625L;

@@ -7,9 +7,9 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractInvisibleBlockTeleport;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 
 public class InvisibleBlockTeleport extends AbstractInvisibleBlockTeleport {
     // Constructors

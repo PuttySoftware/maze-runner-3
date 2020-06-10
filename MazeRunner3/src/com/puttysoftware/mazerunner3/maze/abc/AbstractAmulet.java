@@ -7,11 +7,11 @@ package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractAmulet extends AbstractInventoryableObject {
     // Fields
@@ -42,7 +42,7 @@ public abstract class AbstractAmulet extends AbstractInventoryableObject {
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	final Application app = Boot.getApplication();
 	app.getGameManager().decay();
-	SoundManager.playSound(SoundConstants.SOUND_GRAB);
+	SoundLoader.playSound(SoundConstants.SOUND_GRAB);
 	Boot.getApplication().getGameManager().addToScore(AbstractAmulet.SCORE_INCREASE);
 	this.postMoveActionHook();
 	inv.addItem(this);

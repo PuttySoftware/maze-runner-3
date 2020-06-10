@@ -17,8 +17,8 @@ import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.fileutils.ZipUtilities;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.LogoImageLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
-import com.puttysoftware.mazerunner3.resourcemanagers.LogoManager;
 
 public class LegacyLoadTask extends Thread {
     // Fields
@@ -32,7 +32,7 @@ public class LegacyLoadTask extends Thread {
 	this.isSavedGame = saved;
 	this.setName("File Loader");
 	this.loadFrame = new JFrame("Loading...");
-	this.loadFrame.setIconImage(LogoManager.getIconLogo());
+	this.loadFrame.setIconImage(LogoImageLoader.getIconLogo());
 	final JProgressBar loadBar = new JProgressBar();
 	loadBar.setIndeterminate(true);
 	this.loadFrame.getContentPane().add(loadBar);

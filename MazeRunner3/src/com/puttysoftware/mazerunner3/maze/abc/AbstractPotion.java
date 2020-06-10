@@ -9,12 +9,12 @@ import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.creatures.StatConstants;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.objects.Empty;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 import com.puttysoftware.randomrange.RandomRange;
 
 public abstract class AbstractPotion extends AbstractMazeObject {
@@ -103,9 +103,9 @@ public abstract class AbstractPotion extends AbstractMazeObject {
 	}
 	Boot.getApplication().getGameManager().decay();
 	if (this.effectValue >= 0) {
-	    SoundManager.playSound(SoundConstants.SOUND_HEAL);
+	    SoundLoader.playSound(SoundConstants.SOUND_HEAL);
 	} else {
-	    SoundManager.playSound(SoundConstants.SOUND_HURT);
+	    SoundLoader.playSound(SoundConstants.SOUND_HURT);
 	}
 	Boot.getApplication().getGameManager().addToScore(AbstractPotion.SCORE_CONSUME);
     }
@@ -114,7 +114,7 @@ public abstract class AbstractPotion extends AbstractMazeObject {
     public boolean arrowHitAction(final int locX, final int locY, final int locZ, final int dirX, final int dirY,
 	    final int arrowType, final MazeObjectInventory inv) {
 	Boot.getApplication().getGameManager().morph(new Empty(), locX, locY, locZ);
-	SoundManager.playSound(SoundConstants.SOUND_SHATTER);
+	SoundLoader.playSound(SoundConstants.SOUND_SHATTER);
 	Boot.getApplication().getGameManager().addToScore(AbstractPotion.SCORE_SMASH);
 	return false;
     }

@@ -7,11 +7,11 @@ package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public abstract class AbstractInvisibleBlockTeleport extends AbstractBlockTeleport {
     // Constructors
@@ -31,7 +31,7 @@ public abstract class AbstractInvisibleBlockTeleport extends AbstractBlockTelepo
 		this.getDestinationFloor(), x, y, z, pushedInto, this);
 	app.getGameManager().keepNextMessage();
 	app.showMessage("Invisible Teleport!");
-	SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+	SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
     }
 
     @Override
@@ -43,7 +43,7 @@ public abstract class AbstractInvisibleBlockTeleport extends AbstractBlockTelepo
 		this.getDestinationFloor(), x, y, z, pushedInto, this);
 	app.getGameManager().keepNextMessage();
 	app.showMessage("Invisible Teleport!");
-	SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+	SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
     }
 
     @Override

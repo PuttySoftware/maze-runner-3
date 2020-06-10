@@ -7,14 +7,14 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractAntiObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
-import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class NoBlock extends AbstractAntiObject {
     // Constructors
@@ -36,7 +36,7 @@ public class NoBlock extends AbstractAntiObject {
 	// Destroy incoming block
 	final Application app = Boot.getApplication();
 	app.getGameManager().morph(this, x, y, z, MazeConstants.LAYER_OBJECT);
-	SoundManager.playSound(SoundConstants.SOUND_DESTROY);
+	SoundLoader.playSound(SoundConstants.SOUND_DESTROY);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class NoBlock extends AbstractAntiObject {
 	// Destroy incoming block
 	final Application app = Boot.getApplication();
 	app.getGameManager().morph(this, x, y, z, MazeConstants.LAYER_OBJECT);
-	SoundManager.playSound(SoundConstants.SOUND_DESTROY);
+	SoundLoader.playSound(SoundConstants.SOUND_DESTROY);
     }
 
     @Override

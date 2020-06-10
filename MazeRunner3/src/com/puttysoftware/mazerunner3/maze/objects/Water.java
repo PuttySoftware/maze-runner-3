@@ -7,14 +7,14 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.loader.SoundConstants;
+import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractField;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundConstants;
-import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class Water extends AbstractField {
     // Constructors
@@ -25,13 +25,13 @@ public class Water extends AbstractField {
     // Scriptability
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	SoundManager.playSound(SoundConstants.SOUND_WALK_WATER);
+	SoundLoader.playSound(SoundConstants.SOUND_WALK_WATER);
     }
 
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	Boot.getApplication().showMessage("You'll drown");
-	SoundManager.playSound(SoundConstants.SOUND_WATER);
+	SoundLoader.playSound(SoundConstants.SOUND_WATER);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Water extends AbstractField {
 	if (pushed.isPushable()) {
 	    app.getGameManager().morph(new SunkenBlock(), x, y, z, MazeConstants.LAYER_GROUND);
 	    app.getGameManager().morph(new Empty(), x, y, z, MazeConstants.LAYER_OBJECT);
-	    SoundManager.playSound(SoundConstants.SOUND_SINK_BLOCK);
+	    SoundLoader.playSound(SoundConstants.SOUND_SINK_BLOCK);
 	}
     }
 
