@@ -17,68 +17,67 @@ public class FadingWall extends AbstractWall {
 
     // Constructors
     public FadingWall() {
-        super(ColorConstants.COLOR_LIGHT_GRAY);
-        this.activateTimer(1);
+	super(ColorConstants.COLOR_LIGHT_GRAY);
+	this.activateTimer(1);
     }
 
     @Override
     public void timerExpiredAction(final int dirX, final int dirY) {
-        // Disappear if the player is close to us
-        boolean scanResult = false;
-        final Application app = Boot.getApplication();
-        final int tx = app.getMazeManager().getMaze().getPlayerLocationX();
-        final int ty = app.getMazeManager().getMaze().getPlayerLocationY();
-        final int pz = app.getMazeManager().getMaze().getPlayerLocationZ();
-        scanResult = app.getMazeManager().getMaze().radialScan(dirX, dirY,
-                FadingWall.SCAN_LIMIT, tx, ty);
-        if (scanResult) {
-            app.getGameManager().morph(new Empty(), dirX, dirY, pz);
-        }
-        this.activateTimer(1);
+	// Disappear if the player is close to us
+	boolean scanResult = false;
+	final Application app = Boot.getApplication();
+	final int tx = app.getMazeManager().getMaze().getPlayerLocationX();
+	final int ty = app.getMazeManager().getMaze().getPlayerLocationY();
+	final int pz = app.getMazeManager().getMaze().getPlayerLocationZ();
+	scanResult = app.getMazeManager().getMaze().radialScan(dirX, dirY, FadingWall.SCAN_LIMIT, tx, ty);
+	if (scanResult) {
+	    app.getGameManager().morph(new Empty(), dirX, dirY, pz);
+	}
+	this.activateTimer(1);
     }
 
     @Override
     public int getGameTemplateColor() {
-        return ColorConstants.COLOR_BROWN;
+	return ColorConstants.COLOR_BROWN;
     }
 
     @Override
     public int getAttributeID() {
-        return ObjectImageConstants.OBJECT_IMAGE_FADING;
+	return ObjectImageConstants.OBJECT_IMAGE_FADING;
     }
 
     @Override
     public int getAttributeTemplateColor() {
-        return ColorConstants.COLOR_GRAY;
+	return ColorConstants.COLOR_GRAY;
     }
 
     @Override
     public int getGameAttributeID() {
-        return ObjectImageConstants.OBJECT_IMAGE_NONE;
+	return ObjectImageConstants.OBJECT_IMAGE_NONE;
     }
 
     @Override
     public int getGameAttributeTemplateColor() {
-        return ColorConstants.COLOR_NONE;
+	return ColorConstants.COLOR_NONE;
     }
 
     @Override
     public String getName() {
-        return "Fading Wall";
+	return "Fading Wall";
     }
 
     @Override
     public String getGameName() {
-        return "Wall";
+	return "Wall";
     }
 
     @Override
     public String getPluralName() {
-        return "Fading Walls";
+	return "Fading Walls";
     }
 
     @Override
     public String getDescription() {
-        return "Fading Walls disappear when you get close to them.";
+	return "Fading Walls disappear when you get close to them.";
     }
 }

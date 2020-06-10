@@ -14,17 +14,16 @@ import com.puttysoftware.mazerunner3.creatures.races.RaceManager;
 public class NoRPGPartyMember extends PartyMember {
     // Constructors
     NoRPGPartyMember() {
-        super(RaceManager.getRace(0), CasteManager.getCaste(0),
-                FaithManager.getFaith(0), PersonalityManager.getPersonality(0),
-                GenderManager.getGender(0), null);
-        // Set initial statistics
-        this.setVitality(500);
-        this.healPercentage(100);
+	super(RaceManager.getRace(0), CasteManager.getCaste(0), FaithManager.getFaith(0),
+		PersonalityManager.getPersonality(0), GenderManager.getGender(0), null);
+	// Set initial statistics
+	this.setVitality(500);
+	this.healPercentage(100);
     }
 
     // Methods
     @Override
     protected void levelUpHook() {
-        // Do nothing
+	// Do nothing
     }
 }

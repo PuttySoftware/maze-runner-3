@@ -12,26 +12,26 @@ import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 public class FinishTo extends AbstractTeleportTo {
     // Constructors
     public FinishTo() {
-        super(ColorConstants.COLOR_NONE);
+	super(ColorConstants.COLOR_NONE);
     }
 
     @Override
     public int getBaseID() {
-        return ObjectImageConstants.OBJECT_IMAGE_FINISH_TO;
+	return ObjectImageConstants.OBJECT_IMAGE_FINISH_TO;
     }
 
     @Override
     public String getName() {
-        return "Finish To";
+	return "Finish To";
     }
 
     @Override
     public String getPluralName() {
-        return "Finishes To";
+	return "Finishes To";
     }
 
     @Override
     public String getDescription() {
-        return "Finishes To behave like regular Finishes, except that the level they send you to might not be the next one.";
+	return "Finishes To behave like regular Finishes, except that the level they send you to might not be the next one.";
     }
 }

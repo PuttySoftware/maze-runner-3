@@ -11,11 +11,11 @@ import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 public class BPlug extends AbstractPlug {
     // Constructors
     public BPlug() {
-        super('B');
+	super('B');
     }
 
     @Override
     public int getBaseID() {
-        return ObjectImageConstants.OBJECT_IMAGE_B_PLUG;
+	return ObjectImageConstants.OBJECT_IMAGE_B_PLUG;
     }
 }

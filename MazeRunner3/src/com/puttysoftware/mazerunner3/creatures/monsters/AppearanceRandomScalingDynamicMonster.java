@@ -5,15 +5,14 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.creatures.monsters;
 
-class AppearanceRandomScalingDynamicMonster
-        extends AbstractAppearanceRandomScalingMonster {
+class AppearanceRandomScalingDynamicMonster extends AbstractAppearanceRandomScalingMonster {
     // Constructors
     AppearanceRandomScalingDynamicMonster() {
-        super();
+	super();
     }
 
     @Override
     public boolean dynamic() {
-        return true;
+	return true;
     }
 }

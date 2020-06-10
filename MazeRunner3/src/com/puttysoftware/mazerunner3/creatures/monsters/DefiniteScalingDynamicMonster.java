@@ -8,11 +8,11 @@ package com.puttysoftware.mazerunner3.creatures.monsters;
 class DefiniteScalingDynamicMonster extends AbstractDefiniteScalingMonster {
     // Constructors
     DefiniteScalingDynamicMonster() {
-        super();
+	super();
     }
 
     @Override
     public boolean dynamic() {
-        return true;
+	return true;
     }
 }

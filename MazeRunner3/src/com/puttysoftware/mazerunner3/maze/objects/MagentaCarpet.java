@@ -11,6 +11,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 public class MagentaCarpet extends AbstractCarpet {
     // Constructors
     public MagentaCarpet() {
-        super("Magenta", ColorConstants.COLOR_MAGENTA);
+	super("Magenta", ColorConstants.COLOR_MAGENTA);
     }
 }

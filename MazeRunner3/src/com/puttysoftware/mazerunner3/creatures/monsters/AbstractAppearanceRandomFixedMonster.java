@@ -5,15 +5,14 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.creatures.monsters;
 
-abstract class AbstractAppearanceRandomFixedMonster
-        extends AbstractAppearanceRandomMonster {
+abstract class AbstractAppearanceRandomFixedMonster extends AbstractAppearanceRandomMonster {
     // Constructors
     AbstractAppearanceRandomFixedMonster() {
-        super();
+	super();
     }
 
     @Override
     public boolean scales() {
-        return false;
+	return false;
     }
 }

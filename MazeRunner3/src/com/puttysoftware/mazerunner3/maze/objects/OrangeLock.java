@@ -15,31 +15,30 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class OrangeLock extends AbstractSingleLock {
     // Constructors
     public OrangeLock() {
-        super(new OrangeKey(), ColorConstants.COLOR_ORANGE);
+	super(new OrangeKey(), ColorConstants.COLOR_ORANGE);
     }
 
     // Scriptability
     @Override
-    public void moveFailedAction(final boolean ie, final int dirX,
-            final int dirY, final MazeObjectInventory inv) {
-        if (this.isConditionallySolid(inv)) {
-            Boot.getApplication().showMessage("You need an orange key");
-        }
-        SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
+    public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	if (this.isConditionallySolid(inv)) {
+	    Boot.getApplication().showMessage("You need an orange key");
+	}
+	SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
 
     @Override
     public String getName() {
-        return "Orange Lock";
+	return "Orange Lock";
     }
 
     @Override
     public String getPluralName() {
-        return "Orange Locks";
+	return "Orange Locks";
     }
 
     @Override
     public String getDescription() {
-        return "Orange Locks require Orange Keys to open.";
+	return "Orange Locks require Orange Keys to open.";
     }
 }

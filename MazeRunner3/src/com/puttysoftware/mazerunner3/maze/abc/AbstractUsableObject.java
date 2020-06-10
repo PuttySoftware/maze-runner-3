@@ -10,7 +10,7 @@ import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
 public abstract class AbstractUsableObject extends AbstractInventoryableObject {
     // Constructors
     protected AbstractUsableObject(final int newUses) {
-        super(true, newUses);
+	super(true, newUses);
     }
 
     @Override
@@ -21,9 +21,9 @@ public abstract class AbstractUsableObject extends AbstractInventoryableObject {
 
     @Override
     protected void setTypes() {
-        this.type.set(TypeConstants.TYPE_USABLE);
-        this.type.set(TypeConstants.TYPE_INVENTORYABLE);
-        this.type.set(TypeConstants.TYPE_CONTAINABLE);
+	this.type.set(TypeConstants.TYPE_USABLE);
+	this.type.set(TypeConstants.TYPE_INVENTORYABLE);
+	this.type.set(TypeConstants.TYPE_CONTAINABLE);
     }
 
     @Override

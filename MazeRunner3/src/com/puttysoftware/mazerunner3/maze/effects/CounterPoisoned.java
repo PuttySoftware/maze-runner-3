@@ -11,23 +11,20 @@ import com.puttysoftware.mazerunner3.maze.objects.CounterpoisonAmulet;
 public class CounterPoisoned extends MazeEffect {
     // Constructor
     public CounterPoisoned(final int newRounds) {
-        super("Counter-Poisoned", newRounds);
+	super("Counter-Poisoned", newRounds);
     }
 
     @Override
     public void customExtendLogic() {
-        // Apply the effect
-        Boot.getApplication().getMazeManager().getMaze()
-                .doCounterpoisonAmulet();
+	// Apply the effect
+	Boot.getApplication().getMazeManager().getMaze().doCounterpoisonAmulet();
     }
 
     @Override
     public void customTerminateLogic() {
-        // Remove item that granted effect from inventory
-        Boot.getApplication().getGameManager().getObjectInventory()
-                .removeItem(new CounterpoisonAmulet());
-        // Undo the effect
-        Boot.getApplication().getMazeManager().getMaze()
-                .undoPoisonAmulets();
+	// Remove item that granted effect from inventory
+	Boot.getApplication().getGameManager().getObjectInventory().removeItem(new CounterpoisonAmulet());
+	// Undo the effect
+	Boot.getApplication().getMazeManager().getMaze().undoPoisonAmulets();
     }
 }

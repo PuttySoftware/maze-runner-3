@@ -14,34 +14,31 @@ import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 public class Teleport extends AbstractTeleport {
     // Constructors
     public Teleport() {
-        super(0, 0, 0, true, ObjectImageConstants.OBJECT_IMAGE_TELEPORT);
+	super(0, 0, 0, true, ObjectImageConstants.OBJECT_IMAGE_TELEPORT);
     }
 
-    public Teleport(final int destinationRow, final int destinationColumn,
-            final int destinationFloor) {
-        super(destinationRow, destinationColumn, destinationFloor, true,
-                ObjectImageConstants.OBJECT_IMAGE_TELEPORT);
+    public Teleport(final int destinationRow, final int destinationColumn, final int destinationFloor) {
+	super(destinationRow, destinationColumn, destinationFloor, true, ObjectImageConstants.OBJECT_IMAGE_TELEPORT);
     }
 
     @Override
     public String getName() {
-        return "Teleport";
+	return "Teleport";
     }
 
     @Override
     public String getPluralName() {
-        return "Teleports";
+	return "Teleports";
     }
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-        final MazeEditorLogic me = Boot.getApplication().getEditor();
-        return me
-                .editTeleportDestination(MazeEditorLogic.TELEPORT_TYPE_GENERIC);
+	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	return me.editTeleportDestination(MazeEditorLogic.TELEPORT_TYPE_GENERIC);
     }
 
     @Override
     public String getDescription() {
-        return "Teleports send you to a predetermined destination when stepped on.";
+	return "Teleports send you to a predetermined destination when stepped on.";
     }
 }

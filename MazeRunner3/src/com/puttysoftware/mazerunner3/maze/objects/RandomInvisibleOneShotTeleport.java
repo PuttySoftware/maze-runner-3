@@ -17,51 +17,48 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class RandomInvisibleOneShotTeleport extends RandomInvisibleTeleport {
     // Constructors
     public RandomInvisibleOneShotTeleport() {
-        super();
-        this.setAttributeID(ObjectImageConstants.OBJECT_IMAGE_RANDOM_ONE_SHOT);
+	super();
+	this.setAttributeID(ObjectImageConstants.OBJECT_IMAGE_RANDOM_ONE_SHOT);
     }
 
-    public RandomInvisibleOneShotTeleport(final int newRandomRangeY,
-            final int newRandomRangeX) {
-        super(newRandomRangeY, newRandomRangeX);
-        this.setAttributeID(ObjectImageConstants.OBJECT_IMAGE_RANDOM_ONE_SHOT);
+    public RandomInvisibleOneShotTeleport(final int newRandomRangeY, final int newRandomRangeX) {
+	super(newRandomRangeY, newRandomRangeX);
+	this.setAttributeID(ObjectImageConstants.OBJECT_IMAGE_RANDOM_ONE_SHOT);
     }
 
     // Scriptability
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        final Application app = Boot.getApplication();
-        app.getGameManager().decay();
-        int dr, dc;
-        do {
-            dr = this.getDestinationRow();
-            dc = this.getDestinationColumn();
-        } while (!app.getGameManager().tryUpdatePositionRelative(dr, dc));
-        app.getGameManager().updatePositionRelative(dr, dc, 0);
-        Boot.getApplication().showMessage("Invisible Teleport!");
-        SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	final Application app = Boot.getApplication();
+	app.getGameManager().decay();
+	int dr, dc;
+	do {
+	    dr = this.getDestinationRow();
+	    dc = this.getDestinationColumn();
+	} while (!app.getGameManager().tryUpdatePositionRelative(dr, dc));
+	app.getGameManager().updatePositionRelative(dr, dc, 0);
+	Boot.getApplication().showMessage("Invisible Teleport!");
+	SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
     }
 
     @Override
     public String getName() {
-        return "Random Invisible One-Shot Teleport";
+	return "Random Invisible One-Shot Teleport";
     }
 
     @Override
     public String getPluralName() {
-        return "Random Invisible One-Shot Teleports";
+	return "Random Invisible One-Shot Teleports";
     }
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-        final MazeEditorLogic me = Boot.getApplication().getEditor();
-        return me.editTeleportDestination(
-                MazeEditorLogic.TELEPORT_TYPE_RANDOM_INVISIBLE_ONESHOT);
+	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	return me.editTeleportDestination(MazeEditorLogic.TELEPORT_TYPE_RANDOM_INVISIBLE_ONESHOT);
     }
 
     @Override
     public String getDescription() {
-        return "Random Invisible One-Shot Teleports are random, invisible, and only work once.";
+	return "Random Invisible One-Shot Teleports are random, invisible, and only work once.";
     }
 }

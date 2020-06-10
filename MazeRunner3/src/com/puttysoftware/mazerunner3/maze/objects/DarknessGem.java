@@ -14,28 +14,27 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class DarknessGem extends AbstractGem {
     // Constructors
     public DarknessGem() {
-        super(ColorConstants.COLOR_DARK_PURPLE);
+	super(ColorConstants.COLOR_DARK_PURPLE);
     }
 
     @Override
     public String getName() {
-        return "Darkness Gem";
+	return "Darkness Gem";
     }
 
     @Override
     public String getPluralName() {
-        return "Darkness Gems";
+	return "Darkness Gems";
     }
 
     @Override
     public void postMoveActionHook() {
-        Boot.getApplication().getMazeManager().getMaze()
-                .setVisionRadiusToMinimum();
-        SoundManager.playSound(SoundConstants.SOUND_DARKNESS);
+	Boot.getApplication().getMazeManager().getMaze().setVisionRadiusToMinimum();
+	SoundManager.playSound(SoundConstants.SOUND_DARKNESS);
     }
 
     @Override
     public String getDescription() {
-        return "Darkness Gems decrease the visible area to its minimum.";
+	return "Darkness Gems decrease the visible area to its minimum.";
     }
 }

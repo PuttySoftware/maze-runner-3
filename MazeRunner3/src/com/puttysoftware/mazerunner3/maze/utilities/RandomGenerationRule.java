@@ -5,8 +5,7 @@ import com.puttysoftware.mazerunner3.maze.Maze;
 public interface RandomGenerationRule {
     int NO_LIMIT = 0;
 
-    boolean shouldGenerateObject(Maze maze, int row, int col, int floor,
-            int level, int layer);
+    boolean shouldGenerateObject(Maze maze, int row, int col, int floor, int level, int layer);
 
     int getMinimumRequiredQuantity(Maze maze);
 
@@ -14,8 +13,7 @@ public interface RandomGenerationRule {
 
     boolean isRequired();
 
-    boolean shouldGenerateObjectInBattle(Maze maze, int row, int col, int floor,
-            int level, int layer);
+    boolean shouldGenerateObjectInBattle(Maze maze, int row, int col, int floor, int level, int layer);
 
     int getMinimumRequiredQuantityInBattle(Maze maze);
 

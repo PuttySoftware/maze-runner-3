@@ -12,27 +12,27 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 
 public class FinishMakingWand extends AbstractWand {
     public FinishMakingWand() {
-        super(ColorConstants.COLOR_GREEN);
+	super(ColorConstants.COLOR_GREEN);
     }
 
     @Override
     public String getName() {
-        return "Finish-Making Wand";
+	return "Finish-Making Wand";
     }
 
     @Override
     public String getPluralName() {
-        return "Finish-Making Wands";
+	return "Finish-Making Wands";
     }
 
     @Override
     public void useHelper(final int x, final int y, final int z) {
-        this.useAction(new Finish(), x, y, z);
-        SoundManager.playSound(SoundConstants.SOUND_CREATE);
+	this.useAction(new Finish(), x, y, z);
+	SoundManager.playSound(SoundConstants.SOUND_CREATE);
     }
 
     @Override
     public String getDescription() {
-        return "Finish-Making Wands will create a finish when used.";
+	return "Finish-Making Wands will create a finish when used.";
     }
 }

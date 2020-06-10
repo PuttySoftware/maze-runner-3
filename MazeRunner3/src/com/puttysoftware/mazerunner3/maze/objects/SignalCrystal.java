@@ -11,6 +11,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 public class SignalCrystal extends AbstractProgrammableKey {
     // Constructors
     public SignalCrystal() {
-        super("Signal", ColorConstants.COLOR_NONE);
+	super("Signal", ColorConstants.COLOR_NONE);
     }
 }

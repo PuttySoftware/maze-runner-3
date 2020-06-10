@@ -10,6 +10,6 @@ import com.puttysoftware.mazerunner3.creatures.castes.CasteConstants;
 
 public class Debuffer extends Caste {
     public Debuffer() {
-        super(CasteConstants.CASTE_DEBUFFER);
+	super(CasteConstants.CASTE_DEBUFFER);
     }
 }

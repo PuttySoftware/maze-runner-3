@@ -19,18 +19,16 @@ public abstract class AbstractBarrier extends AbstractWall {
 
     // Constructors
     protected AbstractBarrier() {
-        super(true, ColorConstants.COLOR_YELLOW);
+	super(true, ColorConstants.COLOR_YELLOW);
     }
 
     @Override
-    public void moveFailedAction(final boolean ie, final int dirX,
-            final int dirY, final MazeObjectInventory inv) {
-        // Display impassable barrier message
-        Boot.getApplication().showMessage("The barrier is impassable!");
-        SoundManager.playSound(SoundConstants.SOUND_BARRIER);
-        // Hurt the player for trying to cross the barrier
-        PartyManager.getParty().getLeader()
-                .doDamagePercentage(AbstractBarrier.BARRIER_DAMAGE_PERCENT);
+    public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	// Display impassable barrier message
+	Boot.getApplication().showMessage("The barrier is impassable!");
+	SoundManager.playSound(SoundConstants.SOUND_BARRIER);
+	// Hurt the player for trying to cross the barrier
+	PartyManager.getParty().getLeader().doDamagePercentage(AbstractBarrier.BARRIER_DAMAGE_PERCENT);
     }
 
     @Override
@@ -41,7 +39,7 @@ public abstract class AbstractBarrier extends AbstractWall {
 
     @Override
     protected void setTypes() {
-        this.type.set(TypeConstants.TYPE_BARRIER);
-        this.type.set(TypeConstants.TYPE_WALL);
+	this.type.set(TypeConstants.TYPE_BARRIER);
+	this.type.set(TypeConstants.TYPE_WALL);
     }
 }

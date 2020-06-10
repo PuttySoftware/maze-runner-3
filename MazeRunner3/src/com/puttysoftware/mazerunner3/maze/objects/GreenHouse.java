@@ -16,30 +16,29 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class GreenHouse extends AbstractTeleportTo {
     // Constructors
     public GreenHouse() {
-        super(ColorConstants.COLOR_GREEN);
+	super(ColorConstants.COLOR_GREEN);
     }
 
     // Scriptability
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        final Application app = Boot.getApplication();
-        SoundManager.playSound(SoundConstants.SOUND_UP);
-        app.getGameManager().goToLevel(this.getDestinationLevel());
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	final Application app = Boot.getApplication();
+	SoundManager.playSound(SoundConstants.SOUND_UP);
+	app.getGameManager().goToLevel(this.getDestinationLevel());
     }
 
     @Override
     public String getName() {
-        return "Green House";
+	return "Green House";
     }
 
     @Override
     public String getPluralName() {
-        return "Green Houses";
+	return "Green Houses";
     }
 
     @Override
     public String getDescription() {
-        return "Green Houses send you inside when walked on.";
+	return "Green Houses send you inside when walked on.";
     }
 }

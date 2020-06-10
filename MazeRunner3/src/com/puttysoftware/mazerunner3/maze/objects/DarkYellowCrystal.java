@@ -11,6 +11,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 public class DarkYellowCrystal extends AbstractProgrammableKey {
     // Constructors
     public DarkYellowCrystal() {
-        super("Dark Yellow", ColorConstants.COLOR_DARK_YELLOW);
+	super("Dark Yellow", ColorConstants.COLOR_DARK_YELLOW);
     }
 }

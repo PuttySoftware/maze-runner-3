@@ -11,6 +11,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 public class LightGrayCrystal extends AbstractProgrammableKey {
     // Constructors
     public LightGrayCrystal() {
-        super("Light Gray", ColorConstants.COLOR_LIGHT_GRAY);
+	super("Light Gray", ColorConstants.COLOR_LIGHT_GRAY);
     }
 }

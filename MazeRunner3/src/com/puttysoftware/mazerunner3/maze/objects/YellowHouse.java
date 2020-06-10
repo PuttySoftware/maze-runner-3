@@ -16,30 +16,29 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class YellowHouse extends AbstractTeleportTo {
     // Constructors
     public YellowHouse() {
-        super(ColorConstants.COLOR_YELLOW);
+	super(ColorConstants.COLOR_YELLOW);
     }
 
     // Scriptability
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        final Application app = Boot.getApplication();
-        SoundManager.playSound(SoundConstants.SOUND_UP);
-        app.getGameManager().goToLevel(this.getDestinationLevel());
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	final Application app = Boot.getApplication();
+	SoundManager.playSound(SoundConstants.SOUND_UP);
+	app.getGameManager().goToLevel(this.getDestinationLevel());
     }
 
     @Override
     public String getName() {
-        return "Yellow House";
+	return "Yellow House";
     }
 
     @Override
     public String getPluralName() {
-        return "Yellow Houses";
+	return "Yellow Houses";
     }
 
     @Override
     public String getDescription() {
-        return "Yellow Houses send you inside when walked on.";
+	return "Yellow Houses send you inside when walked on.";
     }
 }

@@ -16,30 +16,29 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class PurpleHouse extends AbstractTeleportTo {
     // Constructors
     public PurpleHouse() {
-        super(ColorConstants.COLOR_PURPLE);
+	super(ColorConstants.COLOR_PURPLE);
     }
 
     // Scriptability
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        final Application app = Boot.getApplication();
-        SoundManager.playSound(SoundConstants.SOUND_UP);
-        app.getGameManager().goToLevel(this.getDestinationLevel());
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	final Application app = Boot.getApplication();
+	SoundManager.playSound(SoundConstants.SOUND_UP);
+	app.getGameManager().goToLevel(this.getDestinationLevel());
     }
 
     @Override
     public String getName() {
-        return "Purple House";
+	return "Purple House";
     }
 
     @Override
     public String getPluralName() {
-        return "Purple Houses";
+	return "Purple Houses";
     }
 
     @Override
     public String getDescription() {
-        return "Purple Houses send you inside when walked on.";
+	return "Purple Houses send you inside when walked on.";
     }
 }

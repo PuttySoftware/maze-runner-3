@@ -14,24 +14,21 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public abstract class AbstractPassThroughObject extends AbstractMazeObject {
     // Constructors
     protected AbstractPassThroughObject() {
-        super(false, false);
+	super(false, false);
     }
 
     protected AbstractPassThroughObject(final boolean sightBlock) {
-        super(false, sightBlock);
+	super(false, sightBlock);
     }
 
-    protected AbstractPassThroughObject(final boolean acceptPushInto,
-            final boolean acceptPushOut, final boolean acceptPullInto,
-            final boolean acceptPullOut) {
-        super(false, false, acceptPushInto, acceptPushOut, false,
-                acceptPullInto, acceptPullOut, true, false);
+    protected AbstractPassThroughObject(final boolean acceptPushInto, final boolean acceptPushOut,
+	    final boolean acceptPullInto, final boolean acceptPullOut) {
+	super(false, false, acceptPushInto, acceptPushOut, false, acceptPullInto, acceptPullOut, true, false);
     }
 
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        SoundManager.playSound(SoundConstants.SOUND_WALK);
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	SoundManager.playSound(SoundConstants.SOUND_WALK);
     }
 
     @Override
@@ -39,21 +36,21 @@ public abstract class AbstractPassThroughObject extends AbstractMazeObject {
 
     @Override
     public int getLayer() {
-        return MazeConstants.LAYER_OBJECT;
+	return MazeConstants.LAYER_OBJECT;
     }
 
     @Override
     protected void setTypes() {
-        this.type.set(TypeConstants.TYPE_PASS_THROUGH);
+	this.type.set(TypeConstants.TYPE_PASS_THROUGH);
     }
 
     @Override
     public int getCustomProperty(final int propID) {
-        return AbstractMazeObject.DEFAULT_CUSTOM_VALUE;
+	return AbstractMazeObject.DEFAULT_CUSTOM_VALUE;
     }
 
     @Override
     public void setCustomProperty(final int propID, final int value) {
-        // Do nothing
+	// Do nothing
     }
 }

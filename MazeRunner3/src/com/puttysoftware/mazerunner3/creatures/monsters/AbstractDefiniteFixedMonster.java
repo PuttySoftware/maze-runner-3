@@ -8,11 +8,11 @@ package com.puttysoftware.mazerunner3.creatures.monsters;
 abstract class AbstractDefiniteFixedMonster extends AbstractDefiniteMonster {
     // Constructors
     AbstractDefiniteFixedMonster() {
-        super();
+	super();
     }
 
     @Override
     public boolean scales() {
-        return false;
+	return false;
     }
 }

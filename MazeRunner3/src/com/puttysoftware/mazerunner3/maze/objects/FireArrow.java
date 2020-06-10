@@ -11,6 +11,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 public class FireArrow extends AbstractTransientObject {
     // Constructors
     public FireArrow() {
-        super("Fire Arrow", ColorConstants.COLOR_RED);
+	super("Fire Arrow", ColorConstants.COLOR_RED);
     }
 }

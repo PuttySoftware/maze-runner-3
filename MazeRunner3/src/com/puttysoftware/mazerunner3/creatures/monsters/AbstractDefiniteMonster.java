@@ -11,32 +11,31 @@ import com.puttysoftware.mazerunner3.resourcemanagers.MonsterImageManager;
 abstract class AbstractDefiniteMonster extends AbstractMonster {
     // Constructors
     AbstractDefiniteMonster() {
-        super();
+	super();
     }
 
     @Override
     public boolean randomAppearance() {
-        return false;
+	return false;
     }
 
     @Override
     public boolean randomFaith() {
-        return false;
+	return false;
     }
 
     // Helper Methods
     @Override
     protected BufferedImageIcon getInitialImage() {
-        if (this.getLevel() == 0) {
-            return null;
-        } else {
-            return MonsterImageManager.getImage(this.getType(),
-                    this.getElement());
-        }
+	if (this.getLevel() == 0) {
+	    return null;
+	} else {
+	    return MonsterImageManager.getImage(this.getType(), this.getElement());
+	}
     }
 
     @Override
     public void loadMonster() {
-        this.image = this.getInitialImage();
+	this.image = this.getInitialImage();
     }
 }

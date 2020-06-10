@@ -16,40 +16,38 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public abstract class AbstractInventoryableObject extends AbstractMazeObject {
     // Constructors
     protected AbstractInventoryableObject() {
-        super(false, true, false);
+	super(false, true, false);
     }
 
-    protected AbstractInventoryableObject(final boolean isUsable,
-            final int newUses) {
-        super(false, isUsable, newUses, true, false);
+    protected AbstractInventoryableObject(final boolean isUsable, final int newUses) {
+	super(false, isUsable, newUses, true, false);
     }
 
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        inv.addItem(this);
-        final Application app = Boot.getApplication();
-        app.getGameManager().decay();
-        SoundManager.playSound(SoundConstants.SOUND_GRAB);
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	inv.addItem(this);
+	final Application app = Boot.getApplication();
+	app.getGameManager().decay();
+	SoundManager.playSound(SoundConstants.SOUND_GRAB);
     }
 
     @Override
     protected void setTypes() {
-        this.type.set(TypeConstants.TYPE_INVENTORYABLE);
+	this.type.set(TypeConstants.TYPE_INVENTORYABLE);
     }
 
     @Override
     public int getLayer() {
-        return MazeConstants.LAYER_OBJECT;
+	return MazeConstants.LAYER_OBJECT;
     }
 
     @Override
     public int getCustomProperty(final int propID) {
-        return AbstractMazeObject.DEFAULT_CUSTOM_VALUE;
+	return AbstractMazeObject.DEFAULT_CUSTOM_VALUE;
     }
 
     @Override
     public void setCustomProperty(final int propID, final int value) {
-        // Do nothing
+	// Do nothing
     }
 }

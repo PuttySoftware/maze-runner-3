@@ -16,30 +16,29 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class WhiteHouse extends AbstractTeleportTo {
     // Constructors
     public WhiteHouse() {
-        super(ColorConstants.COLOR_WHITE);
+	super(ColorConstants.COLOR_WHITE);
     }
 
     // Scriptability
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        final Application app = Boot.getApplication();
-        SoundManager.playSound(SoundConstants.SOUND_UP);
-        app.getGameManager().goToLevel(this.getDestinationLevel());
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	final Application app = Boot.getApplication();
+	SoundManager.playSound(SoundConstants.SOUND_UP);
+	app.getGameManager().goToLevel(this.getDestinationLevel());
     }
 
     @Override
     public String getName() {
-        return "White House";
+	return "White House";
     }
 
     @Override
     public String getPluralName() {
-        return "White Houses";
+	return "White Houses";
     }
 
     @Override
     public String getDescription() {
-        return "White Houses send you inside when walked on.";
+	return "White Houses send you inside when walked on.";
     }
 }

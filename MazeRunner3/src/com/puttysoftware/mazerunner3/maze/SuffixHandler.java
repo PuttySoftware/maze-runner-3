@@ -8,14 +8,12 @@ import com.puttysoftware.xio.XDataWriter;
 
 public class SuffixHandler implements SuffixIO {
     @Override
-    public void readSuffix(final XDataReader reader, final int formatVersion)
-            throws IOException {
-        Boot.getApplication().getGameManager().loadGameHook(reader,
-                formatVersion);
+    public void readSuffix(final XDataReader reader, final int formatVersion) throws IOException {
+	Boot.getApplication().getGameManager().loadGameHook(reader, formatVersion);
     }
 
     @Override
     public void writeSuffix(final XDataWriter writer) throws IOException {
-        Boot.getApplication().getGameManager().saveGameHook(writer);
+	Boot.getApplication().getGameManager().saveGameHook(writer);
     }
 }

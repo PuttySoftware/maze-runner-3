@@ -15,31 +15,30 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class MagentaLock extends AbstractSingleLock {
     // Constructors
     public MagentaLock() {
-        super(new MagentaKey(), ColorConstants.COLOR_MAGENTA);
+	super(new MagentaKey(), ColorConstants.COLOR_MAGENTA);
     }
 
     // Scriptability
     @Override
-    public void moveFailedAction(final boolean ie, final int dirX,
-            final int dirY, final MazeObjectInventory inv) {
-        if (this.isConditionallySolid(inv)) {
-            Boot.getApplication().showMessage("You need a magenta key");
-        }
-        SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
+    public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	if (this.isConditionallySolid(inv)) {
+	    Boot.getApplication().showMessage("You need a magenta key");
+	}
+	SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
 
     @Override
     public String getName() {
-        return "Magenta Lock";
+	return "Magenta Lock";
     }
 
     @Override
     public String getPluralName() {
-        return "Magenta Locks";
+	return "Magenta Locks";
     }
 
     @Override
     public String getDescription() {
-        return "Magenta Locks require Magenta Keys to open.";
+	return "Magenta Locks require Magenta Keys to open.";
     }
 }

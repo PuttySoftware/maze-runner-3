@@ -9,35 +9,34 @@ import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractInvisibleConditionalTeleport;
 import com.puttysoftware.mazerunner3.resourcemanagers.ObjectImageConstants;
 
-public class InvisibleOneShotConditionalTeleport
-        extends AbstractInvisibleConditionalTeleport {
+public class InvisibleOneShotConditionalTeleport extends AbstractInvisibleConditionalTeleport {
     // Constructors
     public InvisibleOneShotConditionalTeleport() {
-        super(ObjectImageConstants.OBJECT_IMAGE_ONE_SHOT_CONDITIONAL);
+	super(ObjectImageConstants.OBJECT_IMAGE_ONE_SHOT_CONDITIONAL);
     }
 
     @Override
     public String getName() {
-        return "Invisible One-Shot Conditional Teleport";
+	return "Invisible One-Shot Conditional Teleport";
     }
 
     @Override
     public String getPluralName() {
-        return "Invisible One-Shot Conditional Teleports";
+	return "Invisible One-Shot Conditional Teleports";
     }
 
     @Override
     public String getDescription() {
-        return "Invisible One-Shot Conditional Teleports send you to one of two predetermined destinations when stepped on, depending on how many Sun or Moon Stones are in your inventory, then disappear, and cannot be seen.";
+	return "Invisible One-Shot Conditional Teleports send you to one of two predetermined destinations when stepped on, depending on how many Sun or Moon Stones are in your inventory, then disappear, and cannot be seen.";
     }
 
     @Override
     public void postMoveActionHook() {
-        Boot.getApplication().getGameManager().decay();
+	Boot.getApplication().getGameManager().decay();
     }
 
     @Override
     public String getGameName() {
-        return "Empty";
+	return "Empty";
     }
 }

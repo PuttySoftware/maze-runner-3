@@ -9,21 +9,18 @@ import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public class FileHooks {
     private FileHooks() {
-        // Do nothing
+	// Do nothing
     }
 
-    public static void loadLegacyGameHook(final XLegacyDataReader mapFile)
-            throws IOException {
-        PartyManager.loadLegacyGameHook(mapFile);
+    public static void loadLegacyGameHook(final XLegacyDataReader mapFile) throws IOException {
+	PartyManager.loadLegacyGameHook(mapFile);
     }
 
-    public static void loadGameHook(final XDataReader mapFile)
-            throws IOException {
-        PartyManager.loadGameHook(mapFile);
+    public static void loadGameHook(final XDataReader mapFile) throws IOException {
+	PartyManager.loadGameHook(mapFile);
     }
 
-    public static void saveGameHook(final XDataWriter mapFile)
-            throws IOException {
-        PartyManager.saveGameHook(mapFile);
+    public static void saveGameHook(final XDataWriter mapFile) throws IOException {
+	PartyManager.saveGameHook(mapFile);
     }
 }

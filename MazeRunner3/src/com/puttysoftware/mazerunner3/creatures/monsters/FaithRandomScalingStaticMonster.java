@@ -5,15 +5,14 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.creatures.monsters;
 
-class FaithRandomScalingStaticMonster
-        extends AbstractFaithRandomScalingMonster {
+class FaithRandomScalingStaticMonster extends AbstractFaithRandomScalingMonster {
     // Constructors
     FaithRandomScalingStaticMonster() {
-        super();
+	super();
     }
 
     @Override
     public boolean dynamic() {
-        return false;
+	return false;
     }
 }

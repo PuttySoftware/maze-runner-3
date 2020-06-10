@@ -21,20 +21,18 @@ public abstract class AbstractTextHolder extends AbstractMazeObject {
 
     // Constructors
     protected AbstractTextHolder() {
-        super(true, false);
-        this.text = "Empty";
+	super(true, false);
+	this.text = "Empty";
     }
 
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        // Do nothing
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	// Do nothing
     }
 
     @Override
-    public void moveFailedAction(final boolean ie, final int dirX,
-            final int dirY, final MazeObjectInventory inv) {
-        CommonDialogs.showDialog(this.text);
+    public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	CommonDialogs.showDialog(this.text);
     }
 
     @Override
@@ -42,54 +40,51 @@ public abstract class AbstractTextHolder extends AbstractMazeObject {
 
     @Override
     public int getLayer() {
-        return MazeConstants.LAYER_OBJECT;
+	return MazeConstants.LAYER_OBJECT;
     }
 
     @Override
     protected void setTypes() {
-        this.type.set(TypeConstants.TYPE_TEXT_HOLDER);
+	this.type.set(TypeConstants.TYPE_TEXT_HOLDER);
     }
 
     @Override
     public int getCustomProperty(final int propID) {
-        return AbstractMazeObject.DEFAULT_CUSTOM_VALUE;
+	return AbstractMazeObject.DEFAULT_CUSTOM_VALUE;
     }
 
     @Override
     public void setCustomProperty(final int propID, final int value) {
-        // Do nothing
+	// Do nothing
     }
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-        this.text = CommonDialogs.showTextInputDialogWithDefault(
-                "Set Text for " + this.getName(), "Editor", this.text);
-        return this;
+	this.text = CommonDialogs.showTextInputDialogWithDefault("Set Text for " + this.getName(), "Editor", this.text);
+	return this;
     }
 
     @Override
-    protected AbstractMazeObject readLegacyMazeObjectHook(
-            final XLegacyDataReader reader, final int formatVersion)
-            throws IOException {
-        this.text = reader.readString();
-        return this;
+    protected AbstractMazeObject readLegacyMazeObjectHook(final XLegacyDataReader reader, final int formatVersion)
+	    throws IOException {
+	this.text = reader.readString();
+	return this;
     }
 
     @Override
-    protected AbstractMazeObject readMazeObjectHook(final XDataReader reader,
-            final int formatVersion) throws IOException {
-        this.text = reader.readString();
-        return this;
+    protected AbstractMazeObject readMazeObjectHook(final XDataReader reader, final int formatVersion)
+	    throws IOException {
+	this.text = reader.readString();
+	return this;
     }
 
     @Override
-    protected void writeMazeObjectHook(final XDataWriter writer)
-            throws IOException {
-        writer.writeString(this.text);
+    protected void writeMazeObjectHook(final XDataWriter writer) throws IOException {
+	writer.writeString(this.text);
     }
 
     @Override
     public int getCustomFormat() {
-        return AbstractMazeObject.CUSTOM_FORMAT_MANUAL_OVERRIDE;
+	return AbstractMazeObject.CUSTOM_FORMAT_MANUAL_OVERRIDE;
     }
 }

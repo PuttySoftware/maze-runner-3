@@ -17,50 +17,47 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class RandomOneShotTeleport extends RandomTeleport {
     // Constructors
     public RandomOneShotTeleport() {
-        super();
-        this.setAttributeID(ObjectImageConstants.OBJECT_IMAGE_RANDOM_ONE_SHOT);
+	super();
+	this.setAttributeID(ObjectImageConstants.OBJECT_IMAGE_RANDOM_ONE_SHOT);
     }
 
-    public RandomOneShotTeleport(final int newRandomRangeY,
-            final int newRandomRangeX) {
-        super(newRandomRangeY, newRandomRangeX);
-        this.setAttributeID(ObjectImageConstants.OBJECT_IMAGE_RANDOM_ONE_SHOT);
+    public RandomOneShotTeleport(final int newRandomRangeY, final int newRandomRangeX) {
+	super(newRandomRangeY, newRandomRangeX);
+	this.setAttributeID(ObjectImageConstants.OBJECT_IMAGE_RANDOM_ONE_SHOT);
     }
 
     // Scriptability
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        final Application app = Boot.getApplication();
-        app.getGameManager().decay();
-        int dr, dc;
-        do {
-            dr = this.getDestinationRow();
-            dc = this.getDestinationColumn();
-        } while (!app.getGameManager().tryUpdatePositionRelative(dr, dc));
-        app.getGameManager().updatePositionRelative(dr, dc, 0);
-        SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	final Application app = Boot.getApplication();
+	app.getGameManager().decay();
+	int dr, dc;
+	do {
+	    dr = this.getDestinationRow();
+	    dc = this.getDestinationColumn();
+	} while (!app.getGameManager().tryUpdatePositionRelative(dr, dc));
+	app.getGameManager().updatePositionRelative(dr, dc, 0);
+	SoundManager.playSound(SoundConstants.SOUND_TELEPORT);
     }
 
     @Override
     public String getName() {
-        return "Random One-Shot Teleport";
+	return "Random One-Shot Teleport";
     }
 
     @Override
     public String getPluralName() {
-        return "Random One-Shot Teleports";
+	return "Random One-Shot Teleports";
     }
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-        final MazeEditorLogic me = Boot.getApplication().getEditor();
-        return me.editTeleportDestination(
-                MazeEditorLogic.TELEPORT_TYPE_RANDOM_ONESHOT);
+	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	return me.editTeleportDestination(MazeEditorLogic.TELEPORT_TYPE_RANDOM_ONESHOT);
     }
 
     @Override
     public String getDescription() {
-        return "Random One-Shot Teleports are random, and only work once.";
+	return "Random One-Shot Teleports are random, and only work once.";
     }
 }

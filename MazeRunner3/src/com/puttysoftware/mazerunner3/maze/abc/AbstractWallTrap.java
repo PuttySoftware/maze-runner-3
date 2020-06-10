@@ -23,49 +23,43 @@ public abstract class AbstractWallTrap extends AbstractMazeObject {
     protected static final int NUMBER_MASTER = -1;
 
     // Constructors
-    protected AbstractWallTrap(final int newNumber,
-            final AbstractTrappedWall newTrigger) {
-        super(false, false);
-        this.number = newNumber;
-        this.trigger = newTrigger;
+    protected AbstractWallTrap(final int newNumber, final AbstractTrappedWall newTrigger) {
+	super(false, false);
+	this.number = newNumber;
+	this.trigger = newTrigger;
     }
 
     @Override
     public AbstractWallTrap clone() {
-        final AbstractWallTrap copy = (AbstractWallTrap) super.clone();
-        copy.number = this.number;
-        copy.trigger = this.trigger.clone();
-        return copy;
+	final AbstractWallTrap copy = (AbstractWallTrap) super.clone();
+	copy.number = this.number;
+	copy.trigger = this.trigger.clone();
+	return copy;
     }
 
     // Scriptability
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        Boot.getApplication().getGameManager().decay();
-        Boot.getApplication().getMazeManager().getMaze()
-                .findAllMatchingObjectsAndDecay(this.masterTrigger);
-        if (this.number == AbstractWallTrap.NUMBER_MASTER) {
-            Boot.getApplication().getMazeManager().getMaze()
-                    .masterTrapTrigger();
-        } else {
-            Boot.getApplication().getMazeManager().getMaze()
-                    .findAllMatchingObjectsAndDecay(this);
-            Boot.getApplication().getMazeManager().getMaze()
-                    .findAllMatchingObjectsAndDecay(this.trigger);
-        }
-        Boot.getApplication().getGameManager().redrawMaze();
-        SoundManager.playSound(SoundConstants.SOUND_WALL_TRAP);
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	Boot.getApplication().getGameManager().decay();
+	Boot.getApplication().getMazeManager().getMaze().findAllMatchingObjectsAndDecay(this.masterTrigger);
+	if (this.number == AbstractWallTrap.NUMBER_MASTER) {
+	    Boot.getApplication().getMazeManager().getMaze().masterTrapTrigger();
+	} else {
+	    Boot.getApplication().getMazeManager().getMaze().findAllMatchingObjectsAndDecay(this);
+	    Boot.getApplication().getMazeManager().getMaze().findAllMatchingObjectsAndDecay(this.trigger);
+	}
+	Boot.getApplication().getGameManager().redrawMaze();
+	SoundManager.playSound(SoundConstants.SOUND_WALL_TRAP);
     }
 
     @Override
     public int getBaseID() {
-        return ObjectImageConstants.OBJECT_IMAGE_TRAP_BASE;
+	return ObjectImageConstants.OBJECT_IMAGE_TRAP_BASE;
     }
 
     @Override
     public int getGameBaseID() {
-        return ObjectImageConstants.OBJECT_IMAGE_GENERIC_WALL_TRAP;
+	return ObjectImageConstants.OBJECT_IMAGE_GENERIC_WALL_TRAP;
     }
 
     @Override
@@ -73,64 +67,64 @@ public abstract class AbstractWallTrap extends AbstractMazeObject {
 
     @Override
     public int getGameAttributeID() {
-        return ObjectImageConstants.OBJECT_IMAGE_NONE;
+	return ObjectImageConstants.OBJECT_IMAGE_NONE;
     }
 
     @Override
     public int getTemplateColor() {
-        return ColorConstants.COLOR_LIGHT_YELLOW;
+	return ColorConstants.COLOR_LIGHT_YELLOW;
     }
 
     @Override
     public int getAttributeTemplateColor() {
-        return ColorConstants.COLOR_DARK_BLUE;
+	return ColorConstants.COLOR_DARK_BLUE;
     }
 
     @Override
     public int getGameAttributeTemplateColor() {
-        return ColorConstants.COLOR_NONE;
+	return ColorConstants.COLOR_NONE;
     }
 
     @Override
     public String getName() {
-        if (this.number != AbstractWallTrap.NUMBER_MASTER) {
-            return "Wall Trap " + this.number;
-        } else {
-            return "Master Wall Trap";
-        }
+	if (this.number != AbstractWallTrap.NUMBER_MASTER) {
+	    return "Wall Trap " + this.number;
+	} else {
+	    return "Master Wall Trap";
+	}
     }
 
     @Override
     public String getGameName() {
-        return "Wall Trap";
+	return "Wall Trap";
     }
 
     @Override
     public String getPluralName() {
-        if (this.number != AbstractWallTrap.NUMBER_MASTER) {
-            return "Wall Traps " + this.number;
-        } else {
-            return "Master Wall Traps";
-        }
+	if (this.number != AbstractWallTrap.NUMBER_MASTER) {
+	    return "Wall Traps " + this.number;
+	} else {
+	    return "Master Wall Traps";
+	}
     }
 
     @Override
     public int getLayer() {
-        return MazeConstants.LAYER_OBJECT;
+	return MazeConstants.LAYER_OBJECT;
     }
 
     @Override
     protected void setTypes() {
-        this.type.set(TypeConstants.TYPE_WALL_TRAP);
+	this.type.set(TypeConstants.TYPE_WALL_TRAP);
     }
 
     @Override
     public int getCustomProperty(final int propID) {
-        return AbstractMazeObject.DEFAULT_CUSTOM_VALUE;
+	return AbstractMazeObject.DEFAULT_CUSTOM_VALUE;
     }
 
     @Override
     public void setCustomProperty(final int propID, final int value) {
-        // Do nothing
+	// Do nothing
     }
 }

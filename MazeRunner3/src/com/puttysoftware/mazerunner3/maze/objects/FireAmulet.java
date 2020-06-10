@@ -16,39 +16,35 @@ public class FireAmulet extends AbstractAmulet {
 
     // Constructors
     public FireAmulet() {
-        super(ColorConstants.COLOR_RED);
+	super(ColorConstants.COLOR_RED);
     }
 
     @Override
     public String getName() {
-        return "Fire Amulet";
+	return "Fire Amulet";
     }
 
     @Override
     public String getPluralName() {
-        return "Fire Amulets";
+	return "Fire Amulets";
     }
 
     @Override
     public String getDescription() {
-        return "Fire Amulets grant the power to transform ground into Hot Rock for 30 steps. Note that you can only wear one amulet at once.";
+	return "Fire Amulets grant the power to transform ground into Hot Rock for 30 steps. Note that you can only wear one amulet at once.";
     }
 
     @Override
     public void stepAction() {
-        final int x = Boot.getApplication().getMazeManager().getMaze()
-                .getPlayerLocationX();
-        final int y = Boot.getApplication().getMazeManager().getMaze()
-                .getPlayerLocationY();
-        final int z = Boot.getApplication().getMazeManager().getMaze()
-                .getPlayerLocationZ();
-        Boot.getApplication().getMazeManager().getMaze().hotGround(x, y,
-                z);
+	final int x = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationX();
+	final int y = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationY();
+	final int z = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
+	Boot.getApplication().getMazeManager().getMaze().hotGround(x, y, z);
     }
 
     @Override
     public void postMoveActionHook() {
-        Boot.getApplication().getGameManager().activateEffect(
-                MazeEffectConstants.EFFECT_FIERY, FireAmulet.EFFECT_DURATION);
+	Boot.getApplication().getGameManager().activateEffect(MazeEffectConstants.EFFECT_FIERY,
+		FireAmulet.EFFECT_DURATION);
     }
 }

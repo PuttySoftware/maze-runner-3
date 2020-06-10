@@ -16,30 +16,29 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class RoseHouse extends AbstractTeleportTo {
     // Constructors
     public RoseHouse() {
-        super(ColorConstants.COLOR_ROSE);
+	super(ColorConstants.COLOR_ROSE);
     }
 
     // Scriptability
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        final Application app = Boot.getApplication();
-        SoundManager.playSound(SoundConstants.SOUND_UP);
-        app.getGameManager().goToLevel(this.getDestinationLevel());
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	final Application app = Boot.getApplication();
+	SoundManager.playSound(SoundConstants.SOUND_UP);
+	app.getGameManager().goToLevel(this.getDestinationLevel());
     }
 
     @Override
     public String getName() {
-        return "Rose House";
+	return "Rose House";
     }
 
     @Override
     public String getPluralName() {
-        return "Rose Houses";
+	return "Rose Houses";
     }
 
     @Override
     public String getDescription() {
-        return "Rose Houses send you inside when walked on.";
+	return "Rose Houses send you inside when walked on.";
     }
 }

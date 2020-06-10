@@ -9,20 +9,19 @@ public class LegacyPrefixHandler implements LegacyPrefixIO {
 
     @Override
     public int readPrefix(final XLegacyDataReader reader) throws IOException {
-        final byte formatVer = LegacyPrefixHandler.readFormatVersion(reader);
-        final boolean res = LegacyPrefixHandler.checkFormatVersion(formatVer);
-        if (!res) {
-            throw new IOException("Unsupported maze format version.");
-        }
-        return formatVer;
+	final byte formatVer = LegacyPrefixHandler.readFormatVersion(reader);
+	final boolean res = LegacyPrefixHandler.checkFormatVersion(formatVer);
+	if (!res) {
+	    throw new IOException("Unsupported maze format version.");
+	}
+	return formatVer;
     }
 
-    private static byte readFormatVersion(final XLegacyDataReader reader)
-            throws IOException {
-        return reader.readByte();
+    private static byte readFormatVersion(final XLegacyDataReader reader) throws IOException {
+	return reader.readByte();
     }
 
     private static boolean checkFormatVersion(final byte version) {
-        return version <= LegacyPrefixHandler.FORMAT_VERSION;
+	return version <= LegacyPrefixHandler.FORMAT_VERSION;
     }
 }

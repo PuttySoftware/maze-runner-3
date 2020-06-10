@@ -21,60 +21,60 @@ import com.puttysoftware.diane.Diane;
 import com.puttysoftware.randomrange.RandomRange;
 
 public class SoundManager {
-	private static final String DEFAULT_LOAD_PATH = "/assets/sounds/";
-	private static String LOAD_PATH = SoundManager.DEFAULT_LOAD_PATH;
-	private static Class<?> LOAD_CLASS = SoundManager.class;
+    private static final String DEFAULT_LOAD_PATH = "/assets/sounds/";
+    private static String LOAD_PATH = SoundManager.DEFAULT_LOAD_PATH;
+    private static Class<?> LOAD_CLASS = SoundManager.class;
 
-	public static void playSound(final int soundID) {
-		try {
-			int offset = 0;
-			if (soundID == SoundConstants.SOUND_WALK) {
-				final RandomRange rSound = new RandomRange(0, 2);
-				offset = rSound.generate();
-			}
-			final String soundName = SoundConstants.SOUND_NAMES[soundID + offset];
-			SoundManager.play(
-					SoundManager.LOAD_CLASS.getResource(SoundManager.LOAD_PATH + soundName.toLowerCase() + ".wav"));
-		} catch (final ArrayIndexOutOfBoundsException aioob) {
-			// Do nothing
-		}
+    public static void playSound(final int soundID) {
+	try {
+	    int offset = 0;
+	    if (soundID == SoundConstants.SOUND_WALK) {
+		final RandomRange rSound = new RandomRange(0, 2);
+		offset = rSound.generate();
+	    }
+	    final String soundName = SoundConstants.SOUND_NAMES[soundID + offset];
+	    SoundManager.play(
+		    SoundManager.LOAD_CLASS.getResource(SoundManager.LOAD_PATH + soundName.toLowerCase() + ".wav"));
+	} catch (final ArrayIndexOutOfBoundsException aioob) {
+	    // Do nothing
 	}
+    }
 
-	private static final int BUFFER_SIZE = 4096; // 4Kb
+    private static final int BUFFER_SIZE = 4096; // 4Kb
 
-	private static void play(final URL soundURL) {
-		new Thread() {
-			@Override
-			public void run() {
-				try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL)) {
-					final AudioFormat format = audioInputStream.getFormat();
-					final DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-					try (Line line = AudioSystem.getLine(info); SourceDataLine auline = (SourceDataLine) line) {
-						auline.open(format);
-						auline.start();
-						int nBytesRead = 0;
-						final byte[] abData = new byte[SoundManager.BUFFER_SIZE];
-						try {
-							while (nBytesRead != -1) {
-								nBytesRead = audioInputStream.read(abData, 0, abData.length);
-								if (nBytesRead >= 0) {
-									auline.write(abData, 0, nBytesRead);
-								}
-							}
-						} catch (final IOException e) {
-							Diane.handleError(e);
-						} finally {
-							auline.drain();
-						}
-					} catch (final LineUnavailableException e) {
-						Diane.handleError(e);
-					}
-				} catch (final UnsupportedAudioFileException e) {
-					Diane.handleError(e);
-				} catch (final IOException e) {
-					Diane.handleError(e);
+    private static void play(final URL soundURL) {
+	new Thread() {
+	    @Override
+	    public void run() {
+		try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL)) {
+		    final AudioFormat format = audioInputStream.getFormat();
+		    final DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+		    try (Line line = AudioSystem.getLine(info); SourceDataLine auline = (SourceDataLine) line) {
+			auline.open(format);
+			auline.start();
+			int nBytesRead = 0;
+			final byte[] abData = new byte[SoundManager.BUFFER_SIZE];
+			try {
+			    while (nBytesRead != -1) {
+				nBytesRead = audioInputStream.read(abData, 0, abData.length);
+				if (nBytesRead >= 0) {
+				    auline.write(abData, 0, nBytesRead);
 				}
+			    }
+			} catch (final IOException e) {
+			    Diane.handleError(e);
+			} finally {
+			    auline.drain();
 			}
-		}.start();
-	}
+		    } catch (final LineUnavailableException e) {
+			Diane.handleError(e);
+		    }
+		} catch (final UnsupportedAudioFileException e) {
+		    Diane.handleError(e);
+		} catch (final IOException e) {
+		    Diane.handleError(e);
+		}
+	    }
+	}.start();
+    }
 }

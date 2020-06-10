@@ -11,6 +11,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 public class CyanCarpet extends AbstractCarpet {
     // Constructors
     public CyanCarpet() {
-        super("Cyan", ColorConstants.COLOR_CYAN);
+	super("Cyan", ColorConstants.COLOR_CYAN);
     }
 }

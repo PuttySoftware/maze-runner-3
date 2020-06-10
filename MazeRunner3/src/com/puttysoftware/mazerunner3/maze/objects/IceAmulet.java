@@ -16,27 +16,27 @@ public class IceAmulet extends AbstractAmulet {
 
     // Constructors
     public IceAmulet() {
-        super(ColorConstants.COLOR_CYAN);
+	super(ColorConstants.COLOR_CYAN);
     }
 
     @Override
     public String getName() {
-        return "Ice Amulet";
+	return "Ice Amulet";
     }
 
     @Override
     public String getPluralName() {
-        return "Ice Amulets";
+	return "Ice Amulets";
     }
 
     @Override
     public String getDescription() {
-        return "Ice Amulets grant the power to make ground frictionless for 30 steps. Note that you can only wear one amulet at once.";
+	return "Ice Amulets grant the power to make ground frictionless for 30 steps. Note that you can only wear one amulet at once.";
     }
 
     @Override
     public void postMoveActionHook() {
-        Boot.getApplication().getGameManager().activateEffect(
-                MazeEffectConstants.EFFECT_ICY, IceAmulet.EFFECT_DURATION);
+	Boot.getApplication().getGameManager().activateEffect(MazeEffectConstants.EFFECT_ICY,
+		IceAmulet.EFFECT_DURATION);
     }
 }

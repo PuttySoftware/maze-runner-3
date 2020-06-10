@@ -12,31 +12,29 @@ import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 public class ShockBomb extends AbstractBomb {
     // Constructors
     public ShockBomb() {
-        super(ColorConstants.COLOR_LIGHT_YELLOW);
+	super(ColorConstants.COLOR_LIGHT_YELLOW);
     }
 
     @Override
     public String getName() {
-        return "Shock Bomb";
+	return "Shock Bomb";
     }
 
     @Override
     public String getPluralName() {
-        return "Shock Bombs";
+	return "Shock Bombs";
     }
 
     @Override
     public String getDescription() {
-        return "Shock Bombs shock anything in an area of radius 2 centered on the target point.";
+	return "Shock Bombs shock anything in an area of radius 2 centered on the target point.";
     }
 
     @Override
     public void useActionHook(final int x, final int y, final int z) {
-        // Shock objects that react to shock
-        Boot.getApplication().getMazeManager().getMaze()
-                .radialScanShockObjects(x, y, z, AbstractBomb.EFFECT_RADIUS);
-        // Shock the ground, too
-        Boot.getApplication().getMazeManager().getMaze()
-                .radialScanShockGround(x, y, z, AbstractBomb.EFFECT_RADIUS);
+	// Shock objects that react to shock
+	Boot.getApplication().getMazeManager().getMaze().radialScanShockObjects(x, y, z, AbstractBomb.EFFECT_RADIUS);
+	// Shock the ground, too
+	Boot.getApplication().getMazeManager().getMaze().radialScanShockGround(x, y, z, AbstractBomb.EFFECT_RADIUS);
     }
 }

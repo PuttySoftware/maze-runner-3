@@ -15,31 +15,30 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class Lock extends AbstractSingleLock {
     // Constructors
     public Lock() {
-        super(new Key(), ColorConstants.COLOR_BROWN);
+	super(new Key(), ColorConstants.COLOR_BROWN);
     }
 
     // Scriptability
     @Override
-    public void moveFailedAction(final boolean ie, final int dirX,
-            final int dirY, final MazeObjectInventory inv) {
-        if (this.isConditionallySolid(inv)) {
-            Boot.getApplication().showMessage("You need a key");
-        }
-        SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
+    public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	if (this.isConditionallySolid(inv)) {
+	    Boot.getApplication().showMessage("You need a key");
+	}
+	SoundManager.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
 
     @Override
     public String getName() {
-        return "Lock";
+	return "Lock";
     }
 
     @Override
     public String getPluralName() {
-        return "Locks";
+	return "Locks";
     }
 
     @Override
     public String getDescription() {
-        return "Locks require Keys to open.";
+	return "Locks require Keys to open.";
     }
 }

@@ -22,58 +22,55 @@ public abstract class AbstractShop extends AbstractMazeObject {
 
     // Constructors
     public AbstractShop(final int newShopType) {
-        super(false, false);
-        this.setTemplateColor(ColorConstants.COLOR_ORANGE);
-        this.shopType = newShopType;
+	super(false, false);
+	this.setTemplateColor(ColorConstants.COLOR_ORANGE);
+	this.shopType = newShopType;
     }
 
     // Methods
     @Override
     protected void setTypes() {
-        this.type.set(TypeConstants.TYPE_SHOP);
+	this.type.set(TypeConstants.TYPE_SHOP);
     }
 
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        if (PreferencesManager.getRPGEnabled()) {
-            final Shop shop = Boot.getApplication()
-                    .getGenericShop(this.shopType);
-            if (shop != null) {
-                shop.showShop();
-            }
-        } else {
-            SoundManager.playSound(SoundConstants.SOUND_WALK);
-        }
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	if (PreferencesManager.getRPGEnabled()) {
+	    final Shop shop = Boot.getApplication().getGenericShop(this.shopType);
+	    if (shop != null) {
+		shop.showShop();
+	    }
+	} else {
+	    SoundManager.playSound(SoundConstants.SOUND_WALK);
+	}
     }
 
     @Override
     public int getLayer() {
-        return MazeConstants.LAYER_OBJECT;
+	return MazeConstants.LAYER_OBJECT;
     }
 
     @Override
     public int getCustomProperty(final int propID) {
-        return AbstractMazeObject.DEFAULT_CUSTOM_VALUE;
+	return AbstractMazeObject.DEFAULT_CUSTOM_VALUE;
     }
 
     @Override
     public void setCustomProperty(final int propID, final int value) {
-        // Do nothing
+	// Do nothing
     }
 
     @Override
     public boolean enabledInBattle() {
-        return false;
+	return false;
     }
 
     @Override
-    public AbstractMazeObject gameRenderHook(final int x, final int y,
-            final int z) {
-        if (PreferencesManager.getRPGEnabled()) {
-            return this;
-        } else {
-            return new Empty();
-        }
+    public AbstractMazeObject gameRenderHook(final int x, final int y, final int z) {
+	if (PreferencesManager.getRPGEnabled()) {
+	    return this;
+	} else {
+	    return new Empty();
+	}
     }
 }

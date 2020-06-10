@@ -13,35 +13,34 @@ import com.puttysoftware.randomrange.RandomRange;
 abstract class AbstractAppearanceRandomMonster extends AbstractMonster {
     // Constructors
     AbstractAppearanceRandomMonster() {
-        super();
-        this.image = this.getInitialImage();
+	super();
+	this.image = this.getInitialImage();
     }
 
     @Override
     public boolean randomAppearance() {
-        return true;
+	return true;
     }
 
     @Override
     public boolean randomFaith() {
-        return false;
+	return false;
     }
 
     @Override
     protected BufferedImageIcon getInitialImage() {
-        if (this.getLevel() == 0) {
-            return null;
-        } else {
-            final String[] types = MonsterNames.getAllNames();
-            final RandomRange r = new RandomRange(0, types.length - 1);
-            this.setType(types[r.generate()]);
-            return MonsterImageManager.getImage(this.getType(),
-                    this.getElement());
-        }
+	if (this.getLevel() == 0) {
+	    return null;
+	} else {
+	    final String[] types = MonsterNames.getAllNames();
+	    final RandomRange r = new RandomRange(0, types.length - 1);
+	    this.setType(types[r.generate()]);
+	    return MonsterImageManager.getImage(this.getType(), this.getElement());
+	}
     }
 
     @Override
     public void loadMonster() {
-        this.image = this.getInitialImage();
+	this.image = this.getInitialImage();
     }
 }

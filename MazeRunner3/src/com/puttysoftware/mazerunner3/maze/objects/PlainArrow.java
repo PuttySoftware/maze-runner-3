@@ -11,6 +11,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 public class PlainArrow extends AbstractTransientObject {
     // Constructors
     public PlainArrow() {
-        super("Arrow", ColorConstants.COLOR_BROWN);
+	super("Arrow", ColorConstants.COLOR_BROWN);
     }
 }

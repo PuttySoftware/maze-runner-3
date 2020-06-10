@@ -11,21 +11,20 @@ import com.puttysoftware.mazerunner3.maze.objects.TrueSightAmulet;
 public class TrueSight extends MazeEffect {
     // Constructor
     public TrueSight(final int newRounds) {
-        super("True Sight", newRounds);
+	super("True Sight", newRounds);
     }
 
     @Override
     public void customExtendLogic() {
-        // Apply the effect
-        Boot.getApplication().getGameManager().enableTrueSight();
+	// Apply the effect
+	Boot.getApplication().getGameManager().enableTrueSight();
     }
 
     @Override
     public void customTerminateLogic() {
-        // Remove item that granted effect from inventory
-        Boot.getApplication().getGameManager().getObjectInventory()
-                .removeItem(new TrueSightAmulet());
-        // Undo the effect
-        Boot.getApplication().getGameManager().disableTrueSight();
+	// Remove item that granted effect from inventory
+	Boot.getApplication().getGameManager().getObjectInventory().removeItem(new TrueSightAmulet());
+	// Undo the effect
+	Boot.getApplication().getGameManager().disableTrueSight();
     }
 }

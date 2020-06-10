@@ -7,9 +7,7 @@ import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public class LegacySuffixHandler implements LegacySuffixIO {
     @Override
-    public void readSuffix(final XLegacyDataReader reader,
-            final int formatVersion) throws IOException {
-        Boot.getApplication().getGameManager()
-                .loadLegacyGameHook(reader, formatVersion);
+    public void readSuffix(final XLegacyDataReader reader, final int formatVersion) throws IOException {
+	Boot.getApplication().getGameManager().loadLegacyGameHook(reader, formatVersion);
     }
 }

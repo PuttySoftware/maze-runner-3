@@ -11,6 +11,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 public class RoseCarpet extends AbstractCarpet {
     // Constructors
     public RoseCarpet() {
-        super("Rose", ColorConstants.COLOR_ROSE);
+	super("Rose", ColorConstants.COLOR_ROSE);
     }
 }

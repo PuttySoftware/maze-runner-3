@@ -13,26 +13,26 @@ public class LegacyExtension {
 
     // Methods
     public static String getLegacyGameExtension() {
-        return LegacyExtension.LEGACY_GAME_EXTENSION;
+	return LegacyExtension.LEGACY_GAME_EXTENSION;
     }
 
     public static String getLegacyGameExtensionWithPeriod() {
-        return "." + LegacyExtension.LEGACY_GAME_EXTENSION;
+	return "." + LegacyExtension.LEGACY_GAME_EXTENSION;
     }
 
     public static String getLegacyMazeExtension() {
-        return LegacyExtension.LEGACY_MAZE_EXTENSION;
+	return LegacyExtension.LEGACY_MAZE_EXTENSION;
     }
 
     public static String getLegacyMazeExtensionWithPeriod() {
-        return "." + LegacyExtension.LEGACY_MAZE_EXTENSION;
+	return "." + LegacyExtension.LEGACY_MAZE_EXTENSION;
     }
 
     public static String getLegacySavedGameExtension() {
-        return LegacyExtension.LEGACY_SAVED_GAME_EXTENSION;
+	return LegacyExtension.LEGACY_SAVED_GAME_EXTENSION;
     }
 
     public static String getLegacySavedGameExtensionWithPeriod() {
-        return "." + LegacyExtension.LEGACY_SAVED_GAME_EXTENSION;
+	return "." + LegacyExtension.LEGACY_SAVED_GAME_EXTENSION;
     }
 }

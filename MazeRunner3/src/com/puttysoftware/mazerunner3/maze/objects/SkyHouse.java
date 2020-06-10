@@ -16,30 +16,29 @@ import com.puttysoftware.mazerunner3.resourcemanagers.SoundManager;
 public class SkyHouse extends AbstractTeleportTo {
     // Constructors
     public SkyHouse() {
-        super(ColorConstants.COLOR_SKY);
+	super(ColorConstants.COLOR_SKY);
     }
 
     // Scriptability
     @Override
-    public void postMoveAction(final boolean ie, final int dirX, final int dirY,
-            final MazeObjectInventory inv) {
-        final Application app = Boot.getApplication();
-        SoundManager.playSound(SoundConstants.SOUND_UP);
-        app.getGameManager().goToLevel(this.getDestinationLevel());
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
+	final Application app = Boot.getApplication();
+	SoundManager.playSound(SoundConstants.SOUND_UP);
+	app.getGameManager().goToLevel(this.getDestinationLevel());
     }
 
     @Override
     public String getName() {
-        return "Sky House";
+	return "Sky House";
     }
 
     @Override
     public String getPluralName() {
-        return "Sky Houses";
+	return "Sky Houses";
     }
 
     @Override
     public String getDescription() {
-        return "Sky Houses send you inside when walked on.";
+	return "Sky Houses send you inside when walked on.";
     }
 }
