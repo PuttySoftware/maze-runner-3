@@ -3,7 +3,7 @@ package com.puttysoftware.mazerunner3.maze.legacy;
 import java.io.IOException;
 
 import com.puttysoftware.mazerunner3.Boot;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 
 public class LegacySuffixHandler implements LegacySuffixIO {
     @Override

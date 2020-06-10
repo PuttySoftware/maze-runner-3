@@ -8,6 +8,7 @@ package com.puttysoftware.mazerunner3.maze.utilities;
 import java.io.IOException;
 
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractAmulet;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractBoots;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractBow;
@@ -17,7 +18,6 @@ import com.puttysoftware.mazerunner3.maze.objects.NormalAmulet;
 import com.puttysoftware.mazerunner3.maze.objects.RegularBoots;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public final class MazeObjectInventory implements Cloneable {
     // Properties

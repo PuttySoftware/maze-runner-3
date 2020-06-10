@@ -1,4 +1,4 @@
-package com.puttysoftware.xio.legacy;
+package com.puttysoftware.mazerunner3.legacyxio;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

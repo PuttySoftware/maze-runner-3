@@ -23,10 +23,10 @@ import com.puttysoftware.mazerunner3.creatures.personalities.Personality;
 import com.puttysoftware.mazerunner3.creatures.personalities.PersonalityManager;
 import com.puttysoftware.mazerunner3.creatures.races.Race;
 import com.puttysoftware.mazerunner3.creatures.races.RaceManager;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public class PartyManager {
     // Fields

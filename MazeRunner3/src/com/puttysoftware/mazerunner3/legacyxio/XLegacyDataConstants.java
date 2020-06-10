@@ -1,4 +1,4 @@
-package com.puttysoftware.xio.legacy;
+package com.puttysoftware.mazerunner3.legacyxio;
 
 class XLegacyDataConstants {
     public static final String X_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";

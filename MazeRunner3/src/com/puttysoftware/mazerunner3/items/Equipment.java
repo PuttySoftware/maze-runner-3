@@ -8,9 +8,9 @@ package com.puttysoftware.mazerunner3.items;
 import java.io.IOException;
 
 import com.puttysoftware.mazerunner3.creatures.faiths.FaithConstants;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public class Equipment extends Item {
     // Properties

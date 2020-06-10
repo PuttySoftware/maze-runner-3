@@ -12,6 +12,7 @@ import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractLightModifier;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.legacy.LegacyFormatConstants;
@@ -43,7 +44,6 @@ import com.puttysoftware.randomrange.RandomRange;
 import com.puttysoftware.storage.FlagStorage;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 class LayeredTower implements Cloneable {
     // Properties

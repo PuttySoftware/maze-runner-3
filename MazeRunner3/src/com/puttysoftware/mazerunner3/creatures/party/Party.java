@@ -12,12 +12,12 @@ import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.battle.VictorySpoilsDescription;
 import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
 import com.puttysoftware.mazerunner3.creatures.characterfiles.CharacterLoader;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.objects.BattleCharacter;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public class Party {
     // Fields

@@ -10,6 +10,7 @@ import java.io.IOException;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.effects.MazeEffectConstants;
@@ -21,7 +22,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectList;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public abstract class AbstractProgrammableLock extends AbstractSingleLock {
     private static final SignalCrystal SIGNAL = new SignalCrystal();

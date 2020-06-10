@@ -2,7 +2,7 @@ package com.puttysoftware.mazerunner3.maze.legacy;
 
 import java.io.IOException;
 
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 
 public class LegacyPrefixHandler implements LegacyPrefixIO {
     private static final byte FORMAT_VERSION = (byte) LegacyFormatConstants.LEGACY_MAZE_FORMAT_LATEST;

@@ -11,6 +11,7 @@ import java.io.IOException;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.fileutils.FileUtilities;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.legacy.LegacyFormatConstants;
 import com.puttysoftware.mazerunner3.maze.legacy.LegacyPrefixIO;
@@ -24,7 +25,6 @@ import com.puttysoftware.randomrange.RandomLongRange;
 import com.puttysoftware.randomrange.RandomRange;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public class Maze implements MazeConstants {
     // Properties

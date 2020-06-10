@@ -12,6 +12,7 @@ import java.util.BitSet;
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Boot;
 import com.puttysoftware.mazerunner3.editor.rulesets.RuleSet;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.ObjectImageLoader;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
@@ -32,7 +33,6 @@ import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
 import com.puttysoftware.randomrange.RandomRange;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public abstract class AbstractMazeObject implements TypeConstants, RandomGenerationRule {
     // Properties

@@ -13,11 +13,11 @@ import java.util.Arrays;
 import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
 import com.puttysoftware.mazerunner3.creatures.StatConstants;
 import com.puttysoftware.mazerunner3.items.combat.CombatItemList;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public class ItemInventory {
     // Properties

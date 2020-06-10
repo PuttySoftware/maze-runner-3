@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.ImageTransformer;
 import com.puttysoftware.mazerunner3.loader.ObjectImageLoader;
 import com.puttysoftware.mazerunner3.maze.FormatConstants;
@@ -20,7 +21,6 @@ import com.puttysoftware.mazerunner3.maze.legacy.LegacyFormatConstants;
 import com.puttysoftware.mazerunner3.maze.objects.*;
 import com.puttysoftware.xio.XDataReader;
 import com.puttysoftware.xio.XDataWriter;
-import com.puttysoftware.xio.legacy.XLegacyDataReader;
 
 public class MazeObjectList {
     // Fields
