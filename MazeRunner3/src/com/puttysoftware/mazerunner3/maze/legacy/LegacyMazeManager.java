@@ -250,13 +250,13 @@ public class LegacyMazeManager {
 		    if (!file.getParentFile().exists()) {
 			final boolean okay = file.getParentFile().mkdirs();
 			if (!okay) {
-			    Boot.getErrorLogger().logError(new IOException("Cannot create game folder!"));
+			    Boot.uncaughtException(new IOException("Cannot create game folder!"));
 			}
 		    }
 		    try {
 			FileUtilities.copyFile(file, new File(LegacyMazeManager.getGameDirectory() + file.getName()));
 		    } catch (final IOException ioe) {
-			Boot.getErrorLogger().logError(ioe);
+			Boot.uncaughtException(ioe);
 		    }
 		    LegacyMazeManager.loadLegacyFile(filename, false, true);
 		} else {

@@ -243,7 +243,7 @@ class PreferencesGUIManager {
 		    pm.hidePrefs();
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -267,7 +267,7 @@ class PreferencesGUIManager {
 		    }
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 

@@ -43,7 +43,7 @@ public class RuleSetLoadTask extends Thread {
 	    CommonDialogs.showDialog(ie.getMessage());
 	    app.getMazeManager().handleDeferredSuccess(false);
 	} catch (final Exception ex) {
-	    Boot.getErrorLogger().logError(ex);
+	    Boot.uncaughtException(ex);
 	}
     }
 }

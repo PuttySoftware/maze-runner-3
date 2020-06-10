@@ -40,7 +40,7 @@ public class RuleSetSaveTask extends Thread {
 	    CommonDialogs.showDialog("Saving the " + sg.toLowerCase()
 		    + " file failed, probably due to illegal characters in the file name.");
 	} catch (final Exception ex) {
-	    Boot.getErrorLogger().logError(ex);
+	    Boot.uncaughtException(ex);
 	}
     }
 

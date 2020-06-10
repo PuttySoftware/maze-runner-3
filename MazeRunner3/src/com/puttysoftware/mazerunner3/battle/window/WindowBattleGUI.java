@@ -248,7 +248,7 @@ public class WindowBattleGUI {
 		    wbg.battleFrame.pack();
 		}
 	    } catch (final Throwable t) {
-		Boot.getErrorLogger().logError(t);
+		Boot.uncaughtException(t);
 	    }
 	}
     }

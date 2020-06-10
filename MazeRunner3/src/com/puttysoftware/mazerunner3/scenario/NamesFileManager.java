@@ -43,7 +43,7 @@ public class NamesFileManager {
 	    // Final cleanup
 	    app.getNamesEditor().objectChanged();
 	} catch (final Exception ex) {
-	    Boot.getErrorLogger().logError(ex);
+	    Boot.uncaughtException(ex);
 	}
     }
 
@@ -59,7 +59,7 @@ public class NamesFileManager {
 	    if (!parent.exists()) {
 		final boolean success = parent.mkdirs();
 		if (!success) {
-		    Boot.getErrorLogger().logError(new IOException("Creating names folder failed!"));
+		    Boot.uncaughtException(new IOException("Creating names folder failed!"));
 		}
 	    }
 	    final String[] data = NamesManager.convertCacheToArray();

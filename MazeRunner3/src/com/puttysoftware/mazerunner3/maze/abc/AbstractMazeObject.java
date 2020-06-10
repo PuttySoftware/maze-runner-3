@@ -260,7 +260,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
 	    return copy;
 	} catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
 		| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-	    Boot.getErrorLogger().logError(e);
+	    Boot.uncaughtException(e);
 	    return null;
 	}
     }

@@ -40,7 +40,7 @@ class MapBattleAITask extends Thread {
 		}
 	    }
 	} catch (final Throwable t) {
-	    Boot.getErrorLogger().logError(t);
+	    Boot.uncaughtException(t);
 	}
     }
 

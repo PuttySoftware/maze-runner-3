@@ -43,7 +43,7 @@ class NamesSaveTask extends Thread {
 	    CommonDialogs.showDialog("Writing the " + sg.toLowerCase()
 		    + " file failed, probably due to illegal characters in the file name.");
 	} catch (final Exception ex) {
-	    Boot.getErrorLogger().logError(ex);
+	    Boot.uncaughtException(ex);
 	}
     }
 }

@@ -90,7 +90,7 @@ public class AboutDialog implements AboutHandler {
 		    ad.hideAboutDialog();
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
     }

@@ -19,11 +19,11 @@ public class NamesManager {
 	try {
 	    NamesManager.createCache();
 	} catch (final Exception e) {
-	    Boot.getErrorLogger().logError(e);
+	    Boot.uncaughtException(e);
 	}
 	final String key = section + ":" + type;
 	if (!NamesManager.containsKey(key)) {
-	    Boot.getErrorLogger().logError(new IllegalArgumentException("No such key " + key));
+	    Boot.uncaughtException(new IllegalArgumentException("No such key " + key));
 	}
 	return NamesManager.getValue(key);
     }
@@ -54,7 +54,7 @@ public class NamesManager {
 	try {
 	    NamesManager.createCache();
 	} catch (final Exception e) {
-	    Boot.getErrorLogger().logError(e);
+	    Boot.uncaughtException(e);
 	}
 	return NamesManager.CACHE;
     }

@@ -135,7 +135,7 @@ public class MazePreferencesManager {
 		    mpm.hidePrefs();
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 

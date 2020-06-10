@@ -105,7 +105,7 @@ class MapBattleArrowTask extends Thread {
 	    }
 	    app.getBattle().arrowDone(hit);
 	} catch (final Throwable t) {
-	    Boot.getErrorLogger().logError(t);
+	    Boot.uncaughtException(t);
 	}
     }
 

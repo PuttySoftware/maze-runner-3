@@ -1873,7 +1873,7 @@ public class MazeEditorLogic {
 		this.exitEditor();
 	    }
 	} catch (final Exception ex) {
-	    Boot.getErrorLogger().logError(ex);
+	    Boot.uncaughtException(ex);
 	}
     }
 }

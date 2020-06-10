@@ -651,7 +651,7 @@ class MazeEditorGUI {
 		mel.exitEditor();
 	    }
 	} catch (final Exception ex) {
-	    Boot.getErrorLogger().logError(ex);
+	    Boot.uncaughtException(ex);
 	}
     }
 
@@ -683,7 +683,7 @@ class MazeEditorGUI {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -719,7 +719,7 @@ class MazeEditorGUI {
 		    }
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -777,7 +777,7 @@ class MazeEditorGUI {
 		final int y = e.getY();
 		mel.editObject(x, y, false);
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -815,7 +815,7 @@ class MazeEditorGUI {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -838,7 +838,7 @@ class MazeEditorGUI {
 		final int y = e.getY();
 		mel.setPlayerLocation(x, y);
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -881,7 +881,7 @@ class MazeEditorGUI {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -904,7 +904,7 @@ class MazeEditorGUI {
 		final int y = e.getY();
 		mel.setTeleportDestination(x, y);
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -947,7 +947,7 @@ class MazeEditorGUI {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -970,7 +970,7 @@ class MazeEditorGUI {
 		final int y = e.getY();
 		mel.setConditionalTeleportDestination(x, y);
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -1056,7 +1056,7 @@ class MazeEditorGUI {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -1079,7 +1079,7 @@ class MazeEditorGUI {
 		final int y = e.getY();
 		mel.setMetalButtonTarget(x, y);
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 

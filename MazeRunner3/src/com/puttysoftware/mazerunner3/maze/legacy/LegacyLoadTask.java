@@ -104,7 +104,7 @@ public class LegacyLoadTask extends Thread {
 	    CommonDialogs.showDialog("Error loading " + sg.toLowerCase() + " file: " + ie.getMessage());
 	    app.getMazeManager().handleDeferredSuccess(false);
 	} catch (final Exception ex) {
-	    Boot.getErrorLogger().logError(ex);
+	    Boot.uncaughtException(ex);
 	} finally {
 	    this.loadFrame.setVisible(false);
 	}

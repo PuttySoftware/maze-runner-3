@@ -186,7 +186,7 @@ public class NameEditor extends AbstractObjectEditor {
 		    CommonDialogs.showDialog("Names Reset.");
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 

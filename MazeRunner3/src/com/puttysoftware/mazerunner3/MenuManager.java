@@ -1133,7 +1133,7 @@ public class MenuManager {
 		}
 		MenuManager.this.checkFlags();
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
     }

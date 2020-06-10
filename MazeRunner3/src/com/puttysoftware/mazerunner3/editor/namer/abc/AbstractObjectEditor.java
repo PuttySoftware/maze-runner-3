@@ -250,7 +250,7 @@ public abstract class AbstractObjectEditor extends AbstractEditor {
 	    } catch (final NumberFormatException nfe) {
 		CommonDialogs.showErrorDialog("An invalid value was entered.", ge.getEditorSource());
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -277,7 +277,7 @@ public abstract class AbstractObjectEditor extends AbstractEditor {
 	    } catch (final NumberFormatException nfe) {
 		CommonDialogs.showErrorDialog("An invalid value was entered.", ge.getEditorSource());
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
     }

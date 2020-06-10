@@ -286,7 +286,7 @@ class MapBattleGUI {
 		    }
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -356,7 +356,7 @@ class MapBattleGUI {
 		    }
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
     }

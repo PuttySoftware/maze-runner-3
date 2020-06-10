@@ -92,7 +92,7 @@ public class LegacyGameLoadTask extends Thread {
 		    "Loading the " + sg.toLowerCase() + " file failed, due to some other type of I/O error.");
 	    app.getMazeManager().handleDeferredSuccess(false);
 	} catch (final Exception ex) {
-	    Boot.getErrorLogger().logError(ex);
+	    Boot.uncaughtException(ex);
 	} finally {
 	    this.loadFrame.setVisible(false);
 	}

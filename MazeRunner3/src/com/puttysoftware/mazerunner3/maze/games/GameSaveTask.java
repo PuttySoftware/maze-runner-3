@@ -57,7 +57,7 @@ public class GameSaveTask extends Thread {
 		    + " file failed, probably due to illegal characters in the file name.");
 	    success = false;
 	} catch (final Exception ex) {
-	    Boot.getErrorLogger().logError(ex);
+	    Boot.uncaughtException(ex);
 	}
 	Boot.getApplication().showMessage("Locked " + sg + " file saved.");
 	app.getMazeManager().handleDeferredSuccess(success);

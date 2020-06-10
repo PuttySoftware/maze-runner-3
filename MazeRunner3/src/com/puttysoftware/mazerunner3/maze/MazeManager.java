@@ -336,13 +336,13 @@ public class MazeManager implements OpenFilesHandler {
 		    if (!file.getParentFile().exists()) {
 			final boolean okay = file.getParentFile().mkdirs();
 			if (!okay) {
-			    Boot.getErrorLogger().logError(new IOException("Cannot create game folder!"));
+			    Boot.uncaughtException(new IOException("Cannot create game folder!"));
 			}
 		    }
 		    try {
 			FileUtilities.copyFile(file, new File(MazeManager.getGameDirectory() + file.getName()));
 		    } catch (final IOException ioe) {
-			Boot.getErrorLogger().logError(ioe);
+			Boot.uncaughtException(ioe);
 		    }
 		    MazeManager.loadFile(filename, false, true);
 		} else {
@@ -502,7 +502,7 @@ public class MazeManager implements OpenFilesHandler {
 		    if (!file.getParentFile().exists()) {
 			final boolean okay = file.getParentFile().mkdirs();
 			if (!okay) {
-			    Boot.getErrorLogger().logError(new IOException("Cannot create game folder!"));
+			    Boot.uncaughtException(new IOException("Cannot create game folder!"));
 			}
 		    }
 		    MazeManager.saveFile(filename, false, true);

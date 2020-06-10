@@ -921,7 +921,7 @@ public class MazeObjectList {
 		    }
 		} catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
 			| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-		    Boot.getErrorLogger().logError(e);
+		    Boot.uncaughtException(e);
 		}
 	    }
 	    return null;
@@ -955,7 +955,7 @@ public class MazeObjectList {
 		}
 	    } catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
 		    | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-		Boot.getErrorLogger().logError(e);
+		Boot.uncaughtException(e);
 	    }
 	}
 	return null;
@@ -981,7 +981,7 @@ public class MazeObjectList {
 		}
 	    } catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
 		    | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-		Boot.getErrorLogger().logError(e);
+		Boot.uncaughtException(e);
 	    }
 	}
 	return null;
@@ -1007,7 +1007,7 @@ public class MazeObjectList {
 		}
 	    } catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
 		    | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-		Boot.getErrorLogger().logError(e);
+		Boot.uncaughtException(e);
 	    }
 	}
 	return null;

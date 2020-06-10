@@ -62,7 +62,7 @@ public class NameDataLoader {
 	    }
 	    return res;
 	} catch (final Exception e) {
-	    Boot.getErrorLogger().logError(e);
+	    Boot.uncaughtException(e);
 	    return null;
 	}
     }
@@ -106,7 +106,7 @@ public class NameDataLoader {
 		return res;
 	    }
 	} catch (final Exception e) {
-	    Boot.getErrorLogger().logError(e);
+	    Boot.uncaughtException(e);
 	    return null;
 	}
     }
@@ -122,7 +122,7 @@ public class NameDataLoader {
 		}
 	    }
 	} catch (final Exception e) {
-	    Boot.getErrorLogger().logError(e);
+	    Boot.uncaughtException(e);
 	}
     }
 

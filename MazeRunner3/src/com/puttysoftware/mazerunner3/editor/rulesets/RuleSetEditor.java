@@ -143,7 +143,7 @@ class RuleSetEditor {
 		    ge.hideRuleSetEditor();
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 

@@ -89,7 +89,7 @@ public class GameArrowTask extends Thread {
 	    SoundLoader.playSound(SoundConstants.SOUND_ARROW_DIE);
 	    app.getGameManager().arrowDone();
 	} catch (final Throwable t) {
-	    Boot.getErrorLogger().logError(t);
+	    Boot.uncaughtException(t);
 	}
     }
 

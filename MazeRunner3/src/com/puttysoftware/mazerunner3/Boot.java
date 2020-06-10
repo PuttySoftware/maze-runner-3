@@ -8,6 +8,8 @@ package com.puttysoftware.mazerunner3;
 import java.awt.desktop.PreferencesEvent;
 import java.awt.desktop.PreferencesHandler;
 
+import com.puttysoftware.diane.Diane;
+import com.puttysoftware.diane.ErrorHandler;
 import com.puttysoftware.diane.ErrorLogger;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.integration.Integration;
@@ -22,7 +24,7 @@ public class Boot {
 	    + "Include the error log with your bug report.\n" + "Email bug reports to: products@puttysoftware.com\n"
 	    + "Subject: MazeRunnerII Bug Report";
     private static final String ERROR_TITLE = "MazeRunnerII Error";
-    private static final ErrorLogger elog = new ErrorLogger(Boot.PROGRAM_NAME);
+    private static final ErrorCatcher eCatch = new ErrorCatcher();
     private static final int BATTLE_MAP_SIZE = 16;
     private static final boolean DEBUG_MODE = false;
 
@@ -31,16 +33,8 @@ public class Boot {
 	return Boot.application;
     }
 
-    public static ErrorLogger getErrorLogger() {
-	String suffix;
-	if (Boot.inDebugMode()) {
-	    suffix = " (DEBUG)";
-	} else {
-	    suffix = "";
-	}
-	// Display error message
-	CommonDialogs.showErrorDialog(Boot.ERROR_MESSAGE, Boot.ERROR_TITLE + suffix);
-	return Boot.elog;
+    public static void uncaughtException(final Throwable e) {
+	Boot.eCatch.uncaughtException(Thread.currentThread(), e);
     }
 
     public static boolean inDebugMode() {
@@ -59,6 +53,7 @@ public class Boot {
     public static void main(final String[] args) {
 	try {
 	    // Early initialization
+	    Diane.installErrorHandler(Boot.eCatch);
 	    Boot.preInit();
 	    // Set look and feel
 	    Integration integration = new Integration();
@@ -78,7 +73,7 @@ public class Boot {
 	    Boot.application.playLogoSound();
 	    Boot.application.getGUIManager().showGUI();
 	} catch (final Throwable t) {
-	    Boot.getErrorLogger().logError(t);
+	    Boot.uncaughtException(t);
 	}
     }
 
@@ -86,6 +81,23 @@ public class Boot {
 	@Override
 	public void handlePreferences(PreferencesEvent e) {
 	    PreferencesManager.showPrefs();
+	}
+    }
+
+    private static class ErrorCatcher implements ErrorHandler {
+	private static final ErrorLogger logger = new ErrorLogger(Boot.PROGRAM_NAME);
+
+	@Override
+	public void uncaughtException(final Thread t, final Throwable e) {
+	    String suffix;
+	    if (Boot.inDebugMode()) {
+		suffix = " (DEBUG)";
+	    } else {
+		suffix = "";
+	    }
+	    // Display error message
+	    CommonDialogs.showErrorDialog(Boot.ERROR_MESSAGE, Boot.ERROR_TITLE + suffix);
+	    ErrorCatcher.logger.logError(e);
 	}
     }
 }

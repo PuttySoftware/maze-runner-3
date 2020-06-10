@@ -555,7 +555,7 @@ class GameGUIManager {
 		    glm.setPullInProgress(false);
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -620,7 +620,7 @@ class GameGUIManager {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -655,7 +655,7 @@ class GameGUIManager {
 		    app.getGameManager().exitGame();
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 
@@ -710,7 +710,7 @@ class GameGUIManager {
 		    gm.controllableTeleportHandler(x, y);
 		}
 	    } catch (final Exception ex) {
-		Boot.getErrorLogger().logError(ex);
+		Boot.uncaughtException(ex);
 	    }
 	}
 

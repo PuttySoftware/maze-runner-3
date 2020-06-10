@@ -66,7 +66,7 @@ public class MusicLoader {
 	    } catch (final NullPointerException np) {
 		// Ignore
 	    } catch (final Throwable t) {
-		Boot.getErrorLogger().logError(t);
+		Boot.uncaughtException(t);
 	    }
 	}
     }
