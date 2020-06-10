@@ -58,22 +58,25 @@ public class Boot {
 
     public static void main(final String[] args) {
 	try {
-	    // Pre-Init
+	    // Early initialization
 	    Boot.preInit();
-	    // Integrate with host platform
+	    // Set look and feel
 	    Integration integration = new Integration();
 	    integration.configureLookAndFeel();
+	    // Create game
 	    Boot.application = new Application();
 	    Boot.application.postConstruct();
+	    // Integrate with host platform
 	    integration.setAboutHandler(Boot.application.getAboutDialog());
 	    integration.setOpenFileHandler(Boot.application.getMazeManager());
 	    integration.setPreferencesHandler(new PrefsLauncher());
 	    integration.setQuitHandler(Boot.application.getGUIManager());
-	    Boot.application.playLogoSound();
-	    Boot.application.getGUIManager().showGUI();
 	    // Set up Common Dialogs
 	    CommonDialogs.setDefaultTitle(Boot.PROGRAM_NAME);
 	    CommonDialogs.setIcon(Boot.application.getMicroLogo());
+	    // Launch game
+	    Boot.application.playLogoSound();
+	    Boot.application.getGUIManager().showGUI();
 	} catch (final Throwable t) {
 	    Boot.getErrorLogger().logError(t);
 	}
