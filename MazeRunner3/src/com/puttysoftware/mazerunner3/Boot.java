@@ -34,7 +34,7 @@ public class Boot {
     }
 
     public static void uncaughtException(final Throwable e) {
-	Boot.eCatch.uncaughtException(Thread.currentThread(), e);
+	Diane.handleError(e);
     }
 
     public static boolean inDebugMode() {
