@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -37,8 +37,8 @@ public class ClockwiseRotationTrap extends AbstractTrap {
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	SoundLoader.playSound(SoundConstants.SOUND_CHANGE);
-	Boot.getApplication().showMessage("Your controls are rotated!");
-	Boot.getApplication().getGameManager().activateEffect(MazeEffectConstants.EFFECT_ROTATED_CLOCKWISE,
+	Game.getApplication().showMessage("Your controls are rotated!");
+	Game.getApplication().getGameManager().activateEffect(MazeEffectConstants.EFFECT_ROTATED_CLOCKWISE,
 		ClockwiseRotationTrap.EFFECT_DURATION);
     }
 

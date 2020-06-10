@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractLightModifier;
@@ -196,8 +196,8 @@ class LayeredTower implements Cloneable {
 		    MazeConstants.LAYER_GROUND);
 	    if (!there.isSolid() && !there.getName().equals("Monster")) {
 		if (this.radialScan(xLoc, yLoc, 0, pLocX, pLocY)) {
-		    if (Boot.getApplication().getMode() != Application.STATUS_BATTLE) {
-			Boot.getApplication().getBattle().doBattle();
+		    if (Game.getApplication().getMode() != Application.STATUS_BATTLE) {
+			Game.getApplication().getBattle().doBattle();
 			this.postBattle(monster, xLoc, yLoc, false);
 		    }
 		} else {
@@ -221,7 +221,7 @@ class LayeredTower implements Cloneable {
 	final AbstractMazeObject saved = m.getSavedObject();
 	final int zLoc = this.getPlayerFloor();
 	if (player) {
-	    Boot.getApplication().getGameManager().setSavedMazeObject(saved);
+	    Game.getApplication().getGameManager().setSavedMazeObject(saved);
 	} else {
 	    this.setCell(saved, xLoc, yLoc, zLoc, MazeConstants.LAYER_OBJECT);
 	}
@@ -284,7 +284,7 @@ class LayeredTower implements Cloneable {
 			final Monster m = (Monster) this.getCell(u, v, z, l);
 			this.setCell(m.getSavedObject(), u, v, z, l);
 			// Reward player for monster death
-			Boot.getApplication().getBattle().doBattleByProxy();
+			Game.getApplication().getBattle().doBattleByProxy();
 			// Respawn it
 			this.generateOneMonster();
 		    }
@@ -984,7 +984,7 @@ class LayeredTower implements Cloneable {
 
     public void fillFloorRandomly(final Maze maze, final int z, final int w) {
 	// Pre-Pass
-	final MazeObjectList objects = Boot.getApplication().getObjects();
+	final MazeObjectList objects = Game.getApplication().getObjects();
 	final AbstractMazeObject pass1FillBottom = PreferencesManager.getEditorDefaultFill();
 	final AbstractMazeObject pass1FillTop = new Empty();
 	RandomRange r = null;
@@ -1057,7 +1057,7 @@ class LayeredTower implements Cloneable {
 
     public void fillFloorRandomlyCustom(final Maze maze, final int z, final int w) {
 	// Pre-Pass
-	final MazeObjectList objects = Boot.getApplication().getObjects();
+	final MazeObjectList objects = Game.getApplication().getObjects();
 	final AbstractMazeObject pass1FillBottom = PreferencesManager.getEditorDefaultFill();
 	final AbstractMazeObject pass1FillTop = new Empty();
 	final AbstractMazeObject[] withoutRuleSets = objects.getAllObjectsWithoutRuleSets();
@@ -1234,7 +1234,7 @@ class LayeredTower implements Cloneable {
 
     public void fillFloorAndLayerRandomly(final Maze maze, final int z, final int w, final int layer) {
 	// Pre-Pass
-	final MazeObjectList objects = Boot.getApplication().getObjects();
+	final MazeObjectList objects = Game.getApplication().getObjects();
 	final AbstractMazeObject pass1Fill = PreferencesManager.getEditorDefaultFill(layer);
 	RandomRange r = null;
 	int x, y;
@@ -1302,7 +1302,7 @@ class LayeredTower implements Cloneable {
 
     public void fillFloorAndLayerRandomlyCustom(final Maze maze, final int z, final int w, final int layer) {
 	// Pre-Pass
-	final MazeObjectList objects = Boot.getApplication().getObjects();
+	final MazeObjectList objects = Game.getApplication().getObjects();
 	final AbstractMazeObject pass1Fill = PreferencesManager.getEditorDefaultFill(layer);
 	final AbstractMazeObject[] withoutRuleSets = objects.getAllObjectsWithoutRuleSets();
 	final AbstractMazeObject[] withRuleSets = objects.getAllObjectsWithRuleSets();
@@ -1719,7 +1719,7 @@ class LayeredTower implements Cloneable {
 		// Time's up
 		this.timerActive = false;
 		CommonDialogs.showDialog("Time's Up!");
-		Boot.getApplication().getGameManager().solvedLevel();
+		Game.getApplication().getGameManager().solvedLevel();
 	    }
 	}
     }
@@ -2090,7 +2090,7 @@ class LayeredTower implements Cloneable {
 		    final boolean isCharacter = this.getCell(u, v, z, MazeConstants.LAYER_OBJECT)
 			    .isOfType(TypeConstants.TYPE_CHARACTER);
 		    if (isCharacter) {
-			final Application app = Boot.getApplication();
+			final Application app = Game.getApplication();
 			app.getGameManager().keepNextMessage();
 			app.showMessage(
 				"You find yourself caught in the quake, and fall over, hurting yourself a bit.");
@@ -2399,7 +2399,7 @@ class LayeredTower implements Cloneable {
 	    for (y = 0; y < lt.getRows(); y++) {
 		for (z = 0; z < lt.getFloors(); z++) {
 		    for (e = 0; e < MazeConstants.LAYER_COUNT; e++) {
-			AbstractMazeObject obj = Boot.getApplication().getObjects().readLegacyMazeObject(reader,
+			AbstractMazeObject obj = Game.getApplication().getObjects().readLegacyMazeObject(reader,
 				LegacyFormatConstants.LEGACY_MAZE_FORMAT_1);
 			if (obj == null) {
 			    return null;
@@ -2460,7 +2460,7 @@ class LayeredTower implements Cloneable {
 	    for (y = 0; y < lt.getRows(); y++) {
 		for (z = 0; z < lt.getFloors(); z++) {
 		    for (e = 0; e < MazeConstants.LAYER_COUNT; e++) {
-			lt.setCell(Boot.getApplication().getObjects().readLegacyMazeObject(reader,
+			lt.setCell(Game.getApplication().getObjects().readLegacyMazeObject(reader,
 				LegacyFormatConstants.LEGACY_MAZE_FORMAT_2), y, x, z, e);
 			if (lt.getCell(y, x, z, e) == null) {
 			    return null;
@@ -2512,7 +2512,7 @@ class LayeredTower implements Cloneable {
 	    for (y = 0; y < lt.getRows(); y++) {
 		for (z = 0; z < lt.getFloors(); z++) {
 		    for (e = 0; e < MazeConstants.LAYER_COUNT; e++) {
-			lt.setCell(Boot.getApplication().getObjects().readMazeObject(reader,
+			lt.setCell(Game.getApplication().getObjects().readMazeObject(reader,
 				FormatConstants.MAZE_FORMAT_1), y, x, z, e);
 			if (lt.getCell(y, x, z, e) == null) {
 			    return null;
@@ -2599,7 +2599,7 @@ class LayeredTower implements Cloneable {
 		for (z = 0; z < sizeZ; z++) {
 		    for (e = 0; e < MazeConstants.LAYER_COUNT; e++) {
 			this.savedTowerState.setCell(
-				Boot.getApplication().getObjects().readLegacyMazeObject(reader, formatVersion), y, x, z,
+				Game.getApplication().getObjects().readLegacyMazeObject(reader, formatVersion), y, x, z,
 				e);
 		    }
 		}
@@ -2618,7 +2618,7 @@ class LayeredTower implements Cloneable {
 		for (z = 0; z < sizeZ; z++) {
 		    for (e = 0; e < MazeConstants.LAYER_COUNT; e++) {
 			this.savedTowerState.setCell(
-				Boot.getApplication().getObjects().readMazeObject(reader, formatVersion), y, x, z, e);
+				Game.getApplication().getObjects().readMazeObject(reader, formatVersion), y, x, z, e);
 		    }
 		}
 	    }

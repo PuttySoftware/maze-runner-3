@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.game.InfiniteRecursionException;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -36,12 +36,12 @@ public class Springboard extends StairsUp {
     @Override
     public boolean preMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	return this.searchNestedSprings(dirX, dirY,
-		Boot.getApplication().getMazeManager().getMaze().getPlayerLocationZ() + 1, inv);
+		Game.getApplication().getMazeManager().getMaze().getPlayerLocationZ() + 1, inv);
     }
 
     private boolean searchNestedSprings(final int dirX, final int dirY, final int floor,
 	    final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	// Stop infinite recursion
 	final int ucl = app.getMazeManager().getMaze().getFloors() * 2;
 	if (floor >= ucl) {
@@ -68,7 +68,7 @@ public class Springboard extends StairsUp {
 
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().updatePositionAbsolute(this.getDestinationRow(), this.getDestinationColumn(),
 		this.getDestinationFloor());
 	SoundLoader.playSound(SoundConstants.SOUND_SPRINGBOARD);
@@ -77,7 +77,7 @@ public class Springboard extends StairsUp {
     @Override
     public void pushIntoAction(final MazeObjectInventory inv, final AbstractMazeObject pushed, final int x, final int y,
 	    final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	try {
 	    this.searchNestedSprings(x, y, z + 1, inv);
 	    if (pushed.isPushable()) {
@@ -87,13 +87,13 @@ public class Springboard extends StairsUp {
 	    }
 	} catch (final InfiniteRecursionException ir) {
 	    SoundLoader.playSound(SoundConstants.SOUND_SPRINGBOARD);
-	    Boot.getApplication().getMazeManager().getMaze().setCell(new Empty(), x, y, z, MazeConstants.LAYER_OBJECT);
+	    Game.getApplication().getMazeManager().getMaze().setCell(new Empty(), x, y, z, MazeConstants.LAYER_OBJECT);
 	}
     }
 
     @Override
     public boolean isConditionallySolid(final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (!app.getGameManager().isFloorAbove()) {
 	    return true;
 	} else {

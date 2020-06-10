@@ -1,6 +1,6 @@
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMovingObject;
@@ -36,8 +36,8 @@ public class IcedMonster extends AbstractMovingObject {
     @Override
     public void timerExpiredAction(final int dirX, final int dirY) {
 	// Transform into a normal monster
-	final int pz = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
-	Boot.getApplication().getGameManager().morph(new Monster(this.getSavedObject()), dirX, dirY, pz,
+	final int pz = Game.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
+	Game.getApplication().getGameManager().morph(new Monster(this.getSavedObject()), dirX, dirY, pz,
 		MazeConstants.LAYER_OBJECT);
     }
 

@@ -7,7 +7,7 @@ package com.puttysoftware.mazerunner3.maze.utilities;
 
 import java.io.IOException;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractAmulet;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractBoots;
@@ -35,7 +35,7 @@ public final class MazeObjectInventory implements Cloneable {
 
     // Constructors
     public MazeObjectInventory() {
-	final MazeObjectList list = Boot.getApplication().getObjects();
+	final MazeObjectList list = Game.getApplication().getObjects();
 	this.nameList = list.getAllInventoryableNamesMinusSpecial();
 	final AbstractMazeObject[] invobj = list.getAllInventoryableObjectsMinusSpecial();
 	this.bowNameList = list.getAllBowNames();
@@ -128,7 +128,7 @@ public final class MazeObjectInventory implements Cloneable {
     }
 
     public boolean isItemCategoryThere(final int cat) {
-	final MazeObjectList list = Boot.getApplication().getObjects();
+	final MazeObjectList list = Game.getApplication().getObjects();
 	final AbstractMazeObject[] objects = list.getAllInventoryableObjectsMinusSpecial();
 	for (int x = 0; x < objects.length; x++) {
 	    if (objects[x].isOfType(cat) && this.contents[x] > 0) {
@@ -230,7 +230,7 @@ public final class MazeObjectInventory implements Cloneable {
     }
 
     public String[] generateUseStringArray() {
-	final MazeObjectList list = Boot.getApplication().getObjects();
+	final MazeObjectList list = Game.getApplication().getObjects();
 	final String[] names = list.getAllUsableNamesMinusSpecial();
 	final int len = names.length;
 	StringBuilder sb;
@@ -250,7 +250,7 @@ public final class MazeObjectInventory implements Cloneable {
     }
 
     public String[] generateBowStringArray() {
-	final MazeObjectList list = Boot.getApplication().getObjects();
+	final MazeObjectList list = Game.getApplication().getObjects();
 	final String[] names = list.getAllBowNames();
 	final int len = names.length;
 	StringBuilder sb;
@@ -466,7 +466,7 @@ public final class MazeObjectInventory implements Cloneable {
 
     public static MazeObjectInventory readLegacyInventory(final XLegacyDataReader reader, final int formatVersion)
 	    throws IOException {
-	final MazeObjectList objects = Boot.getApplication().getObjects();
+	final MazeObjectList objects = Game.getApplication().getObjects();
 	final MazeObjectInventory i = new MazeObjectInventory();
 	i.boots = (AbstractBoots) objects.readLegacyMazeObject(reader, formatVersion);
 	if (i.boots == null) {
@@ -493,7 +493,7 @@ public final class MazeObjectInventory implements Cloneable {
 
     public static MazeObjectInventory readInventory(final XDataReader reader, final int formatVersion)
 	    throws IOException {
-	final MazeObjectList objects = Boot.getApplication().getObjects();
+	final MazeObjectList objects = Game.getApplication().getObjects();
 	final MazeObjectInventory i = new MazeObjectInventory();
 	i.boots = (AbstractBoots) objects.readMazeObject(reader, formatVersion);
 	if (i.boots == null) {

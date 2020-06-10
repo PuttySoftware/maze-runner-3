@@ -40,14 +40,14 @@ public class ObjectHelpManager {
     private void initHelp() {
 	if (!this.inited) {
 	    final ButtonHandler buttonHandler = new ButtonHandler();
-	    final MazeObjectList objectList = Boot.getApplication().getObjects();
+	    final MazeObjectList objectList = Game.getApplication().getObjects();
 	    final String[] objectNames = objectList.getAllDescriptions();
 	    final BufferedImageIcon[] objectAppearances = objectList.getAllEditorAppearances();
 	    this.hv = new GraphicalHelpViewer(objectAppearances, objectNames, new Color(223, 223, 223));
 	    final JButton export = new JButton("Export");
 	    export.addActionListener(buttonHandler);
 	    this.helpFrame = new JFrame("MazeRunnerII Object Help");
-	    final Image iconlogo = Boot.getApplication().getIconLogo();
+	    final Image iconlogo = Game.getApplication().getIconLogo();
 	    this.helpFrame.setIconImage(iconlogo);
 	    this.helpFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 	    this.helpFrame.setLayout(new BorderLayout());

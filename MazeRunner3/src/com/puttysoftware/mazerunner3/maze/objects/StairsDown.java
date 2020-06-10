@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
@@ -48,31 +48,31 @@ public class StairsDown extends AbstractTeleport {
 
     @Override
     public int getDestinationRow() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	return app.getMazeManager().getMaze().getPlayerLocationX();
     }
 
     @Override
     public int getDestinationColumn() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	return app.getMazeManager().getMaze().getPlayerLocationY();
     }
 
     @Override
     public int getDestinationFloor() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	return app.getMazeManager().getMaze().getPlayerLocationZ() - 1;
     }
 
     @Override
     public int getDestinationLevel() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	return app.getMazeManager().getMaze().getPlayerLocationW();
     }
 
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().updatePositionAbsoluteNoEvents(this.getDestinationRow(), this.getDestinationColumn(),
 		this.getDestinationFloor(), this.getDestinationLevel());
 	SoundLoader.playSound(SoundConstants.SOUND_DOWN);
@@ -80,7 +80,7 @@ public class StairsDown extends AbstractTeleport {
 
     @Override
     public void editorPlaceHook() {
-	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	final MazeEditorLogic me = Game.getApplication().getEditor();
 	me.pairStairs(MazeEditorLogic.STAIRS_DOWN);
     }
 

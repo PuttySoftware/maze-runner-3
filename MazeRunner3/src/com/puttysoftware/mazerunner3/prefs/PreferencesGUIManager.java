@@ -26,7 +26,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 
 class PreferencesGUIManager {
     // Fields
@@ -75,7 +75,7 @@ class PreferencesGUIManager {
     }
 
     public void showPrefs() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.setInPrefs();
 	if (System.getProperty("os.name").startsWith("Mac OS X")) {
 	    this.prefFrame.setJMenuBar(app.getMenuManager().getMainMenuBar());
@@ -93,7 +93,7 @@ class PreferencesGUIManager {
     }
 
     public void hidePrefs() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.prefFrame.setVisible(false);
 	PreferencesManager.writePrefs();
 	final int formerMode = app.getFormerMode();
@@ -136,8 +136,8 @@ class PreferencesGUIManager {
 	final int newSize = PreferencesGUIManager.VIEWING_WINDOW_SIZES[this.viewingWindowChoices.getSelectedIndex()];
 	PreferencesManager.setViewingWindowSize(newSize);
 	if (vwSize != newSize) {
-	    Boot.getApplication().getGameManager().viewingWindowSizeChanged();
-	    Boot.getApplication().getEditor().viewingWindowSizeChanged();
+	    Game.getApplication().getGameManager().viewingWindowSizeChanged();
+	    Game.getApplication().getEditor().viewingWindowSizeChanged();
 	}
 	PreferencesManager.setBattleSpeed(this.battleSpeedChoices.getSelectedIndex());
 	PreferencesManager.setCharacterChangesPermanent(this.characterChangesPermanent.isSelected());
@@ -221,7 +221,7 @@ class PreferencesGUIManager {
 	this.music[PreferencesManager.MUSIC_ALL].addItemListener(handler);
 	prefsOK.addActionListener(handler);
 	prefsCancel.addActionListener(handler);
-	final Image iconlogo = Boot.getApplication().getIconLogo();
+	final Image iconlogo = Game.getApplication().getIconLogo();
 	this.prefFrame.setIconImage(iconlogo);
 	this.prefFrame.pack();
     }
@@ -243,7 +243,7 @@ class PreferencesGUIManager {
 		    pm.hidePrefs();
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -267,7 +267,7 @@ class PreferencesGUIManager {
 		    }
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 

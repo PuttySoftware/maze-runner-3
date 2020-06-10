@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -24,14 +24,14 @@ public class ExplodingWall extends AbstractWall {
 
     @Override
     public boolean preMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	Boot.getApplication().showMessage("BOOM!");
+	Game.getApplication().showMessage("BOOM!");
 	return true;
     }
 
     @Override
     public void chainReactionAction(final int x, final int y, final int z) {
 	// Explode this wall, and any exploding walls next to this wall as well
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	ExplodingWall curr = null;
 	try {
 	    curr = (ExplodingWall) app.getMazeManager().getMazeObject(x, y, z, MazeConstants.LAYER_OBJECT);

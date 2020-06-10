@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
@@ -37,7 +37,7 @@ public class WarpWand extends AbstractWand {
 
     @Override
     public void useAction(final AbstractMazeObject mo, final int x, final int y, final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getMazeManager().getMaze().warpObject(
 		app.getMazeManager().getMaze().getCell(x, y, z, MazeConstants.LAYER_OBJECT), x, y, z,
 		MazeConstants.LAYER_OBJECT);

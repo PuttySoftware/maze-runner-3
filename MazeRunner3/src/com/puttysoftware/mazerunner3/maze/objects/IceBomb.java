@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractBomb;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 
@@ -33,8 +33,8 @@ public class IceBomb extends AbstractBomb {
     @Override
     public void useActionHook(final int x, final int y, final int z) {
 	// Freeze objects that react to ice
-	Boot.getApplication().getMazeManager().getMaze().radialScanFreezeObjects(x, y, z, AbstractBomb.EFFECT_RADIUS);
+	Game.getApplication().getMazeManager().getMaze().radialScanFreezeObjects(x, y, z, AbstractBomb.EFFECT_RADIUS);
 	// Freeze ground, too
-	Boot.getApplication().getMazeManager().getMaze().radialScanFreezeGround(x, y, z, AbstractBomb.EFFECT_RADIUS);
+	Game.getApplication().getMazeManager().getMaze().radialScanFreezeGround(x, y, z, AbstractBomb.EFFECT_RADIUS);
     }
 }

@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractTeleportTo;
@@ -22,7 +22,7 @@ public class PurpleHouse extends AbstractTeleportTo {
     // Scriptability
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	SoundLoader.playSound(SoundConstants.SOUND_UP);
 	app.getGameManager().goToLevel(this.getDestinationLevel());
     }

@@ -8,7 +8,7 @@ package com.puttysoftware.mazerunner3.creatures.party;
 import java.io.IOException;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.battle.VictorySpoilsDescription;
 import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
 import com.puttysoftware.mazerunner3.creatures.characterfiles.CharacterLoader;
@@ -84,7 +84,7 @@ public class Party {
 		CommonDialogs.showTitledDialog(
 			battler.getTemplate().getName() + " reached level " + battler.getTemplate().getLevel() + "!",
 			"Level Up");
-		Boot.getApplication().getGameManager()
+		Game.getApplication().getGameManager()
 			.addToScore(Math.max(1, (10 * battler.getTemplate().getLevel() - 1) / this.activePCs));
 	    }
 	}

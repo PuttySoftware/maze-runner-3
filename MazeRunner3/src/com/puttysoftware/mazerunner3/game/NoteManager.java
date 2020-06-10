@@ -1,7 +1,7 @@
 package com.puttysoftware.mazerunner3.game;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeNote;
 
@@ -11,7 +11,7 @@ public class NoteManager {
     }
 
     public static void editNote() {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	final int x = m.getPlayerLocationX();
 	final int y = m.getPlayerLocationY();
 	final int z = m.getPlayerLocationZ();

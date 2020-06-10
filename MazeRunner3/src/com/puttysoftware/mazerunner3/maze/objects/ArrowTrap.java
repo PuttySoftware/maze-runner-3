@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -37,7 +37,7 @@ public class ArrowTrap extends AbstractTrap {
     @Override
     public boolean arrowHitAction(final int locX, final int locY, final int locZ, final int dirX, final int dirY,
 	    final int arrowType, final MazeObjectInventory inv) {
-	Boot.getApplication().showMessage("The arrow is stopped!");
+	Game.getApplication().showMessage("The arrow is stopped!");
 	return false;
     }
 

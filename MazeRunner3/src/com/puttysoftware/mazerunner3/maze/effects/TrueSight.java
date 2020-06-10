@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
  */
 package com.puttysoftware.mazerunner3.maze.effects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.objects.TrueSightAmulet;
 
 public class TrueSight extends MazeEffect {
@@ -17,14 +17,14 @@ public class TrueSight extends MazeEffect {
     @Override
     public void customExtendLogic() {
 	// Apply the effect
-	Boot.getApplication().getGameManager().enableTrueSight();
+	Game.getApplication().getGameManager().enableTrueSight();
     }
 
     @Override
     public void customTerminateLogic() {
 	// Remove item that granted effect from inventory
-	Boot.getApplication().getGameManager().getObjectInventory().removeItem(new TrueSightAmulet());
+	Game.getApplication().getGameManager().getObjectInventory().removeItem(new TrueSightAmulet());
 	// Undo the effect
-	Boot.getApplication().getGameManager().disableTrueSight();
+	Game.getApplication().getGameManager().disableTrueSight();
     }
 }

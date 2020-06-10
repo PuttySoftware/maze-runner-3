@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.data.NameDataLoader;
 import com.puttysoftware.mazerunner3.names.NamesManager;
 
@@ -38,12 +38,12 @@ public class NamesFileManager {
 
     private static void loadFile() {
 	try {
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    app.getScenarioManager().getNamesFileManager().setNames(NamesManager.getNamesCache());
 	    // Final cleanup
 	    app.getNamesEditor().objectChanged();
 	} catch (final Exception ex) {
-	    Boot.uncaughtException(ex);
+	    Game.uncaughtException(ex);
 	}
     }
 
@@ -59,7 +59,7 @@ public class NamesFileManager {
 	    if (!parent.exists()) {
 		final boolean success = parent.mkdirs();
 		if (!success) {
-		    Boot.uncaughtException(new IOException("Creating names folder failed!"));
+		    Game.uncaughtException(new IOException("Creating names folder failed!"));
 		}
 	    }
 	    final String[] data = NamesManager.convertCacheToArray();

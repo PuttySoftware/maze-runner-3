@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractGem;
@@ -29,7 +29,7 @@ public class BrightnessGem extends AbstractGem {
 
     @Override
     public void postMoveActionHook() {
-	Boot.getApplication().getMazeManager().getMaze().setVisionRadiusToMaximum();
+	Game.getApplication().getMazeManager().getMaze().setVisionRadiusToMaximum();
 	SoundLoader.playSound(SoundConstants.SOUND_LIGHT);
     }
 

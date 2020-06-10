@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
@@ -94,7 +94,7 @@ class ObjectInventoryManager {
 
     void fireArrow(final int x, final int y) {
 	if (this.getObjectInventory().getUses(this.activeBow) == 0) {
-	    Boot.getApplication().showMessage("You're out of arrows!");
+	    Game.getApplication().showMessage("You're out of arrows!");
 	} else {
 	    final GameArrowTask at = new GameArrowTask(x, y, this.activeArrowType);
 	    this.arrowActive = true;
@@ -109,7 +109,7 @@ class ObjectInventoryManager {
 
     void showUseDialog() {
 	int x;
-	final MazeObjectList list = Boot.getApplication().getObjects();
+	final MazeObjectList list = Game.getApplication().getObjects();
 	final AbstractMazeObject[] choices = list.getAllUsableObjects();
 	final String[] userChoices = this.objectInv.generateUseStringArray();
 	final String result = CommonDialogs.showInputDialog("Use which object?", "MazeRunnerII", userChoices,
@@ -120,10 +120,10 @@ class ObjectInventoryManager {
 		    this.lastUsedObjectIndex = x;
 		    this.objectBeingUsed = choices[x];
 		    if (this.objectInv.getUses(this.objectBeingUsed) == 0) {
-			Boot.getApplication().showMessage("That item has no more uses left.");
+			Game.getApplication().showMessage("That item has no more uses left.");
 			this.setUsingAnItem(false);
 		    } else {
-			Boot.getApplication().showMessage("Click to set target");
+			Game.getApplication().showMessage("Click to set target");
 			this.setUsingAnItem(true);
 		    }
 		    return;
@@ -136,7 +136,7 @@ class ObjectInventoryManager {
 
     void showSwitchBowDialog() {
 	int x;
-	final MazeObjectList list = Boot.getApplication().getObjects();
+	final MazeObjectList list = Game.getApplication().getObjects();
 	final AbstractMazeObject[] choices = list.getAllBows();
 	final String[] userChoices = this.objectInv.generateBowStringArray();
 	final String result = CommonDialogs.showInputDialog("Switch to which bow?", "MazeRunnerII", userChoices,
@@ -148,9 +148,9 @@ class ObjectInventoryManager {
 		    this.activeBow = (AbstractBow) choices[x];
 		    this.activeArrowType = this.activeBow.getArrowType();
 		    if (this.objectInv.getUses(this.activeBow) == 0) {
-			Boot.getApplication().showMessage("That bow is out of arrows!");
+			Game.getApplication().showMessage("That bow is out of arrows!");
 		    } else {
-			Boot.getApplication().showMessage(this.activeBow.getName() + " activated.");
+			Game.getApplication().showMessage(this.activeBow.getName() + " activated.");
 		    }
 		    return;
 		}
@@ -161,7 +161,7 @@ class ObjectInventoryManager {
     }
 
     void useItemHandler(final int x, final int y) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	final int z = m.getPlayerLocationZ();
 	if (this.usingAnItem() && app.getMode() == Application.STATUS_GAME) {
@@ -171,48 +171,48 @@ class ObjectInventoryManager {
 		final String name = this.objectBeingUsed.getName();
 		if ((target.isSolid() || !visible) && name.equals(new TeleportWand().getName())) {
 		    this.setUsingAnItem(false);
-		    Boot.getApplication().showMessage("Can't teleport there");
+		    Game.getApplication().showMessage("Can't teleport there");
 		}
 		if (target.getName().equals(new Player().getName())) {
 		    this.setUsingAnItem(false);
-		    Boot.getApplication().showMessage("Don't aim at yourself!");
+		    Game.getApplication().showMessage("Don't aim at yourself!");
 		}
 		if (!target.isDestroyable() && name.equals(new AnnihilationWand().getName())) {
 		    this.setUsingAnItem(false);
-		    Boot.getApplication().showMessage("Can't destroy that");
+		    Game.getApplication().showMessage("Can't destroy that");
 		}
 		if (!target.isDestroyable() && name.equals(new WallMakingWand().getName())) {
 		    this.setUsingAnItem(false);
-		    Boot.getApplication().showMessage("Can't create a wall there");
+		    Game.getApplication().showMessage("Can't create a wall there");
 		}
 		if (!target.isDestroyable() && name.equals(new FinishMakingWand().getName())) {
 		    this.setUsingAnItem(false);
-		    Boot.getApplication().showMessage("Can't create a finish there");
+		    Game.getApplication().showMessage("Can't create a finish there");
 		}
 		if ((!target.isDestroyable() || !target.isOfType(TypeConstants.TYPE_WALL))
 			&& name.equals(new WallBreakingWand().getName())) {
 		    this.setUsingAnItem(false);
-		    Boot.getApplication().showMessage("Aim at a wall");
+		    Game.getApplication().showMessage("Aim at a wall");
 		}
 		if ((!target.isDestroyable() || !target.isOfType(TypeConstants.TYPE_TRAP))
 			&& name.equals(new DisarmTrapWand().getName())) {
 		    this.setUsingAnItem(false);
-		    Boot.getApplication().showMessage("Aim at a trap");
+		    Game.getApplication().showMessage("Aim at a trap");
 		}
 		if (!target.getName().equals(new Empty().getName()) && !target.getName().equals(new DarkGem().getName())
 			&& name.equals(new LightWand().getName())) {
 		    this.setUsingAnItem(false);
-		    Boot.getApplication().showMessage("Aim at either an empty space or a Dark Gem");
+		    Game.getApplication().showMessage("Aim at either an empty space or a Dark Gem");
 		}
 		if (!target.getName().equals(new Empty().getName())
 			&& !target.getName().equals(new LightGem().getName())
 			&& name.equals(new DarkWand().getName())) {
 		    this.setUsingAnItem(false);
-		    Boot.getApplication().showMessage("Aim at either an empty space or a Light Gem");
+		    Game.getApplication().showMessage("Aim at either an empty space or a Light Gem");
 		}
 	    } catch (final ArrayIndexOutOfBoundsException ae) {
 		this.setUsingAnItem(false);
-		Boot.getApplication().showMessage("Aim within the maze");
+		Game.getApplication().showMessage("Aim within the maze");
 	    } catch (final NullPointerException np) {
 		this.setUsingAnItem(false);
 	    }

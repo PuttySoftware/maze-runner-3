@@ -16,7 +16,7 @@ import javax.swing.WindowConstants;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.fileutils.ZipUtilities;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.LogoImageLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.legacy.LegacyPrefixHandler;
@@ -44,7 +44,7 @@ public class GameLoadTask extends Thread {
     @Override
     public void run() {
 	this.loadFrame.setVisible(true);
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int startW;
 	String sg;
 	app.getGameManager().setSavedGameFlag(false);
@@ -92,7 +92,7 @@ public class GameLoadTask extends Thread {
 		    "Loading the " + sg.toLowerCase() + " file failed, due to some other type of I/O error.");
 	    app.getMazeManager().handleDeferredSuccess(false);
 	} catch (final Exception ex) {
-	    Boot.uncaughtException(ex);
+	    Game.uncaughtException(ex);
 	} finally {
 	    this.loadFrame.setVisible(false);
 	}

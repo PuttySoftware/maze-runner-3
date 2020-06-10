@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractWall;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
@@ -25,7 +25,7 @@ public class FadingWall extends AbstractWall {
     public void timerExpiredAction(final int dirX, final int dirY) {
 	// Disappear if the player is close to us
 	boolean scanResult = false;
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int tx = app.getMazeManager().getMaze().getPlayerLocationX();
 	final int ty = app.getMazeManager().getMaze().getPlayerLocationY();
 	final int pz = app.getMazeManager().getMaze().getPlayerLocationZ();

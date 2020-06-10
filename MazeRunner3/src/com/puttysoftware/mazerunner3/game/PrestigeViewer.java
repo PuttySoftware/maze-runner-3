@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
 import com.puttysoftware.mazerunner3.creatures.PrestigeConstants;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
@@ -54,7 +54,7 @@ public class PrestigeViewer {
 
     private static void setUpGUI() {
 	if (!PrestigeViewer.inited) {
-	    if (Boot.inDebugMode()) {
+	    if (Game.inDebugMode()) {
 		PrestigeViewer.prestigeFrame = new JFrame("Prestige (DEBUG)");
 	    } else {
 		PrestigeViewer.prestigeFrame = new JFrame("Prestige");

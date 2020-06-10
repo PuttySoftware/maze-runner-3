@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.game.GameLogicManager;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
@@ -97,7 +97,7 @@ public class MazeEditorLogic {
 	this.meg = new MazeEditorGUI();
 	this.savedMazeObject = new Empty();
 	this.engine = new UndoRedoEngine();
-	final MazeObjectList objectList = Boot.getApplication().getObjects();
+	final MazeObjectList objectList = Game.getApplication().getObjects();
 	this.groundObjects = objectList.getAllGroundLayerObjects();
 	this.objectObjects = objectList.getAllObjectLayerObjects();
 	this.containableObjects = objectList.getAllContainableObjects();
@@ -168,7 +168,7 @@ public class MazeEditorLogic {
     }
 
     public void editObject(final int x, final int y, final boolean nested) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int gridX, gridY;
 	AbstractMazeObject mo;
 	if (!nested) {
@@ -243,7 +243,7 @@ public class MazeEditorLogic {
 	if (!instance.isOfType(TypeConstants.TYPE_GENERATION_ELIGIBLE)) {
 	    return;
 	}
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject[] generatedObjects = app.getObjects().getAllGeneratedTypedObjects();
 	final int generatedOffset = app.getObjects().getAllObjects().length - generatedObjects.length;
 	AbstractMazeObject obj1;
@@ -282,7 +282,7 @@ public class MazeEditorLogic {
 	if (!instance.isOfType(TypeConstants.TYPE_GENERATION_ELIGIBLE)) {
 	    return;
 	}
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject[] generatedObjects = app.getObjects().getAllGeneratedTypedObjects();
 	final int generatedOffset = app.getObjects().getAllObjects().length - generatedObjects.length;
 	AbstractMazeObject obj2;
@@ -347,7 +347,7 @@ public class MazeEditorLogic {
 	if (!instance.isOfType(TypeConstants.TYPE_GENERATION_ELIGIBLE)) {
 	    return;
 	}
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject[] generatedObjects = app.getObjects().getAllGeneratedTypedObjects();
 	final int generatedOffset = app.getObjects().getAllObjects().length - generatedObjects.length;
 	AbstractMazeObject obj3;
@@ -386,7 +386,7 @@ public class MazeEditorLogic {
 	if (!instance.isOfType(TypeConstants.TYPE_GENERATION_ELIGIBLE)) {
 	    return;
 	}
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject[] generatedObjects = app.getObjects().getAllGeneratedTypedObjects();
 	final int generatedOffset = app.getObjects().getAllObjects().length - generatedObjects.length;
 	AbstractMazeObject obj4;
@@ -451,7 +451,7 @@ public class MazeEditorLogic {
 	if (!instance.isOfType(TypeConstants.TYPE_GENERATION_ELIGIBLE)) {
 	    return;
 	}
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject[] generatedObjects = app.getObjects().getAllGeneratedTypedObjects();
 	final int generatedOffset = app.getObjects().getAllObjects().length - generatedObjects.length;
 	AbstractMazeObject obj6;
@@ -516,7 +516,7 @@ public class MazeEditorLogic {
 	if (!instance.isOfType(TypeConstants.TYPE_GENERATION_ELIGIBLE)) {
 	    return;
 	}
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject[] generatedObjects = app.getObjects().getAllGeneratedTypedObjects();
 	final int generatedOffset = app.getObjects().getAllObjects().length - generatedObjects.length;
 	AbstractMazeObject obj7;
@@ -555,7 +555,7 @@ public class MazeEditorLogic {
 	if (!instance.isOfType(TypeConstants.TYPE_GENERATION_ELIGIBLE)) {
 	    return;
 	}
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject[] generatedObjects = app.getObjects().getAllGeneratedTypedObjects();
 	final int generatedOffset = app.getObjects().getAllObjects().length - generatedObjects.length;
 	AbstractMazeObject obj8;
@@ -620,7 +620,7 @@ public class MazeEditorLogic {
 	if (!instance.isOfType(TypeConstants.TYPE_GENERATION_ELIGIBLE)) {
 	    return;
 	}
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject[] generatedObjects = app.getObjects().getAllGeneratedTypedObjects();
 	final int generatedOffset = app.getObjects().getAllObjects().length - generatedObjects.length;
 	AbstractMazeObject obj9;
@@ -655,7 +655,7 @@ public class MazeEditorLogic {
     }
 
     public void editObjectProperties(final int x, final int y) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int[] grid = this.meg.computeGridValues(x, y);
 	final int gridX = grid[0];
 	final int gridY = grid[1];
@@ -667,7 +667,7 @@ public class MazeEditorLogic {
 	    if (!mo.defersSetProperties()) {
 		final AbstractMazeObject mo2 = mo.editorPropertiesHook();
 		if (mo2 == null) {
-		    Boot.getApplication().showMessage("This object has no properties");
+		    Game.getApplication().showMessage("This object has no properties");
 		} else {
 		    this.checkTwoWayTeleportPair(this.getLocationManager().getEditorLocationZ());
 		    this.updateUndoHistory(this.savedMazeObject, gridX, gridY,
@@ -694,7 +694,7 @@ public class MazeEditorLogic {
     }
 
     private void checkStairPair(final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject mo1 = app.getMazeManager().getMaze().getCell(
 		this.getLocationManager().getEditorLocationX(), this.getLocationManager().getEditorLocationY(), z,
 		MazeConstants.LAYER_OBJECT);
@@ -728,7 +728,7 @@ public class MazeEditorLogic {
     }
 
     private void reverseCheckStairPair(final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject mo1 = app.getMazeManager().getMaze().getCell(
 		this.getLocationManager().getEditorLocationX(), this.getLocationManager().getEditorLocationY(), z,
 		MazeConstants.LAYER_OBJECT);
@@ -762,7 +762,7 @@ public class MazeEditorLogic {
     }
 
     public void pairStairs(final int type) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	switch (type) {
 	case STAIRS_UP:
 	    try {
@@ -788,7 +788,7 @@ public class MazeEditorLogic {
     }
 
     private void pairStairs(final int type, final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	switch (type) {
 	case STAIRS_UP:
 	    try {
@@ -812,7 +812,7 @@ public class MazeEditorLogic {
     }
 
     private void unpairStairs(final int type, final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	switch (type) {
 	case STAIRS_UP:
 	    try {
@@ -836,7 +836,7 @@ public class MazeEditorLogic {
     }
 
     private void checkTwoWayTeleportPair(final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject mo1 = app.getMazeManager().getMaze().getCell(
 		this.getLocationManager().getEditorLocationX(), this.getLocationManager().getEditorLocationY(), z,
 		MazeConstants.LAYER_OBJECT);
@@ -858,7 +858,7 @@ public class MazeEditorLogic {
     }
 
     private void reverseCheckTwoWayTeleportPair(final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject mo1 = app.getMazeManager().getMaze().getCell(
 		this.getLocationManager().getEditorLocationX(), this.getLocationManager().getEditorLocationY(), z,
 		MazeConstants.LAYER_OBJECT);
@@ -880,7 +880,7 @@ public class MazeEditorLogic {
     }
 
     public void pairTwoWayTeleport(final int destX, final int destY, final int destZ) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getMazeManager().getMaze()
 		.setCell(new TwoWayTeleport(this.getLocationManager().getEditorLocationX(),
 			this.getLocationManager().getEditorLocationY(), this.getLocationManager().getCameFromZ()),
@@ -888,7 +888,7 @@ public class MazeEditorLogic {
     }
 
     private static void unpairTwoWayTeleport(final int destX, final int destY, final int destZ) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getMazeManager().getMaze().setCell(new Empty(), destX, destY, destZ, MazeConstants.LAYER_OBJECT);
     }
 
@@ -910,7 +910,7 @@ public class MazeEditorLogic {
     }
 
     public void editConditionalTeleportDestination(final AbstractConditionalTeleport instance) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final String choice = CommonDialogs.showInputDialog("Edit What?", "Editor", MazeEditorLogic.conditionalChoices,
 		MazeEditorLogic.conditionalChoices[0]);
 	if (choice != null) {
@@ -969,7 +969,7 @@ public class MazeEditorLogic {
     }
 
     public AbstractMazeObject editTeleportDestination(final int type) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.TELEPORT_TYPE = type;
 	switch (type) {
 	case TELEPORT_TYPE_N_WAY:
@@ -995,7 +995,7 @@ public class MazeEditorLogic {
 	    if (this.nWayDestID == -1) {
 		return null;
 	    }
-	    Boot.getApplication().showMessage("Click to set teleport destination #" + (this.nWayDestID + 1));
+	    Game.getApplication().showMessage("Click to set teleport destination #" + (this.nWayDestID + 1));
 	    break;
 	case TELEPORT_TYPE_GENERIC:
 	case TELEPORT_TYPE_INVISIBLE_GENERIC:
@@ -1010,7 +1010,7 @@ public class MazeEditorLogic {
 	case TELEPORT_TYPE_INVISIBLE_ONESHOT_CHAIN:
 	case TELEPORT_TYPE_BLOCK:
 	case TELEPORT_TYPE_INVISIBLE_BLOCK:
-	    Boot.getApplication().showMessage("Click to set teleport destination");
+	    Game.getApplication().showMessage("Click to set teleport destination");
 	    break;
 	case TELEPORT_TYPE_RANDOM:
 	case TELEPORT_TYPE_RANDOM_INVISIBLE:
@@ -1068,8 +1068,8 @@ public class MazeEditorLogic {
     }
 
     public AbstractMazeObject editMetalButtonTarget() {
-	Boot.getApplication().showMessage("Click to set metal button target");
-	final Application app = Boot.getApplication();
+	Game.getApplication().showMessage("Click to set metal button target");
+	final Application app = Game.getApplication();
 	this.meg.swapToMetalButtonHandler();
 	this.getLocationManager().setCameFromZ(this.getLocationManager().getEditorLocationZ());
 	app.getMenuManager().disableDownOneLevel();
@@ -1078,7 +1078,7 @@ public class MazeEditorLogic {
     }
 
     public AbstractMazeObject editTreasureChestContents() {
-	Boot.getApplication().showMessage("Pick treasure chest contents");
+	Game.getApplication().showMessage("Pick treasure chest contents");
 	this.setDefaultContents();
 	this.disableOutput();
 	this.meg.showTreasurePicker();
@@ -1089,7 +1089,7 @@ public class MazeEditorLogic {
 	TreasureChest tc = null;
 	AbstractMazeObject contents = null;
 	int contentsIndex = 0;
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	try {
 	    tc = (TreasureChest) app.getMazeManager().getMazeObject(this.getLocationManager().getEditorLocationX(),
 		    this.getLocationManager().getEditorLocationY(), this.getLocationManager().getCameFromZ(),
@@ -1124,7 +1124,7 @@ public class MazeEditorLogic {
     }
 
     public void setTeleportDestination(final int x, final int y) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int[] grid = this.meg.computeGridValues(x, y);
 	final int destX = grid[0];
 	final int destY = grid[1];
@@ -1222,13 +1222,13 @@ public class MazeEditorLogic {
 	}
 	this.meg.swapFromTeleportHandler();
 	this.checkMenus();
-	Boot.getApplication().showMessage("Destination set.");
+	Game.getApplication().showMessage("Destination set.");
 	app.getMazeManager().setDirty(true);
 	this.redrawEditor();
     }
 
     void setConditionalTeleportDestination(final int x, final int y) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int[] grid = this.meg.computeGridValues(x, y);
 	final int destX = grid[0];
 	final int destY = grid[1];
@@ -1247,13 +1247,13 @@ public class MazeEditorLogic {
 	}
 	this.meg.swapFromConditionalTeleportHandler();
 	this.checkMenus();
-	Boot.getApplication().showMessage("Destination set.");
+	Game.getApplication().showMessage("Destination set.");
 	app.getMazeManager().setDirty(true);
 	this.redrawEditor();
     }
 
     public void setMetalButtonTarget(final int x, final int y) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int[] grid = this.meg.computeGridValues(x, y);
 	final int destX = grid[0];
 	final int destY = grid[1];
@@ -1270,20 +1270,20 @@ public class MazeEditorLogic {
 		this.getLocationManager().getCameFromZ(), MazeConstants.LAYER_OBJECT);
 	this.meg.swapFromMetalButtonHandler();
 	this.checkMenus();
-	Boot.getApplication().showMessage("Target set.");
+	Game.getApplication().showMessage("Target set.");
 	app.getMazeManager().setDirty(true);
 	this.redrawEditor();
     }
 
     public void setTreasureChestContents() {
 	this.enableOutput();
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final AbstractMazeObject contents = this.containableObjects[this.meg.getTreasurePicked()];
 	app.getMazeManager().getMaze().setCell(new TreasureChest(contents),
 		this.getLocationManager().getEditorLocationX(), this.getLocationManager().getEditorLocationY(),
 		this.getLocationManager().getCameFromZ(), MazeConstants.LAYER_OBJECT);
 	this.checkMenus();
-	Boot.getApplication().showMessage("Contents set.");
+	Game.getApplication().showMessage("Contents set.");
 	app.getMazeManager().setDirty(true);
 	this.redrawEditor();
     }
@@ -1291,11 +1291,11 @@ public class MazeEditorLogic {
     public void editPlayerLocation() {
 	// Swap event handlers
 	this.meg.swapToStartHandler();
-	Boot.getApplication().showMessage("Click to set start point");
+	Game.getApplication().showMessage("Click to set start point");
     }
 
     void setPlayerLocation(final int x, final int y) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int[] grid = this.meg.computeGridValues(x, y);
 	final int destX = grid[0];
 	final int destY = grid[1];
@@ -1305,10 +1305,10 @@ public class MazeEditorLogic {
 	    app.getMazeManager().getMaze().setStartRow(destX);
 	    app.getMazeManager().getMaze().setStartColumn(destY);
 	    app.getMazeManager().getMaze().setStartFloor(this.getLocationManager().getEditorLocationZ());
-	    Boot.getApplication().showMessage("Start point set.");
+	    Game.getApplication().showMessage("Start point set.");
 	} catch (final ArrayIndexOutOfBoundsException aioob) {
 	    app.getMazeManager().getMaze().restoreStart();
-	    Boot.getApplication().showMessage("Aim within the maze");
+	    Game.getApplication().showMessage("Aim within the maze");
 	}
 	// Swap event handlers
 	this.meg.swapFromStartHandler();
@@ -1318,7 +1318,7 @@ public class MazeEditorLogic {
     }
 
     public void editMaze() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (app.getMazeManager().getLoaded()) {
 	    app.getGUIManager().hideGUI();
 	    app.setInEditor();
@@ -1342,7 +1342,7 @@ public class MazeEditorLogic {
     }
 
     public boolean newMaze() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	boolean success = true;
 	boolean saved = true;
 	int status = 0;
@@ -1398,55 +1398,55 @@ public class MazeEditorLogic {
 
     public void fillLevel() {
 	if (this.confirmNonUndoable("overwrite the active level with default data")) {
-	    Boot.getApplication().getMazeManager().getMaze().fill();
-	    Boot.getApplication().showMessage("Level filled.");
-	    Boot.getApplication().getMazeManager().setDirty(true);
+	    Game.getApplication().getMazeManager().getMaze().fill();
+	    Game.getApplication().showMessage("Level filled.");
+	    Game.getApplication().getMazeManager().setDirty(true);
 	    this.redrawEditor();
 	}
     }
 
     public void fillFloor() {
 	if (this.confirmNonUndoable("overwrite the active floor within the active level with default data")) {
-	    Boot.getApplication().getMazeManager().getMaze().fillFloor(this.getLocationManager().getEditorLocationZ());
-	    Boot.getApplication().showMessage("Floor filled.");
-	    Boot.getApplication().getMazeManager().setDirty(true);
+	    Game.getApplication().getMazeManager().getMaze().fillFloor(this.getLocationManager().getEditorLocationZ());
+	    Game.getApplication().showMessage("Floor filled.");
+	    Game.getApplication().getMazeManager().setDirty(true);
 	    this.redrawEditor();
 	}
     }
 
     public void fillLevelRandomly() {
 	if (this.confirmNonUndoable("overwrite the active level with random data")) {
-	    if (Boot.getApplication().getMenuManager().useFillRuleSets()) {
-		Boot.getApplication().getMazeManager().getMaze().fillLevelRandomlyCustom();
+	    if (Game.getApplication().getMenuManager().useFillRuleSets()) {
+		Game.getApplication().getMazeManager().getMaze().fillLevelRandomlyCustom();
 	    } else {
-		Boot.getApplication().getMazeManager().getMaze().fillLevelRandomly();
+		Game.getApplication().getMazeManager().getMaze().fillLevelRandomly();
 	    }
-	    Boot.getApplication().showMessage("Level randomly filled.");
-	    Boot.getApplication().getMazeManager().setDirty(true);
+	    Game.getApplication().showMessage("Level randomly filled.");
+	    Game.getApplication().getMazeManager().setDirty(true);
 	    this.redrawEditor();
 	}
     }
 
     public void fillFloorRandomly() {
 	if (this.confirmNonUndoable("overwrite the active floor within the active level with random data")) {
-	    if (Boot.getApplication().getMenuManager().useFillRuleSets()) {
-		Boot.getApplication().getMazeManager().getMaze()
+	    if (Game.getApplication().getMenuManager().useFillRuleSets()) {
+		Game.getApplication().getMazeManager().getMaze()
 			.fillFloorRandomlyCustom(this.getLocationManager().getEditorLocationZ());
 	    } else {
-		Boot.getApplication().getMazeManager().getMaze()
+		Game.getApplication().getMazeManager().getMaze()
 			.fillFloorRandomly(this.getLocationManager().getEditorLocationZ());
 	    }
-	    Boot.getApplication().showMessage("Floor randomly filled.");
-	    Boot.getApplication().getMazeManager().setDirty(true);
+	    Game.getApplication().showMessage("Floor randomly filled.");
+	    Game.getApplication().getMazeManager().setDirty(true);
 	    this.redrawEditor();
 	}
     }
 
     public void fillLevelAndLayer() {
 	if (this.confirmNonUndoable("overwrite the active layer on the active level with default data")) {
-	    Boot.getApplication().getMazeManager().getMaze().fillLayer(this.getLocationManager().getEditorLocationE());
-	    Boot.getApplication().showMessage("Level and layer filled.");
-	    Boot.getApplication().getMazeManager().setDirty(true);
+	    Game.getApplication().getMazeManager().getMaze().fillLayer(this.getLocationManager().getEditorLocationE());
+	    Game.getApplication().showMessage("Level and layer filled.");
+	    Game.getApplication().getMazeManager().setDirty(true);
 	    this.redrawEditor();
 	}
     }
@@ -1454,25 +1454,25 @@ public class MazeEditorLogic {
     public void fillFloorAndLayer() {
 	if (this.confirmNonUndoable(
 		"overwrite the active layer on the active floor within the active level with default data")) {
-	    Boot.getApplication().getMazeManager().getMaze().fillFloorAndLayer(
+	    Game.getApplication().getMazeManager().getMaze().fillFloorAndLayer(
 		    this.getLocationManager().getEditorLocationZ(), this.getLocationManager().getEditorLocationE());
-	    Boot.getApplication().showMessage("Floor and layer filled.");
-	    Boot.getApplication().getMazeManager().setDirty(true);
+	    Game.getApplication().showMessage("Floor and layer filled.");
+	    Game.getApplication().getMazeManager().setDirty(true);
 	    this.redrawEditor();
 	}
     }
 
     public void fillLevelAndLayerRandomly() {
 	if (this.confirmNonUndoable("overwrite the active layer on the active level with random data")) {
-	    if (Boot.getApplication().getMenuManager().useFillRuleSets()) {
-		Boot.getApplication().getMazeManager().getMaze()
+	    if (Game.getApplication().getMenuManager().useFillRuleSets()) {
+		Game.getApplication().getMazeManager().getMaze()
 			.fillLevelAndLayerRandomlyCustom(this.getLocationManager().getEditorLocationE());
 	    } else {
-		Boot.getApplication().getMazeManager().getMaze()
+		Game.getApplication().getMazeManager().getMaze()
 			.fillLevelAndLayerRandomly(this.getLocationManager().getEditorLocationE());
 	    }
-	    Boot.getApplication().showMessage("Level and layer randomly filled.");
-	    Boot.getApplication().getMazeManager().setDirty(true);
+	    Game.getApplication().showMessage("Level and layer randomly filled.");
+	    Game.getApplication().getMazeManager().setDirty(true);
 	    this.redrawEditor();
 	}
     }
@@ -1480,21 +1480,21 @@ public class MazeEditorLogic {
     public void fillFloorAndLayerRandomly() {
 	if (this.confirmNonUndoable(
 		"overwrite the active layer on the active floor within the active level with random data")) {
-	    if (Boot.getApplication().getMenuManager().useFillRuleSets()) {
-		Boot.getApplication().getMazeManager().getMaze().fillFloorAndLayerRandomlyCustom(
+	    if (Game.getApplication().getMenuManager().useFillRuleSets()) {
+		Game.getApplication().getMazeManager().getMaze().fillFloorAndLayerRandomlyCustom(
 			this.getLocationManager().getEditorLocationZ(), this.getLocationManager().getEditorLocationE());
 	    } else {
-		Boot.getApplication().getMazeManager().getMaze().fillFloorAndLayerRandomly(
+		Game.getApplication().getMazeManager().getMaze().fillFloorAndLayerRandomly(
 			this.getLocationManager().getEditorLocationZ(), this.getLocationManager().getEditorLocationE());
 	    }
-	    Boot.getApplication().showMessage("Floor and layer randomly filled.");
-	    Boot.getApplication().getMazeManager().setDirty(true);
+	    Game.getApplication().showMessage("Floor and layer randomly filled.");
+	    Game.getApplication().getMazeManager().setDirty(true);
 	    this.redrawEditor();
 	}
     }
 
     public boolean addLevel() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int levelSizeX, levelSizeY, levelSizeZ;
 	final int maxR = Maze.getMaxRows();
 	final int minR = Maze.getMinRows();
@@ -1568,7 +1568,7 @@ public class MazeEditorLogic {
     }
 
     public boolean resizeLevel() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int levelSizeX, levelSizeY, levelSizeZ;
 	final int maxR = Maze.getMaxRows();
 	final int minR = Maze.getMinRows();
@@ -1641,7 +1641,7 @@ public class MazeEditorLogic {
     }
 
     public boolean removeLevel() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int level;
 	boolean success = true;
 	String input;
@@ -1704,7 +1704,7 @@ public class MazeEditorLogic {
     public void goToDestinationHandler() {
 	if (!this.goToDestMode) {
 	    this.goToDestMode = true;
-	    Boot.getApplication().showMessage("Click a teleport to go to its destination");
+	    Game.getApplication().showMessage("Click a teleport to go to its destination");
 	}
     }
 
@@ -1715,7 +1715,7 @@ public class MazeEditorLogic {
 	    final int locX = grid[0];
 	    final int locY = grid[1];
 	    final int locZ = this.getLocationManager().getEditorLocationZ();
-	    final AbstractMazeObject there = Boot.getApplication().getMazeManager().getMazeObject(locX, locY, locZ,
+	    final AbstractMazeObject there = Game.getApplication().getMazeManager().getMazeObject(locX, locY, locZ,
 		    MazeConstants.LAYER_OBJECT);
 	    if (there instanceof AbstractTeleport) {
 		final AbstractTeleport gt = (AbstractTeleport) there;
@@ -1724,10 +1724,10 @@ public class MazeEditorLogic {
 		final int destZ = gt.getDestinationFloor();
 		final int destW = this.getLocationManager().getEditorLocationW();
 		this.updateEditorPositionAbsolute(destX, destY, destZ, destW);
-		Boot.getApplication().showMessage("");
+		Game.getApplication().showMessage("");
 		this.meg.redrawVirtual(destX, destY, new Destination());
 	    } else {
-		Boot.getApplication().showMessage("This object does not have a destination.");
+		Game.getApplication().showMessage("This object does not have a destination.");
 	    }
 	}
     }
@@ -1753,7 +1753,7 @@ public class MazeEditorLogic {
     }
 
     public void exitEditor() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	// Hide the editor
 	this.hideOutput();
 	final MazeManager mm = app.getMazeManager();
@@ -1763,11 +1763,11 @@ public class MazeEditorLogic {
 	// Reset the viewing window
 	gm.resetViewingWindowAndPlayerLocation();
 	gm.stateChanged();
-	Boot.getApplication().getGUIManager().showGUI();
+	Game.getApplication().getGUIManager().showGUI();
     }
 
     public void undo() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.engine.undo();
 	final AbstractMazeObject obj = this.engine.getObject();
 	final int x = this.engine.getX();
@@ -1798,12 +1798,12 @@ public class MazeEditorLogic {
 	    this.checkMenus();
 	    this.redrawEditor();
 	} else {
-	    Boot.getApplication().showMessage("Nothing to undo");
+	    Game.getApplication().showMessage("Nothing to undo");
 	}
     }
 
     public void redo() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.engine.redo();
 	final AbstractMazeObject obj = this.engine.getObject();
 	final int x = this.engine.getX();
@@ -1834,7 +1834,7 @@ public class MazeEditorLogic {
 	    this.checkMenus();
 	    this.redrawEditor();
 	} else {
-	    Boot.getApplication().showMessage("Nothing to redo");
+	    Game.getApplication().showMessage("Nothing to redo");
 	}
     }
 
@@ -1855,7 +1855,7 @@ public class MazeEditorLogic {
 
     public void handleCloseWindow() {
 	try {
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    boolean success = false;
 	    int status = JOptionPane.DEFAULT_OPTION;
 	    if (app.getMazeManager().getDirty()) {
@@ -1873,7 +1873,7 @@ public class MazeEditorLogic {
 		this.exitEditor();
 	    }
 	} catch (final Exception ex) {
-	    Boot.uncaughtException(ex);
+	    Game.uncaughtException(ex);
 	}
     }
 }

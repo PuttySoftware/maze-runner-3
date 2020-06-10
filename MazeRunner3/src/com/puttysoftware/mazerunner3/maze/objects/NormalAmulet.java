@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.game.GameLogicManager;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractAmulet;
 import com.puttysoftware.mazerunner3.maze.effects.MazeEffectConstants;
@@ -35,7 +35,7 @@ public class NormalAmulet extends AbstractAmulet {
     @Override
     public void postMoveActionHook() {
 	// Deactivate other amulet effects
-	final GameLogicManager gm = Boot.getApplication().getGameManager();
+	final GameLogicManager gm = Game.getApplication().getGameManager();
 	gm.deactivateEffect(MazeEffectConstants.EFFECT_COUNTER_POISONED);
 	gm.deactivateEffect(MazeEffectConstants.EFFECT_FIERY);
 	gm.deactivateEffect(MazeEffectConstants.EFFECT_GHOSTLY);

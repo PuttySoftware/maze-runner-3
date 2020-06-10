@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
@@ -27,7 +27,7 @@ public abstract class AbstractTeleportTo extends AbstractTeleport {
     // Scriptability
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	SoundLoader.playSound(SoundConstants.SOUND_FINISH);
 	app.getGameManager().solvedLevelWarp(this.getDestinationLevel());
     }
@@ -74,17 +74,17 @@ public abstract class AbstractTeleportTo extends AbstractTeleport {
 
     @Override
     public void gameProbeHook() {
-	Boot.getApplication().showMessage(this.getName() + " Level " + (this.getDestinationLevel() + 1));
+	Game.getApplication().showMessage(this.getName() + " Level " + (this.getDestinationLevel() + 1));
     }
 
     @Override
     public void editorProbeHook() {
-	Boot.getApplication().showMessage(this.getName() + " Level " + (this.getDestinationLevel() + 1));
+	Game.getApplication().showMessage(this.getName() + " Level " + (this.getDestinationLevel() + 1));
     }
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	final MazeEditorLogic me = Game.getApplication().getEditor();
 	me.editFinishToDestination(this);
 	return this;
     }

@@ -18,7 +18,7 @@ Any questions should be directed to the author via email at: fantastle@worldwiza
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractBoots;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
@@ -50,6 +50,6 @@ public class MoneyBoots extends AbstractBoots {
     @Override
     public void stepAction() {
 	PartyManager.getParty().getLeader().offsetGold(MoneyBoots.GOLD_AMOUNT);
-	Boot.getApplication().getGameManager().addToScore(MoneyBoots.GOLD_AMOUNT);
+	Game.getApplication().getGameManager().addToScore(MoneyBoots.GOLD_AMOUNT);
     }
 }

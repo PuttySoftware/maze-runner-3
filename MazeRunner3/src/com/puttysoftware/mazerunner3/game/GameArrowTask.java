@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
 package com.puttysoftware.mazerunner3.game;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.Maze;
@@ -42,7 +42,7 @@ public class GameArrowTask extends Thread {
     public void run() {
 	try {
 	    boolean res = true;
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    final Maze m = app.getMazeManager().getMaze();
 	    final MazeObjectInventory inv = app.getGameManager().getObjectInventory();
 	    final int px = m.getPlayerLocationX();
@@ -89,7 +89,7 @@ public class GameArrowTask extends Thread {
 	    SoundLoader.playSound(SoundConstants.SOUND_ARROW_DIE);
 	    app.getGameManager().arrowDone();
 	} catch (final Throwable t) {
-	    Boot.uncaughtException(t);
+	    Game.uncaughtException(t);
 	}
     }
 

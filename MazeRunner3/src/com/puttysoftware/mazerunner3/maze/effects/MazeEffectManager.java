@@ -10,7 +10,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.utilities.DirectionResolver;
 
 public class MazeEffectManager {
@@ -71,11 +71,11 @@ public class MazeEffectManager {
 		// Update effect grid
 		this.updateGridEntry(x);
 		if (!this.activeEffects[x].isActive()) {
-		    Boot.getApplication().showMessage("You feel normal again.");
+		    Game.getApplication().showMessage("You feel normal again.");
 		    // Clear effect grid
 		    this.clearGridEntry(x);
 		    // Pack
-		    Boot.getApplication().getGameManager().getOutputFrame().pack();
+		    Game.getApplication().getGameManager().getOutputFrame().pack();
 		}
 	    }
 	}
@@ -92,7 +92,7 @@ public class MazeEffectManager {
 	    this.addGridEntry(effectID);
 	}
 	// Keep effect message
-	Boot.getApplication().getGameManager().keepNextMessage();
+	Game.getApplication().getGameManager().keepNextMessage();
     }
 
     public void deactivateEffect(final int effectID) {
@@ -105,7 +105,7 @@ public class MazeEffectManager {
     public void deactivateAllEffects() {
 	this.clearAllGridEntries();
 	// Pack
-	Boot.getApplication().getGameManager().getOutputFrame().pack();
+	Game.getApplication().getGameManager().getOutputFrame().pack();
 	for (int x = 0; x < MazeEffectManager.NUM_EFFECTS; x++) {
 	    this.activeEffects[x].deactivateEffect();
 	}

@@ -12,7 +12,7 @@ import java.io.IOException;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.fileutils.ZipUtilities;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.Extension;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.PrefixHandler;
@@ -29,7 +29,7 @@ public class GameSaveTask extends Thread {
 
     @Override
     public void run() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	boolean success = true;
 	final String sg = "Maze";
 	// filename check
@@ -57,9 +57,9 @@ public class GameSaveTask extends Thread {
 		    + " file failed, probably due to illegal characters in the file name.");
 	    success = false;
 	} catch (final Exception ex) {
-	    Boot.uncaughtException(ex);
+	    Game.uncaughtException(ex);
 	}
-	Boot.getApplication().showMessage("Locked " + sg + " file saved.");
+	Game.getApplication().showMessage("Locked " + sg + " file saved.");
 	app.getMazeManager().handleDeferredSuccess(success);
     }
 

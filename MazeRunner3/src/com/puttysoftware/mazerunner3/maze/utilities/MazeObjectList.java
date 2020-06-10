@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import com.puttysoftware.images.BufferedImageIcon;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.ImageTransformer;
 import com.puttysoftware.mazerunner3.loader.ObjectImageLoader;
@@ -921,7 +921,7 @@ public class MazeObjectList {
 		    }
 		} catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
 			| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-		    Boot.uncaughtException(e);
+		    Game.uncaughtException(e);
 		}
 	    }
 	    return null;
@@ -955,7 +955,7 @@ public class MazeObjectList {
 		}
 	    } catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
 		    | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-		Boot.uncaughtException(e);
+		Game.uncaughtException(e);
 	    }
 	}
 	return null;
@@ -981,7 +981,7 @@ public class MazeObjectList {
 		}
 	    } catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
 		    | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-		Boot.uncaughtException(e);
+		Game.uncaughtException(e);
 	    }
 	}
 	return null;
@@ -1007,7 +1007,7 @@ public class MazeObjectList {
 		}
 	    } catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
 		    | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-		Boot.uncaughtException(e);
+		Game.uncaughtException(e);
 	    }
 	}
 	return null;

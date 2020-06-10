@@ -8,7 +8,7 @@ package com.puttysoftware.mazerunner3.maze.objects;
 import java.io.IOException;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
@@ -60,7 +60,7 @@ public class RotationTrap extends AbstractTrap {
 	} else {
 	    dir = "Counterclockwise";
 	}
-	Boot.getApplication().showMessage(this.getName() + " (Radius " + this.radius + ", Direction " + dir + ")");
+	Game.getApplication().showMessage(this.getName() + " (Radius " + this.radius + ", Direction " + dir + ")");
     }
 
     @Override
@@ -130,9 +130,9 @@ public class RotationTrap extends AbstractTrap {
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	if (this.direction) {
-	    Boot.getApplication().getGameManager().doClockwiseRotate(this.radius);
+	    Game.getApplication().getGameManager().doClockwiseRotate(this.radius);
 	} else {
-	    Boot.getApplication().getGameManager().doCounterclockwiseRotate(this.radius);
+	    Game.getApplication().getGameManager().doCounterclockwiseRotate(this.radius);
 	}
 	SoundLoader.playSound(SoundConstants.SOUND_CHANGE);
     }

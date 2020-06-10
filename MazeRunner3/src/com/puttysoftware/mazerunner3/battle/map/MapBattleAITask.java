@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.battle.map;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
 
 class MapBattleAITask extends Thread {
@@ -40,7 +40,7 @@ class MapBattleAITask extends Thread {
 		}
 	    }
 	} catch (final Throwable t) {
-	    Boot.uncaughtException(t);
+	    Game.uncaughtException(t);
 	}
     }
 

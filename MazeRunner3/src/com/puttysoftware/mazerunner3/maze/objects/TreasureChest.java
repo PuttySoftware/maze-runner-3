@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -34,7 +34,7 @@ public class TreasureChest extends AbstractContainer {
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	if (this.isConditionallyDirectionallySolid(ie, dirX, dirY, inv)) {
-	    Boot.getApplication().showMessage("You need a treasure key");
+	    Game.getApplication().showMessage("You need a treasure key");
 	}
 	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
@@ -51,7 +51,7 @@ public class TreasureChest extends AbstractContainer {
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-	return Boot.getApplication().getEditor().editTreasureChestContents();
+	return Game.getApplication().getEditor().editTreasureChestContents();
     }
 
     @Override

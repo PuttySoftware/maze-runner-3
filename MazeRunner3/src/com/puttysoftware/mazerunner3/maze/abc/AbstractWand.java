@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
 package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.TypeConstants;
 
@@ -30,9 +30,9 @@ public abstract class AbstractWand extends AbstractUsableObject {
 
     @Override
     public void useAction(final AbstractMazeObject mo, final int x, final int y, final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().morph(mo, x, y, z);
-	Boot.getApplication().getGameManager().addToScore(AbstractWand.SCORE_USE);
+	Game.getApplication().getGameManager().addToScore(AbstractWand.SCORE_USE);
     }
 
     @Override

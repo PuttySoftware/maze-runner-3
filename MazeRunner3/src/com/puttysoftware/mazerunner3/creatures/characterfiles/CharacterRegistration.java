@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.fileutils.ResourceStreamReader;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.Extension;
 
 public class CharacterRegistration {
@@ -30,7 +30,7 @@ public class CharacterRegistration {
     // Methods
     public static void registerCharacter() {
 	String suffix;
-	if (Boot.inDebugMode()) {
+	if (Game.inDebugMode()) {
 	    suffix = " (DEBUG)";
 	} else {
 	    suffix = "";
@@ -91,7 +91,7 @@ public class CharacterRegistration {
 
     public static void unregisterCharacter() {
 	String suffix;
-	if (Boot.inDebugMode()) {
+	if (Game.inDebugMode()) {
 	    suffix = " (DEBUG)";
 	} else {
 	    suffix = "";
@@ -138,7 +138,7 @@ public class CharacterRegistration {
 
     public static void removeCharacter() {
 	String suffix;
-	if (Boot.inDebugMode()) {
+	if (Game.inDebugMode()) {
 	    suffix = " (DEBUG)";
 	} else {
 	    suffix = "";

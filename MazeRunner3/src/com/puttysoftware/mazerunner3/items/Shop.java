@@ -8,7 +8,7 @@ package com.puttysoftware.mazerunner3.items;
 import javax.swing.JOptionPane;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.faiths.FaithConstants;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
@@ -99,7 +99,7 @@ public class Shop implements ShopTypes {
     }
 
     private String getShopNameFromType() {
-	if (Boot.inDebugMode()) {
+	if (Game.inDebugMode()) {
 	    return ShopTypes.SHOP_NAMES[this.type - 1] + " (DEBUG)";
 	} else {
 	    return ShopTypes.SHOP_NAMES[this.type - 1];
@@ -386,7 +386,7 @@ public class Shop implements ShopTypes {
 	    if (stage4Confirm == JOptionPane.NO_OPTION || stage4Confirm == JOptionPane.CLOSED_OPTION) {
 		return false;
 	    }
-	    if (Boot.inDebugMode()) {
+	    if (Game.inDebugMode()) {
 		CommonDialogs.showTitledDialog("Debug mode is enabled, so this purchase is free.",
 			this.getShopNameFromType());
 		this.cost = 0;

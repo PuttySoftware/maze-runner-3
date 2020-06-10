@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
@@ -46,7 +46,7 @@ public class VariableHurtTrap extends AbstractTrap {
 	this.damageDealt = new RandomRange(VariableHurtTrap.MIN_DAMAGE, this.maxDamage);
 	PartyManager.getParty().getLeader().doDamage(this.damageDealt.generate());
 	SoundLoader.playSound(SoundConstants.SOUND_BARRIER);
-	Boot.getApplication().getGameManager().decay();
+	Game.getApplication().getGameManager().decay();
     }
 
     @Override

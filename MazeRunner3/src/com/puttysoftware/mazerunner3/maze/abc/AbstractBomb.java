@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
  */
 package com.puttysoftware.mazerunner3.maze.abc;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -37,7 +37,7 @@ public abstract class AbstractBomb extends AbstractUsableObject {
 	// Act as if bomb was used
 	this.useAction(null, locX, locY, locZ);
 	// Destroy bomb
-	Boot.getApplication().getGameManager().morph(new Empty(), locX, locY, locZ);
+	Game.getApplication().getGameManager().morph(new Empty(), locX, locY, locZ);
 	// Stop arrow
 	return false;
     }

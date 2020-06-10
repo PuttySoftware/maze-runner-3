@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractSingleLock;
@@ -22,7 +22,7 @@ public class RoseLock extends AbstractSingleLock {
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	if (this.isConditionallySolid(inv)) {
-	    Boot.getApplication().showMessage("You need a rose key");
+	    Game.getApplication().showMessage("You need a rose key");
 	}
 	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
     }

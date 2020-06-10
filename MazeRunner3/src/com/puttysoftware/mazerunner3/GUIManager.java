@@ -59,7 +59,7 @@ public class GUIManager implements QuitHandler {
     }
 
     public void showGUI() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.setInGUI();
 	this.guiFrame.setJMenuBar(app.getMenuManager().getMainMenuBar());
 	this.guiFrame.setVisible(true);
@@ -78,13 +78,13 @@ public class GUIManager implements QuitHandler {
     public void updateLogo() {
 	final BufferedImageIcon logo = LogoImageLoader.getLogo();
 	this.logoLabel.setIcon(logo);
-	final Image iconlogo = Boot.getApplication().getIconLogo();
+	final Image iconlogo = Game.getApplication().getIconLogo();
 	this.guiFrame.setIconImage(iconlogo);
 	this.guiFrame.pack();
     }
 
     public boolean quitHandler() {
-	final MazeManager mm = Boot.getApplication().getMazeManager();
+	final MazeManager mm = Game.getApplication().getMazeManager();
 	boolean saved = true;
 	int status = JOptionPane.DEFAULT_OPTION;
 	if (mm.getDirty()) {

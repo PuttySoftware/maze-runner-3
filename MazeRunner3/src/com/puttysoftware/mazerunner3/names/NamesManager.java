@@ -7,7 +7,7 @@ package com.puttysoftware.mazerunner3.names;
 
 import java.util.ArrayList;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.data.NameDataLoader;
 
 public class NamesManager {
@@ -19,11 +19,11 @@ public class NamesManager {
 	try {
 	    NamesManager.createCache();
 	} catch (final Exception e) {
-	    Boot.uncaughtException(e);
+	    Game.uncaughtException(e);
 	}
 	final String key = section + ":" + type;
 	if (!NamesManager.containsKey(key)) {
-	    Boot.uncaughtException(new IllegalArgumentException("No such key " + key));
+	    Game.uncaughtException(new IllegalArgumentException("No such key " + key));
 	}
 	return NamesManager.getValue(key);
     }
@@ -54,7 +54,7 @@ public class NamesManager {
 	try {
 	    NamesManager.createCache();
 	} catch (final Exception e) {
-	    Boot.uncaughtException(e);
+	    Game.uncaughtException(e);
 	}
 	return NamesManager.CACHE;
     }

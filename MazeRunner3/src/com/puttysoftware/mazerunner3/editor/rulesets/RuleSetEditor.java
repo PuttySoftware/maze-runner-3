@@ -22,7 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 
 class RuleSetEditor {
     // Fields
@@ -46,13 +46,13 @@ class RuleSetEditor {
     }
 
     public void showRuleSetEditor() {
-	Boot.getApplication().getRuleSetPicker().hideOutput();
+	Game.getApplication().getRuleSetPicker().hideOutput();
 	this.editFrame.setVisible(true);
     }
 
     void hideRuleSetEditor() {
 	this.editFrame.setVisible(false);
-	Boot.getApplication().getRuleSetPicker().showOutput();
+	Game.getApplication().getRuleSetPicker().showOutput();
     }
 
     void saveRuleSetEditor() {
@@ -86,7 +86,7 @@ class RuleSetEditor {
     private void setUpGUI() {
 	final EventHandler handler = new EventHandler();
 	this.editFrame = new JFrame("Rule Set Editor");
-	final Image iconlogo = Boot.getApplication().getIconLogo();
+	final Image iconlogo = Game.getApplication().getIconLogo();
 	this.editFrame.setIconImage(iconlogo);
 	final Container mainEditPane = new Container();
 	final Container contentPane = new Container();
@@ -143,7 +143,7 @@ class RuleSetEditor {
 		    ge.hideRuleSetEditor();
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 

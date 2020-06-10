@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.spells;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.battle.BattleTarget;
 import com.puttysoftware.mazerunner3.battle.map.MapBattleDefinitions;
 import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
@@ -212,12 +212,12 @@ public class SpellCaster {
 	    if (teamID == AbstractCreature.TEAM_PARTY) {
 		return PartyManager.getParty().getLeader();
 	    } else {
-		return Boot.getApplication().getBattle().getEnemy();
+		return Game.getApplication().getBattle().getEnemy();
 	    }
 	case ONE_ENEMY:
 	case ALL_ENEMIES:
 	    if (teamID == AbstractCreature.TEAM_PARTY) {
-		return Boot.getApplication().getBattle().getEnemy();
+		return Game.getApplication().getBattle().getEnemy();
 	    } else {
 		return PartyManager.getParty().getLeader();
 	    }

@@ -97,7 +97,7 @@ public class MenuManager {
 	this.disableEditorMenus();
 	this.disableBattleMenus();
 	this.enableGameMenus();
-	final ArrayList<AbstractEditor> allEditors = Boot.getApplication().getAllEditors();
+	final ArrayList<AbstractEditor> allEditors = Game.getApplication().getAllEditors();
 	for (final AbstractEditor ge : allEditors) {
 	    ge.disableEditorCommands();
 	}
@@ -123,7 +123,7 @@ public class MenuManager {
 	this.editClearHistory.setEnabled(false);
 	this.disableGameMenus();
 	this.enableBattleMenus();
-	final ArrayList<AbstractEditor> allEditors = Boot.getApplication().getAllEditors();
+	final ArrayList<AbstractEditor> allEditors = Game.getApplication().getAllEditors();
 	for (final AbstractEditor ge : allEditors) {
 	    ge.disableEditorCommands();
 	}
@@ -146,7 +146,7 @@ public class MenuManager {
 	this.enableEditorMenus();
 	this.disableBattleMenus();
 	this.disableGameMenus();
-	final ArrayList<AbstractEditor> allEditors = Boot.getApplication().getAllEditors();
+	final ArrayList<AbstractEditor> allEditors = Game.getApplication().getAllEditors();
 	for (final AbstractEditor ge : allEditors) {
 	    ge.enableEditorCommands();
 	}
@@ -176,7 +176,7 @@ public class MenuManager {
 	this.disableEditorMenus();
 	this.disableBattleMenus();
 	this.disableGameMenus();
-	final ArrayList<AbstractEditor> allEditors = Boot.getApplication().getAllEditors();
+	final ArrayList<AbstractEditor> allEditors = Game.getApplication().getAllEditors();
 	for (final AbstractEditor ge : allEditors) {
 	    ge.disableEditorCommands();
 	}
@@ -205,7 +205,7 @@ public class MenuManager {
 	this.disableEditorMenus();
 	this.disableBattleMenus();
 	this.disableGameMenus();
-	final ArrayList<AbstractEditor> allEditors = Boot.getApplication().getAllEditors();
+	final ArrayList<AbstractEditor> allEditors = Game.getApplication().getAllEditors();
 	for (final AbstractEditor ge : allEditors) {
 	    ge.disableEditorCommands();
 	}
@@ -231,7 +231,7 @@ public class MenuManager {
 	this.disableEditorMenus();
 	this.disableBattleMenus();
 	this.disableGameMenus();
-	final ArrayList<AbstractEditor> allEditors = Boot.getApplication().getAllEditors();
+	final ArrayList<AbstractEditor> allEditors = Game.getApplication().getAllEditors();
 	for (final AbstractEditor ge : allEditors) {
 	    ge.disableEditorCommands();
 	}
@@ -449,7 +449,7 @@ public class MenuManager {
     }
 
     public void checkFlags() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (app.getMazeManager().getDirty()) {
 	    this.setMenusDirtyOn();
 	} else {
@@ -489,7 +489,7 @@ public class MenuManager {
     }
 
     private void setMenusLoadedOn() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (app.getMode() == Application.STATUS_GUI) {
 	    this.fileClose.setEnabled(false);
 	    this.fileSaveAs.setEnabled(false);
@@ -787,7 +787,7 @@ public class MenuManager {
 	gameMenu.add(this.gameViewStats);
 	gameMenu.add(this.gameUseAnItem);
 	gameMenu.add(this.gameSwitchBow);
-	final ArrayList<AbstractEditor> allEditors = Boot.getApplication().getAllEditors();
+	final ArrayList<AbstractEditor> allEditors = Game.getApplication().getAllEditors();
 	for (final AbstractEditor ge : allEditors) {
 	    editorMenu.add(ge.createEditorCommandsMenu());
 	}
@@ -862,7 +862,7 @@ public class MenuManager {
 	String suffix;
 
 	public EventHandler() {
-	    if (Boot.inDebugMode()) {
+	    if (Game.inDebugMode()) {
 		this.suffix = " (DEBUG)";
 	    } else {
 		this.suffix = "";
@@ -874,7 +874,7 @@ public class MenuManager {
 	public void actionPerformed(final ActionEvent e) {
 	    try {
 		final String cmd = e.getActionCommand();
-		final Application app = Boot.getApplication();
+		final Application app = Game.getApplication();
 		final AbstractBattle ba = app.getBattle();
 		boolean loaded = false;
 		if (cmd.equals("New...")) {
@@ -1133,7 +1133,7 @@ public class MenuManager {
 		}
 		MenuManager.this.checkFlags();
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
     }

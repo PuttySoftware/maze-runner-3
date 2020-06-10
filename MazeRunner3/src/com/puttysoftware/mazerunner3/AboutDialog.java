@@ -44,7 +44,7 @@ public class AboutDialog implements AboutHandler {
     private void setUpGUI(final String ver) {
 	final EventHandler handler = new EventHandler();
 	this.aboutFrame = new JFrame("About MazeRunnerII");
-	final Image iconlogo = Boot.getApplication().getIconLogo();
+	final Image iconlogo = Game.getApplication().getIconLogo();
 	this.aboutFrame.setIconImage(iconlogo);
 	final Container aboutPane = new Container();
 	final Container textPane = new Container();
@@ -90,7 +90,7 @@ public class AboutDialog implements AboutHandler {
 		    ad.hideAboutDialog();
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
     }

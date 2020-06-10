@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractWall;
 import com.puttysoftware.mazerunner3.maze.utilities.ArrowTypeConstants;
@@ -27,7 +27,7 @@ public class IcedBarrierGenerator extends AbstractWall {
     @Override
     public void timerExpiredAction(final int dirX, final int dirY) {
 	// De-ice
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int pz = app.getMazeManager().getMaze().getPlayerLocationZ();
 	final BarrierGenerator bg = new BarrierGenerator();
 	app.getGameManager().morph(bg, dirX, dirY, pz);
@@ -42,7 +42,7 @@ public class IcedBarrierGenerator extends AbstractWall {
 	    this.extendTimer(IcedBarrierGenerator.TIMER_DELAY);
 	} else {
 	    // Else, de-ice
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    final BarrierGenerator bg = new BarrierGenerator();
 	    app.getGameManager().morph(bg, locX, locY, locZ);
 	    bg.timerExpiredAction(locX, locY);

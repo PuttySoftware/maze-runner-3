@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -25,16 +25,16 @@ public class InvisiblePit extends Pit {
 
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	Boot.getApplication().showMessage("Some unseen force prevents movement that way...");
+	Game.getApplication().showMessage("Some unseen force prevents movement that way...");
     }
 
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().updatePositionAbsolute(this.getDestinationRow(), this.getDestinationColumn(),
 		this.getDestinationFloor());
 	SoundLoader.playSound(SoundConstants.SOUND_FALLING);
-	Boot.getApplication().showMessage("Invisible Pit!");
+	Game.getApplication().showMessage("Invisible Pit!");
     }
 
     @Override

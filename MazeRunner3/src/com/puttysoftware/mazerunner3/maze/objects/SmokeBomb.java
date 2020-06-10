@@ -18,7 +18,7 @@ Any questions should be directed to the author via email at: fantastle@worldwiza
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractBomb;
 
@@ -49,7 +49,7 @@ public class SmokeBomb extends AbstractBomb {
     @Override
     public void useActionHook(final int x, final int y, final int z) {
 	// Paralyze any monsters nearby
-	Boot.getApplication().getMazeManager().getMaze().radialScanTimerAction(x, y, z, MazeConstants.LAYER_OBJECT,
+	Game.getApplication().getMazeManager().getMaze().radialScanTimerAction(x, y, z, MazeConstants.LAYER_OBJECT,
 		AbstractBomb.EFFECT_RADIUS, "Monster", SmokeBomb.STUN_DURATION);
     }
 }

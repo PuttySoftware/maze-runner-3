@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
  */
 package com.puttysoftware.mazerunner3.maze.effects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.objects.GhostAmulet;
 
 public class Ghostly extends MazeEffect {
@@ -17,6 +17,6 @@ public class Ghostly extends MazeEffect {
     @Override
     public void customTerminateLogic() {
 	// Remove item that granted effect from inventory
-	Boot.getApplication().getGameManager().getObjectInventory().removeItem(new GhostAmulet());
+	Game.getApplication().getGameManager().getObjectInventory().removeItem(new GhostAmulet());
     }
 }

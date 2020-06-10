@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
@@ -47,7 +47,7 @@ public class EmptyVoid extends AbstractWall {
 
     @Override
     public void determineCurrentAppearance(final int x, final int y, final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	String mo1Name, mo2Name, mo3Name, mo4Name, mo6Name, mo7Name, mo8Name, mo9Name, thisName;
 	thisName = this.getName();
 	final AbstractMazeObject mo1 = app.getMazeManager().getMazeObject(x - 1, y - 1, z, MazeConstants.LAYER_OBJECT);

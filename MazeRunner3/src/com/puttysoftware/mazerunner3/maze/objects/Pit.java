@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.game.InfiniteRecursionException;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
@@ -40,11 +40,11 @@ public class Pit extends StairsDown {
     @Override
     public boolean preMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	return this.searchNestedPits(dirX, dirY,
-		Boot.getApplication().getMazeManager().getMaze().getPlayerLocationZ() - 1, inv);
+		Game.getApplication().getMazeManager().getMaze().getPlayerLocationZ() - 1, inv);
     }
 
     private boolean searchNestedPits(final int dirX, final int dirY, final int floor, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	// Stop infinite recursion
 	final int lcl = -app.getMazeManager().getMaze().getFloors();
 	if (floor <= lcl) {
@@ -71,7 +71,7 @@ public class Pit extends StairsDown {
 
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().updatePositionAbsolute(this.getDestinationRow(), this.getDestinationColumn(),
 		this.getDestinationFloor());
 	SoundLoader.playSound(SoundConstants.SOUND_FALLING);
@@ -80,7 +80,7 @@ public class Pit extends StairsDown {
     @Override
     public void pushIntoAction(final MazeObjectInventory inv, final AbstractMazeObject pushed, final int x, final int y,
 	    final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	try {
 	    this.searchNestedPits(x, y, z - 1, inv);
 	    if (pushed.isPushable()) {
@@ -90,13 +90,13 @@ public class Pit extends StairsDown {
 	    }
 	} catch (final InfiniteRecursionException ir) {
 	    SoundLoader.playSound(SoundConstants.SOUND_INTO_PIT);
-	    Boot.getApplication().getMazeManager().getMaze().setCell(new Empty(), x, y, z, MazeConstants.LAYER_OBJECT);
+	    Game.getApplication().getMazeManager().getMaze().setCell(new Empty(), x, y, z, MazeConstants.LAYER_OBJECT);
 	}
     }
 
     @Override
     public boolean isConditionallySolid(final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (!app.getGameManager().isFloorBelow()) {
 	    return true;
 	} else {

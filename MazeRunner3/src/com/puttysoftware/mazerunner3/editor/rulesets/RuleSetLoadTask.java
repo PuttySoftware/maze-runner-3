@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.xio.XDataReader;
 
 public class RuleSetLoadTask extends Thread {
@@ -26,7 +26,7 @@ public class RuleSetLoadTask extends Thread {
     // Methods
     @Override
     public void run() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final String sg = "Rule Set";
 	try (XDataReader ruleSetFile = new XDataReader(this.filename, "ruleset")) {
 	    final int magic = ruleSetFile.readInt();
@@ -43,7 +43,7 @@ public class RuleSetLoadTask extends Thread {
 	    CommonDialogs.showDialog(ie.getMessage());
 	    app.getMazeManager().handleDeferredSuccess(false);
 	} catch (final Exception ex) {
-	    Boot.uncaughtException(ex);
+	    Game.uncaughtException(ex);
 	}
     }
 }

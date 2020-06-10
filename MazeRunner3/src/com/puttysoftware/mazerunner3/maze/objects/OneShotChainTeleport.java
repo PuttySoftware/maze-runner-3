@@ -19,7 +19,7 @@
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
@@ -42,7 +42,7 @@ public class OneShotChainTeleport extends AbstractTeleport {
     // Scriptability
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().decay();
 	app.getGameManager().updatePositionAbsoluteNoEvents(this.getDestinationRow(), this.getDestinationColumn(),
 		this.getDestinationFloor(), this.getDestinationLevel());
@@ -61,7 +61,7 @@ public class OneShotChainTeleport extends AbstractTeleport {
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	final MazeEditorLogic me = Game.getApplication().getEditor();
 	return me.editTeleportDestination(MazeEditorLogic.TELEPORT_TYPE_ONESHOT_CHAIN);
     }
 

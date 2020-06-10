@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
  */
 package com.puttysoftware.mazerunner3.maze.abc;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -40,15 +40,15 @@ public abstract class AbstractWallTrap extends AbstractMazeObject {
     // Scriptability
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	Boot.getApplication().getGameManager().decay();
-	Boot.getApplication().getMazeManager().getMaze().findAllMatchingObjectsAndDecay(this.masterTrigger);
+	Game.getApplication().getGameManager().decay();
+	Game.getApplication().getMazeManager().getMaze().findAllMatchingObjectsAndDecay(this.masterTrigger);
 	if (this.number == AbstractWallTrap.NUMBER_MASTER) {
-	    Boot.getApplication().getMazeManager().getMaze().masterTrapTrigger();
+	    Game.getApplication().getMazeManager().getMaze().masterTrapTrigger();
 	} else {
-	    Boot.getApplication().getMazeManager().getMaze().findAllMatchingObjectsAndDecay(this);
-	    Boot.getApplication().getMazeManager().getMaze().findAllMatchingObjectsAndDecay(this.trigger);
+	    Game.getApplication().getMazeManager().getMaze().findAllMatchingObjectsAndDecay(this);
+	    Game.getApplication().getMazeManager().getMaze().findAllMatchingObjectsAndDecay(this.trigger);
 	}
-	Boot.getApplication().getGameManager().redrawMaze();
+	Game.getApplication().getGameManager().redrawMaze();
 	SoundLoader.playSound(SoundConstants.SOUND_WALL_TRAP);
     }
 

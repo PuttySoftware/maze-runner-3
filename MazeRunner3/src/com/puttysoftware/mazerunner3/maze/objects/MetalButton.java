@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -96,7 +96,7 @@ public class MetalButton extends AbstractField {
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	if (inv.isItemThere(this.getKey())) {
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    final AbstractMazeObject there = app.getMazeManager().getMazeObject(this.getTargetRow(),
 		    this.getTargetColumn(), this.getTargetFloor(), this.getLayer());
 	    if (there != null) {
@@ -152,13 +152,13 @@ public class MetalButton extends AbstractField {
 
     @Override
     public void editorProbeHook() {
-	Boot.getApplication().showMessage(this.getName() + ": Target (" + (this.targetCol + 1) + ","
+	Game.getApplication().showMessage(this.getName() + ": Target (" + (this.targetCol + 1) + ","
 		+ (this.targetRow + 1) + "," + (this.targetFloor + 1) + "," + (this.targetLevel + 1) + ")");
     }
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-	return Boot.getApplication().getEditor().editMetalButtonTarget();
+	return Game.getApplication().getEditor().editMetalButtonTarget();
     }
 
     @Override

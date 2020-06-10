@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
  */
 package com.puttysoftware.mazerunner3.maze.abc;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.StatConstants;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
@@ -101,21 +101,21 @@ public abstract class AbstractPotion extends AbstractMazeObject {
 		}
 	    }
 	}
-	Boot.getApplication().getGameManager().decay();
+	Game.getApplication().getGameManager().decay();
 	if (this.effectValue >= 0) {
 	    SoundLoader.playSound(SoundConstants.SOUND_HEAL);
 	} else {
 	    SoundLoader.playSound(SoundConstants.SOUND_HURT);
 	}
-	Boot.getApplication().getGameManager().addToScore(AbstractPotion.SCORE_CONSUME);
+	Game.getApplication().getGameManager().addToScore(AbstractPotion.SCORE_CONSUME);
     }
 
     @Override
     public boolean arrowHitAction(final int locX, final int locY, final int locZ, final int dirX, final int dirY,
 	    final int arrowType, final MazeObjectInventory inv) {
-	Boot.getApplication().getGameManager().morph(new Empty(), locX, locY, locZ);
+	Game.getApplication().getGameManager().morph(new Empty(), locX, locY, locZ);
 	SoundLoader.playSound(SoundConstants.SOUND_SHATTER);
-	Boot.getApplication().getGameManager().addToScore(AbstractPotion.SCORE_SMASH);
+	Game.getApplication().getGameManager().addToScore(AbstractPotion.SCORE_SMASH);
 	return false;
     }
 

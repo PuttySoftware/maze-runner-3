@@ -24,7 +24,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.Maze;
 
 public class MazePreferencesManager {
@@ -43,19 +43,19 @@ public class MazePreferencesManager {
     // Methods
     public void showPrefs() {
 	this.loadPrefs();
-	Boot.getApplication().getEditor().disableOutput();
+	Game.getApplication().getEditor().disableOutput();
 	this.prefFrame.setVisible(true);
     }
 
     public void hidePrefs() {
 	this.prefFrame.setVisible(false);
-	Boot.getApplication().getEditor().enableOutput();
-	Boot.getApplication().getMazeManager().setDirty(true);
-	Boot.getApplication().getEditor().redrawEditor();
+	Game.getApplication().getEditor().enableOutput();
+	Game.getApplication().getMazeManager().setDirty(true);
+	Game.getApplication().getEditor().redrawEditor();
     }
 
     void setPrefs() {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	m.setStartLevel(this.startLevelChoices.getSelectedIndex());
 	m.setMazeTitle(this.mazeTitle.getText());
 	m.setMazeStartMessage(this.mazeStartMessage.getText());
@@ -63,7 +63,7 @@ public class MazePreferencesManager {
     }
 
     private void loadPrefs() {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	final String[] startLevelChoiceArray = new String[m.getLevels()];
 	for (int x = 0; x < m.getLevels(); x++) {
 	    startLevelChoiceArray[x] = Integer.toString(x + 1);
@@ -79,7 +79,7 @@ public class MazePreferencesManager {
     private void setUpGUI() {
 	final EventHandler handler = new EventHandler();
 	this.prefFrame = new JFrame("Maze Preferences");
-	final Image iconlogo = Boot.getApplication().getIconLogo();
+	final Image iconlogo = Game.getApplication().getIconLogo();
 	this.prefFrame.setIconImage(iconlogo);
 	final Container mainPrefPane = new Container();
 	final Container contentPane = new Container();
@@ -135,7 +135,7 @@ public class MazePreferencesManager {
 		    mpm.hidePrefs();
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 

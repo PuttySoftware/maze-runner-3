@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
  */
 package com.puttysoftware.mazerunner3.maze.abc;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
@@ -36,7 +36,7 @@ public abstract class AbstractPort extends AbstractInfiniteLock {
 	} else {
 	    fill = "a";
 	}
-	Boot.getApplication().showMessage("You need " + fill + " " + this.letter + " plug");
+	Game.getApplication().showMessage("You need " + fill + " " + this.letter + " plug");
 	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
 

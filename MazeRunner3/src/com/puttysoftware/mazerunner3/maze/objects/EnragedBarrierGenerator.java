@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractGenerator;
 import com.puttysoftware.mazerunner3.maze.utilities.ArrowTypeConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
@@ -43,7 +43,7 @@ public class EnragedBarrierGenerator extends AbstractGenerator {
     protected boolean preMoveActionHook(final int dirX, final int dirY, final int dirZ, final int dirW) {
 	this.RAGE_CYCLES++;
 	if (this.RAGE_CYCLES == EnragedBarrierGenerator.RAGE_LIMIT) {
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    final BarrierGenerator bg = new BarrierGenerator();
 	    app.getGameManager().morph(bg, dirX, dirY, dirZ);
 	    bg.timerExpiredAction(dirX, dirY);
@@ -54,7 +54,7 @@ public class EnragedBarrierGenerator extends AbstractGenerator {
     @Override
     protected void arrowHitActionHook(final int locX, final int locY, final int locZ, final int arrowType,
 	    final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (arrowType == ArrowTypeConstants.ARROW_TYPE_ICE) {
 	    app.getGameManager().morph(new IcedBarrierGenerator(), locX, locY, locZ);
 	} else if (arrowType == ArrowTypeConstants.ARROW_TYPE_POISON) {

@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 
 public abstract class AbstractObjectEditor extends AbstractEditor {
     // Fields
@@ -250,7 +250,7 @@ public abstract class AbstractObjectEditor extends AbstractEditor {
 	    } catch (final NumberFormatException nfe) {
 		CommonDialogs.showErrorDialog("An invalid value was entered.", ge.getEditorSource());
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -277,7 +277,7 @@ public abstract class AbstractObjectEditor extends AbstractEditor {
 	    } catch (final NumberFormatException nfe) {
 		CommonDialogs.showErrorDialog("An invalid value was entered.", ge.getEditorSource());
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
     }

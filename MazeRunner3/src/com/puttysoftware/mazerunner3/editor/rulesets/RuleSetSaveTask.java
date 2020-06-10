@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.Extension;
 import com.puttysoftware.xio.XDataWriter;
 
@@ -25,7 +25,7 @@ public class RuleSetSaveTask extends Thread {
 
     @Override
     public void run() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final String sg = "Rule Set";
 	// filename check
 	final boolean hasExtension = RuleSetSaveTask.hasExtension(this.filename);
@@ -40,7 +40,7 @@ public class RuleSetSaveTask extends Thread {
 	    CommonDialogs.showDialog("Saving the " + sg.toLowerCase()
 		    + " file failed, probably due to illegal characters in the file name.");
 	} catch (final Exception ex) {
-	    Boot.uncaughtException(ex);
+	    Game.uncaughtException(ex);
 	}
     }
 

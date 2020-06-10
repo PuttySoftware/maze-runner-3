@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.names.NamesConstants;
 import com.puttysoftware.mazerunner3.names.NamesManager;
 
@@ -43,7 +43,7 @@ class NamesSaveTask extends Thread {
 	    CommonDialogs.showDialog("Writing the " + sg.toLowerCase()
 		    + " file failed, probably due to illegal characters in the file name.");
 	} catch (final Exception ex) {
-	    Boot.uncaughtException(ex);
+	    Game.uncaughtException(ex);
 	}
     }
 }

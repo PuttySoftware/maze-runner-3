@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -36,8 +36,8 @@ public class DizzinessTrap extends AbstractTrap {
 
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	Boot.getApplication().showMessage("You feel dizzy!");
-	Boot.getApplication().getGameManager().activateEffect(MazeEffectConstants.EFFECT_DIZZY,
+	Game.getApplication().showMessage("You feel dizzy!");
+	Game.getApplication().getGameManager().activateEffect(MazeEffectConstants.EFFECT_DIZZY,
 		DizzinessTrap.EFFECT_DURATION);
 	SoundLoader.playSound(SoundConstants.SOUND_DIZZY);
     }

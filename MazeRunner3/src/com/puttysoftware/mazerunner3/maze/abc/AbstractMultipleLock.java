@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
 package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -69,7 +69,7 @@ public abstract class AbstractMultipleLock extends AbstractLock {
 	} else {
 	    fill = "";
 	}
-	Boot.getApplication().showMessage("You need " + this.keyCount + " " + this.getKey().getName() + fill);
+	Game.getApplication().showMessage("You need " + this.keyCount + " " + this.getKey().getName() + fill);
 	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
 

@@ -16,7 +16,7 @@ import com.puttysoftware.integration.Integration;
 import com.puttysoftware.mazerunner3.creatures.AbstractCreature;
 import com.puttysoftware.mazerunner3.prefs.PreferencesManager;
 
-public class Boot {
+public class Game {
     // Constants
     private static Application application;
     private static final String PROGRAM_NAME = "MazeRunnerII";
@@ -30,7 +30,7 @@ public class Boot {
 
     // Methods
     public static Application getApplication() {
-	return Boot.application;
+	return Game.application;
     }
 
     public static void uncaughtException(final Throwable e) {
@@ -38,42 +38,42 @@ public class Boot {
     }
 
     public static boolean inDebugMode() {
-	return Boot.DEBUG_MODE;
+	return Game.DEBUG_MODE;
     }
 
     public static int getBattleMazeSize() {
-	return Boot.BATTLE_MAP_SIZE;
+	return Game.BATTLE_MAP_SIZE;
     }
 
     public static void preInit() {
 	// Compute action cap
-	AbstractCreature.computeActionCap(Boot.BATTLE_MAP_SIZE, Boot.BATTLE_MAP_SIZE);
+	AbstractCreature.computeActionCap(Game.BATTLE_MAP_SIZE, Game.BATTLE_MAP_SIZE);
     }
 
     public static void main(final String[] args) {
 	try {
 	    // Early initialization
-	    Diane.installErrorHandler(Boot.eCatch);
-	    Boot.preInit();
+	    Diane.installErrorHandler(Game.eCatch);
+	    Game.preInit();
 	    // Set look and feel
 	    Integration integration = new Integration();
 	    integration.configureLookAndFeel();
 	    // Create game
-	    Boot.application = new Application();
-	    Boot.application.postConstruct();
+	    Game.application = new Application();
+	    Game.application.postConstruct();
 	    // Integrate with host platform
-	    integration.setAboutHandler(Boot.application.getAboutDialog());
-	    integration.setOpenFileHandler(Boot.application.getMazeManager());
+	    integration.setAboutHandler(Game.application.getAboutDialog());
+	    integration.setOpenFileHandler(Game.application.getMazeManager());
 	    integration.setPreferencesHandler(new PrefsLauncher());
-	    integration.setQuitHandler(Boot.application.getGUIManager());
+	    integration.setQuitHandler(Game.application.getGUIManager());
 	    // Set up Common Dialogs
-	    CommonDialogs.setDefaultTitle(Boot.PROGRAM_NAME);
-	    CommonDialogs.setIcon(Boot.application.getMicroLogo());
+	    CommonDialogs.setDefaultTitle(Game.PROGRAM_NAME);
+	    CommonDialogs.setIcon(Game.application.getMicroLogo());
 	    // Launch game
-	    Boot.application.playLogoSound();
-	    Boot.application.getGUIManager().showGUI();
+	    Game.application.playLogoSound();
+	    Game.application.getGUIManager().showGUI();
 	} catch (final Throwable t) {
-	    Boot.uncaughtException(t);
+	    Game.uncaughtException(t);
 	}
     }
 
@@ -85,18 +85,18 @@ public class Boot {
     }
 
     private static class ErrorCatcher implements ErrorHandler {
-	private static final ErrorLogger logger = new ErrorLogger(Boot.PROGRAM_NAME);
+	private static final ErrorLogger logger = new ErrorLogger(Game.PROGRAM_NAME);
 
 	@Override
 	public void uncaughtException(final Thread t, final Throwable e) {
 	    String suffix;
-	    if (Boot.inDebugMode()) {
+	    if (Game.inDebugMode()) {
 		suffix = " (DEBUG)";
 	    } else {
 		suffix = "";
 	    }
 	    // Display error message
-	    CommonDialogs.showErrorDialog(Boot.ERROR_MESSAGE, Boot.ERROR_TITLE + suffix);
+	    CommonDialogs.showErrorDialog(Game.ERROR_MESSAGE, Game.ERROR_TITLE + suffix);
 	    ErrorCatcher.logger.logError(e);
 	}
     }

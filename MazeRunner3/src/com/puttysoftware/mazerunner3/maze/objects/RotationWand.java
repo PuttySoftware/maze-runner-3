@@ -7,7 +7,7 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
@@ -43,7 +43,7 @@ public class RotationWand extends AbstractWand {
 
     @Override
     public void useAction(final AbstractMazeObject mo, final int x, final int y, final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().setRemoteAction(x, y, z);
 	int r = 1;
 	final String rres = CommonDialogs.showInputDialog("Rotation Radius:", "MazeRunnerII", RotationWand.rChoices,
@@ -68,9 +68,9 @@ public class RotationWand extends AbstractWand {
 	    d = RotationWand.COUNTERCLOCKWISE;
 	}
 	if (d) {
-	    Boot.getApplication().getGameManager().doClockwiseRotate(r);
+	    Game.getApplication().getGameManager().doClockwiseRotate(r);
 	} else {
-	    Boot.getApplication().getGameManager().doCounterclockwiseRotate(r);
+	    Game.getApplication().getGameManager().doCounterclockwiseRotate(r);
 	}
 	SoundLoader.playSound(SoundConstants.SOUND_CHANGE);
     }

@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.ImageTransformer;
@@ -77,7 +77,7 @@ public class GameLogicManager {
 
     // Methods
     public boolean newGame() {
-	final JFrame owner = Boot.getApplication().getOutputFrame();
+	final JFrame owner = Game.getApplication().getOutputFrame();
 	if (this.savedGameFlag) {
 	    if (PartyManager.getParty() != null) {
 		return true;
@@ -94,7 +94,7 @@ public class GameLogicManager {
     }
 
     private void saveSavedMazeObject() {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	final int px = m.getPlayerLocationX();
 	final int py = m.getPlayerLocationY();
 	final int pz = m.getPlayerLocationZ();
@@ -103,7 +103,7 @@ public class GameLogicManager {
     }
 
     private void restoreSavedMazeObject() {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	final int px = m.getPlayerLocationX();
 	final int py = m.getPlayerLocationY();
 	final int pz = m.getPlayerLocationZ();
@@ -120,7 +120,7 @@ public class GameLogicManager {
     }
 
     public void doClockwiseRotate(final int r) {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	boolean b = false;
 	if (this.actingRemotely) {
 	    b = m.rotateRadiusClockwise(this.remoteCoords[0], this.remoteCoords[1], this.remoteCoords[2], r);
@@ -129,12 +129,12 @@ public class GameLogicManager {
 	}
 	if (!b) {
 	    this.keepNextMessage();
-	    Boot.getApplication().showMessage("Rotation failed!");
+	    Game.getApplication().showMessage("Rotation failed!");
 	}
     }
 
     public void doCounterclockwiseRotate(final int r) {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	boolean b = false;
 	if (this.actingRemotely) {
 	    b = m.rotateRadiusCounterclockwise(this.remoteCoords[0], this.remoteCoords[1], this.remoteCoords[2], r);
@@ -144,7 +144,7 @@ public class GameLogicManager {
 	}
 	if (!b) {
 	    this.keepNextMessage();
-	    Boot.getApplication().showMessage("Rotation failed!");
+	    Game.getApplication().showMessage("Rotation failed!");
 	}
     }
 
@@ -165,7 +165,7 @@ public class GameLogicManager {
 
     public void doRemoteAction(final int x, final int y, final int z) {
 	this.setRemoteAction(x, y, z);
-	final AbstractMazeObject acted = Boot.getApplication().getMazeManager().getMazeObject(x, y, z,
+	final AbstractMazeObject acted = Game.getApplication().getMazeManager().getMazeObject(x, y, z,
 		MazeConstants.LAYER_OBJECT);
 	acted.preMoveAction(false, x, y, this.getObjectInventory());
 	acted.postMoveAction(false, x, y, this.getObjectInventory());
@@ -203,7 +203,7 @@ public class GameLogicManager {
     }
 
     public boolean isFloorBelow() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    m.getCell(m.getPlayerLocationX(), m.getPlayerLocationY(), m.getPlayerLocationZ() - 1,
@@ -217,7 +217,7 @@ public class GameLogicManager {
     }
 
     public boolean isFloorAbove() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    m.getCell(m.getPlayerLocationX(), m.getPlayerLocationY(), m.getPlayerLocationZ() + 1,
@@ -231,7 +231,7 @@ public class GameLogicManager {
     }
 
     public boolean doesFloorExist(final int floor) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    m.getCell(m.getPlayerLocationX(), m.getPlayerLocationY(), floor, MazeConstants.LAYER_OBJECT);
@@ -296,7 +296,7 @@ public class GameLogicManager {
     }
 
     private void fireStepActions() {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	this.oiMgr.fireStepActions();
 	final int px = m.getPlayerLocationX();
 	final int py = m.getPlayerLocationY();
@@ -319,7 +319,7 @@ public class GameLogicManager {
     }
 
     public void updatePositionRelative(final int dirX, final int dirY, final int dirZ) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	this.previousSavedMazeObject = this.savedMazeObject;
 	boolean redrawsSuspended = false;
@@ -383,7 +383,7 @@ public class GameLogicManager {
 		    // Move failed - attempted to go outside the maze
 		    nextAbove.moveFailedAction(false, px, py, this.getObjectInventory());
 		    this.fireStepActions();
-		    Boot.getApplication().showMessage("Can't go that way");
+		    Game.getApplication().showMessage("Can't go that way");
 		    nextAbove = new Empty();
 		    this.decayEffects();
 		    proceed = false;
@@ -408,7 +408,7 @@ public class GameLogicManager {
     }
 
     private boolean updatePositionRelativePush(final int dirX, final int dirY) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	boolean redrawsSuspended = false;
 	int px = m.getPlayerLocationX();
@@ -509,7 +509,7 @@ public class GameLogicManager {
     }
 
     private boolean updatePositionRelativePull(final int dirX, final int dirY) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	boolean redrawsSuspended = false;
 	int px = m.getPlayerLocationX();
@@ -589,7 +589,7 @@ public class GameLogicManager {
     }
 
     public void backUpPlayer(final AbstractMazeObject backUpObject) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	m.setCell(backUpObject, m.getPlayerLocationX(), m.getPlayerLocationY(), m.getPlayerLocationZ(),
 		MazeConstants.LAYER_OBJECT);
@@ -675,7 +675,7 @@ public class GameLogicManager {
     private boolean checkPush(final int x, final int y, final int pushX, final int pushY,
 	    final AbstractMazeObject acted, final AbstractMazeObject nextBelow, final AbstractMazeObject nextNextBelow,
 	    final AbstractMazeObject nextNextAbove) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	final int px = m.getPlayerLocationX();
 	final int py = m.getPlayerLocationY();
@@ -697,7 +697,7 @@ public class GameLogicManager {
     private boolean checkPull(final int x, final int y, final int pullX, final int pullY,
 	    final AbstractMazeObject acted, final AbstractMazeObject previousBelow, final AbstractMazeObject below,
 	    final AbstractMazeObject above) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	final int px = m.getPlayerLocationX();
 	final int py = m.getPlayerLocationY();
@@ -720,7 +720,7 @@ public class GameLogicManager {
 	    final AbstractMovableObject o) {
 	final int xInc = (int) Math.signum(x), yInc = (int) Math.signum(y);
 	int cumPushX = pushX, cumPushY = pushY, cumX = x, cumY = y;
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	final MazeManager mm = app.getMazeManager();
 	AbstractMazeObject there = mm.getMazeObject(m.getPlayerLocationX() + cumX, m.getPlayerLocationY() + cumY,
@@ -743,7 +743,7 @@ public class GameLogicManager {
 
     private void movePushedObjectPosition(final int x, final int y, final int pushX, final int pushY,
 	    final AbstractMovableObject o, final AbstractMazeObject g) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    m.setCell(o.getSavedObject(), m.getPlayerLocationX() + x, m.getPlayerLocationY() + y,
@@ -760,7 +760,7 @@ public class GameLogicManager {
 
     public void updatePulledPosition(final int x, final int y, final int pullX, final int pullY,
 	    final AbstractMovableObject o) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    m.setCell(o.getSavedObject(), m.getPlayerLocationX() - x, m.getPlayerLocationY() - y,
@@ -774,7 +774,7 @@ public class GameLogicManager {
 
     public void updatePushedIntoPositionAbsolute(final int x, final int y, final int z, final int x2, final int y2,
 	    final int z2, final AbstractMovableObject pushedInto, final AbstractMazeObject source) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    if (!m.getCell(x, y, z, MazeConstants.LAYER_OBJECT).isConditionallySolid(this.getObjectInventory())) {
@@ -793,7 +793,7 @@ public class GameLogicManager {
 
     public boolean tryUpdatePositionRelative(final int x, final int y) {
 	try {
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    final Maze m = app.getMazeManager().getMaze();
 	    final AbstractMazeObject below = m.getCell(m.getPlayerLocationX(), m.getPlayerLocationY(),
 		    m.getPlayerLocationZ(), MazeConstants.LAYER_GROUND);
@@ -809,7 +809,7 @@ public class GameLogicManager {
 
     public boolean tryUpdatePositionAbsolute(final int x, final int y, final int z) {
 	try {
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    final Maze m = app.getMazeManager().getMaze();
 	    final AbstractMazeObject below = m.getCell(m.getPlayerLocationX(), m.getPlayerLocationY(),
 		    m.getPlayerLocationZ(), MazeConstants.LAYER_GROUND);
@@ -835,7 +835,7 @@ public class GameLogicManager {
     }
 
     public void updatePositionAbsolute(final int x, final int y, final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    m.getCell(x, y, z, MazeConstants.LAYER_OBJECT).preMoveAction(true, x, y, this.getObjectInventory());
@@ -869,16 +869,16 @@ public class GameLogicManager {
 	} catch (final ArrayIndexOutOfBoundsException ae) {
 	    m.restorePlayerLocation();
 	    this.vwMgr.restoreViewingWindow();
-	    Boot.getApplication().showMessage("Can't go outside the maze");
+	    Game.getApplication().showMessage("Can't go outside the maze");
 	} catch (final NullPointerException np) {
 	    m.restorePlayerLocation();
 	    this.vwMgr.restoreViewingWindow();
-	    Boot.getApplication().showMessage("Can't go outside the maze");
+	    Game.getApplication().showMessage("Can't go outside the maze");
 	}
     }
 
     public void updatePositionAbsoluteNoEvents(final int x, final int y, final int z, final int w) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	m.savePlayerLocation();
 	this.vwMgr.saveViewingWindow();
@@ -904,11 +904,11 @@ public class GameLogicManager {
 	} catch (final ArrayIndexOutOfBoundsException ae) {
 	    m.restorePlayerLocation();
 	    this.vwMgr.restoreViewingWindow();
-	    Boot.getApplication().showMessage("Can't go outside the maze");
+	    Game.getApplication().showMessage("Can't go outside the maze");
 	} catch (final NullPointerException np) {
 	    m.restorePlayerLocation();
 	    this.vwMgr.restoreViewingWindow();
-	    Boot.getApplication().showMessage("Can't go outside the maze");
+	    Game.getApplication().showMessage("Can't go outside the maze");
 	}
     }
 
@@ -939,7 +939,7 @@ public class GameLogicManager {
     }
 
     public void resetViewingWindow() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	this.vwMgr.setViewingWindowLocationX(m.getPlayerLocationY() - this.vwMgr.getOffsetFactorX());
 	this.vwMgr.setViewingWindowLocationY(m.getPlayerLocationX() - this.vwMgr.getOffsetFactorY());
@@ -950,7 +950,7 @@ public class GameLogicManager {
     }
 
     public void resetPlayerLocation(final int level) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	if (m != null) {
 	    m.switchLevel(level);
@@ -959,13 +959,13 @@ public class GameLogicManager {
     }
 
     public void resetCurrentLevel() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	this.resetLevel(m.getPlayerLocationW());
     }
 
     public void resetGameState() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	app.getMazeManager().setDirty(false);
 	m.restore();
@@ -984,7 +984,7 @@ public class GameLogicManager {
     }
 
     public void resetLevel(final int level) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	app.getMazeManager().setDirty(true);
 	m.restore();
@@ -1000,7 +1000,7 @@ public class GameLogicManager {
     }
 
     public void goToLevel(final int level) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	final boolean levelExists = m.doesLevelExist(level);
 	if (levelExists) {
@@ -1014,7 +1014,7 @@ public class GameLogicManager {
     }
 
     public void solvedLevel() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	CommonDialogs.showTitledDialog(m.getLevelEndMessage(), m.getLevelTitle());
 	final boolean levelExists;
@@ -1043,7 +1043,7 @@ public class GameLogicManager {
     }
 
     public void solvedLevelAlternate() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	CommonDialogs.showTitledDialog(m.getLevelEndMessage(), m.getLevelTitle());
 	final boolean levelExists;
@@ -1073,7 +1073,7 @@ public class GameLogicManager {
 
     public void solvedLevelWarp(final int level) {
 	this.deactivateAllEffects();
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	CommonDialogs.showTitledDialog(m.getLevelEndMessage(), m.getLevelTitle());
 	final boolean levelExists = m.doesLevelExist(level);
@@ -1100,14 +1100,14 @@ public class GameLogicManager {
     }
 
     public void solvedMaze() {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	CommonDialogs.showTitledDialog(m.getMazeEndMessage(), m.getMazeTitle());
 	this.exitGame();
     }
 
     public void exitGame() {
 	this.stateChanged = true;
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	// Restore the maze
 	m.restore();
@@ -1138,7 +1138,7 @@ public class GameLogicManager {
 
     public void decayTo(final AbstractMazeObject decay) {
 	if (this.actingRemotely) {
-	    Boot.getApplication().getMazeManager().getMaze().setCell(decay, this.remoteCoords[0], this.remoteCoords[1],
+	    Game.getApplication().getMazeManager().getMaze().setCell(decay, this.remoteCoords[0], this.remoteCoords[1],
 		    this.remoteCoords[2], MazeConstants.LAYER_OBJECT);
 	} else {
 	    this.savedMazeObject = decay;
@@ -1147,7 +1147,7 @@ public class GameLogicManager {
 
     private void doDelayedDecay() {
 	if (this.actingRemotely) {
-	    Boot.getApplication().getMazeManager().getMaze().setCell(this.delayedDecayObject, this.remoteCoords[0],
+	    Game.getApplication().getMazeManager().getMaze().setCell(this.delayedDecayObject, this.remoteCoords[0],
 		    this.remoteCoords[1], this.remoteCoords[2], MazeConstants.LAYER_OBJECT);
 	} else {
 	    this.savedMazeObject = this.delayedDecayObject;
@@ -1161,7 +1161,7 @@ public class GameLogicManager {
     }
 
     public void morph(final AbstractMazeObject morphInto, final int x, final int y, final int z, final int e) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    m.setCell(morphInto, x, y, z, e);
@@ -1175,7 +1175,7 @@ public class GameLogicManager {
     }
 
     public void morph(final AbstractMazeObject morphInto, final int x, final int y, final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    m.setCell(morphInto, x, y, z, morphInto.getLayer());
@@ -1189,11 +1189,11 @@ public class GameLogicManager {
     }
 
     public void morph(final AbstractMazeObject morphInto, final int x, final int y, final int z, final String msg) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    m.setCell(morphInto, x, y, z, morphInto.getLayer());
-	    Boot.getApplication().showMessage(msg);
+	    Game.getApplication().showMessage(msg);
 	    this.keepNextMessage();
 	    this.redrawMaze();
 	    app.getMazeManager().setDirty(true);
@@ -1205,7 +1205,7 @@ public class GameLogicManager {
     }
 
     public void morphOther(final AbstractMazeObject morphInto, final int x, final int y, final int e) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	try {
 	    m.setCell(morphInto, m.getPlayerLocationX() + x, m.getPlayerLocationY() + y, m.getPlayerLocationZ(), e);
@@ -1232,11 +1232,11 @@ public class GameLogicManager {
 
     public void controllableTeleport() {
 	this.teleporting = true;
-	Boot.getApplication().showMessage("Click to set destination");
+	Game.getApplication().showMessage("Click to set destination");
     }
 
     void controllableTeleportHandler(final int x, final int y) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	if (this.teleporting) {
 	    final int xOffset = this.vwMgr.getViewingWindowLocationX() - this.vwMgr.getOffsetFactorX();
@@ -1253,7 +1253,7 @@ public class GameLogicManager {
     }
 
     public void identifyObject(final int x, final int y) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	final int xOffset = this.vwMgr.getViewingWindowLocationX() - this.vwMgr.getOffsetFactorX();
 	final int yOffset = this.vwMgr.getViewingWindowLocationY() - this.vwMgr.getOffsetFactorY();
@@ -1269,12 +1269,12 @@ public class GameLogicManager {
 	    target2.determineCurrentAppearance(destX, destY, destZ);
 	    final String gameName1 = target1.getGameName();
 	    final String gameName2 = target2.getGameName();
-	    Boot.getApplication().showMessage(gameName2 + " on " + gameName1);
+	    Game.getApplication().showMessage(gameName2 + " on " + gameName1);
 	    SoundLoader.playSound(SoundConstants.SOUND_IDENTIFY);
 	} catch (final ArrayIndexOutOfBoundsException ae) {
 	    final EmptyVoid ev = new EmptyVoid();
 	    ev.determineCurrentAppearance(destX, destY, destZ);
-	    Boot.getApplication().showMessage(ev.getGameName());
+	    Game.getApplication().showMessage(ev.getGameName());
 	    SoundLoader.playSound(SoundConstants.SOUND_IDENTIFY);
 	}
     }
@@ -1295,28 +1295,28 @@ public class GameLogicManager {
     }
 
     public void loadLegacyGameHook(final XLegacyDataReader mazeFile, final int formatVersion) throws IOException {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.oiMgr.readLegacyObjectInventory(mazeFile, formatVersion);
 	app.getMazeManager().setScoresFileName(mazeFile.readString());
 	FileHooks.loadLegacyGameHook(mazeFile);
     }
 
     public void loadGameHook(final XDataReader mazeFile, final int formatVersion) throws IOException {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.oiMgr.readObjectInventory(mazeFile, formatVersion);
 	app.getMazeManager().setScoresFileName(mazeFile.readString());
 	FileHooks.loadGameHook(mazeFile);
     }
 
     public void saveGameHook(final XDataWriter mazeFile) throws IOException {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.oiMgr.writeObjectInventory(mazeFile);
 	mazeFile.writeString(app.getMazeManager().getScoresFileName());
 	FileHooks.saveGameHook(mazeFile);
     }
 
     public void playMaze() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	if (app.getMazeManager().getLoaded()) {
 	    this.gui.initViewManager();

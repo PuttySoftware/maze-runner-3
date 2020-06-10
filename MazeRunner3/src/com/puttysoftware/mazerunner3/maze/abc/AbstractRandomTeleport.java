@@ -8,7 +8,7 @@ package com.puttysoftware.mazerunner3.maze.abc;
 import java.util.Random;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
@@ -108,7 +108,7 @@ public abstract class AbstractRandomTeleport extends AbstractMazeObject {
     // Scriptability
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int dr, dc;
 	do {
 	    dr = this.getDestinationRow();
@@ -120,13 +120,13 @@ public abstract class AbstractRandomTeleport extends AbstractMazeObject {
 
     @Override
     public void editorProbeHook() {
-	Boot.getApplication().showMessage(
+	Game.getApplication().showMessage(
 		this.getName() + ": Row Radius " + this.randomRangeY + ", Column Radius " + this.randomRangeX);
     }
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	final MazeEditorLogic me = Game.getApplication().getEditor();
 	return me.editTeleportDestination(MazeEditorLogic.TELEPORT_TYPE_RANDOM);
     }
 

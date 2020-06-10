@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractScoreIncreaser;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 
@@ -30,7 +30,7 @@ public class Sapphire extends AbstractScoreIncreaser {
 
     @Override
     public void postMoveActionHook() {
-	Boot.getApplication().getGameManager().addToScore(Sapphire.SCORE_INCREASE);
+	Game.getApplication().getGameManager().addToScore(Sapphire.SCORE_INCREASE);
     }
 
     @Override

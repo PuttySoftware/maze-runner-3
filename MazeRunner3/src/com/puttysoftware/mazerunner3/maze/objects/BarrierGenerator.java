@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.game.GameLogicManager;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractGenerator;
 import com.puttysoftware.mazerunner3.maze.utilities.ArrowTypeConstants;
@@ -41,7 +41,7 @@ public class BarrierGenerator extends AbstractGenerator {
     @Override
     protected void arrowHitActionHook(final int locX, final int locY, final int locZ, final int arrowType,
 	    final MazeObjectInventory inv) {
-	final GameLogicManager gm = Boot.getApplication().getGameManager();
+	final GameLogicManager gm = Game.getApplication().getGameManager();
 	if (arrowType == ArrowTypeConstants.ARROW_TYPE_ICE) {
 	    gm.morph(new IcedBarrierGenerator(), locX, locY, locZ);
 	} else if (arrowType == ArrowTypeConstants.ARROW_TYPE_FIRE) {

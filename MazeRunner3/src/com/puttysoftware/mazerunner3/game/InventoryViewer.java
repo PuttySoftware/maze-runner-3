@@ -1,7 +1,7 @@
 package com.puttysoftware.mazerunner3.game;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectInventory;
@@ -13,7 +13,7 @@ public final class InventoryViewer {
 
     public static void showEquipmentDialog() {
 	String title;
-	if (Boot.inDebugMode()) {
+	if (Game.inDebugMode()) {
 	    title = "Equipment (DEBUG)";
 	} else {
 	    title = "Equipment";
@@ -27,7 +27,7 @@ public final class InventoryViewer {
 
     public static void showItemInventoryDialog() {
 	String title;
-	if (Boot.inDebugMode()) {
+	if (Game.inDebugMode()) {
 	    title = "Items (DEBUG)";
 	} else {
 	    title = "Items";

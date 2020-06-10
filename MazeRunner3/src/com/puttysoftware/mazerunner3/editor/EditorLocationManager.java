@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.editor;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 
@@ -137,7 +137,7 @@ public class EditorLocationManager {
 
     private void checkLimits() {
 	// Check for limits out of bounds
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	if (this.locW < this.minW) {
 	    this.locW = this.minW;
 	}

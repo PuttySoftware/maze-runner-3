@@ -18,7 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.namer.EditorProperties;
 import com.puttysoftware.mazerunner3.loader.ImageTransformer;
 import com.puttysoftware.mazerunner3.loader.LogoImageLoader;
@@ -57,7 +57,7 @@ public abstract class AbstractEditor implements EditorProperties {
     }
 
     public final void edit() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGUIManager().hideGUI();
 	app.setInEditor();
 	app.setCurrentEditor(this.editorID);
@@ -97,7 +97,7 @@ public abstract class AbstractEditor implements EditorProperties {
     }
 
     private final void showOutput() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.outputFrame.setJMenuBar(app.getMenuManager().getMainMenuBar());
 	app.getMenuManager().setEditorMenus();
 	this.outputFrame.setVisible(true);
@@ -115,13 +115,13 @@ public abstract class AbstractEditor implements EditorProperties {
     }
 
     public final void exitEditor() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.notifyAllNonCurrentEditorsEnableCommands();
 	// Save changes
 	this.saveObject();
 	// Hide the editor
 	this.hideOutput();
-	Boot.getApplication().getGUIManager().showGUI();
+	Game.getApplication().getGUIManager().showGUI();
     }
 
     private static boolean usesImporter() {

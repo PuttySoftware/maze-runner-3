@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -68,7 +68,7 @@ public abstract class AbstractCheckpoint extends AbstractMazeObject {
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	final MazeEditorLogic me = Game.getApplication().getEditor();
 	me.editCheckpointProperties(this);
 	return this;
     }
@@ -76,7 +76,7 @@ public abstract class AbstractCheckpoint extends AbstractMazeObject {
     // Scriptability
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.showMessage(
 		"You may NOT pass: you need " + this.keyCount + " " + this.key.getPluralName() + " to continue.");
 	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
@@ -84,7 +84,7 @@ public abstract class AbstractCheckpoint extends AbstractMazeObject {
 
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.showMessage("You may pass.");
 	SoundLoader.playSound(SoundConstants.SOUND_WALK);
     }

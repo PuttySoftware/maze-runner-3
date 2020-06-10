@@ -7,7 +7,7 @@ package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
@@ -39,7 +39,7 @@ public class MovingFinish extends Finish {
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	if (this.active) {
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    SoundLoader.playSound(SoundConstants.SOUND_FINISH);
 	    app.getGameManager().solvedLevel();
 	} else {
@@ -49,7 +49,7 @@ public class MovingFinish extends Finish {
 
     public void activate() {
 	this.active = true;
-	this.activateTimer(Boot.getApplication().getMazeManager().getMaze().getFinishMoveSpeed());
+	this.activateTimer(Game.getApplication().getMazeManager().getMaze().getFinishMoveSpeed());
     }
 
     public void deactivate() {
@@ -60,14 +60,14 @@ public class MovingFinish extends Finish {
     @Override
     public void timerExpiredAction(final int dirX, final int dirY) {
 	this.active = false;
-	final AbstractMazeObject obj = Boot.getApplication().getMazeManager().getMazeObject(this.getDestinationRow(),
+	final AbstractMazeObject obj = Game.getApplication().getMazeManager().getMazeObject(this.getDestinationRow(),
 		this.getDestinationColumn(), this.getDestinationFloor(), MazeConstants.LAYER_OBJECT);
 	if (obj instanceof MovingFinish) {
 	    final MovingFinish mf = (MovingFinish) obj;
 	    SoundLoader.playSound(SoundConstants.SOUND_CHANGE);
 	    mf.activate();
 	} else {
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    final AbstractMazeObject saved = app.getGameManager().getSavedMazeObject();
 	    final int px = app.getMazeManager().getMaze().getPlayerLocationX();
 	    final int py = app.getMazeManager().getMaze().getPlayerLocationY();
@@ -85,7 +85,7 @@ public class MovingFinish extends Finish {
 
     @Override
     public void editorProbeHook() {
-	Boot.getApplication().showMessage(this.getName() + ": Next Moving Finish (" + (this.getDestinationColumn() + 1)
+	Game.getApplication().showMessage(this.getName() + ": Next Moving Finish (" + (this.getDestinationColumn() + 1)
 		+ "," + (this.getDestinationRow() + 1) + "," + (this.getDestinationFloor() + 1) + ")");
     }
 
@@ -149,7 +149,7 @@ public class MovingFinish extends Finish {
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	final MazeEditorLogic me = Game.getApplication().getEditor();
 	final AbstractMazeObject mo = me.editTeleportDestination(MazeEditorLogic.TELEPORT_TYPE_MOVING_FINISH);
 	return mo;
     }

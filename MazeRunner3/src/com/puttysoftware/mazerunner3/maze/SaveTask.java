@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.fileutils.ZipUtilities;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 
 public class SaveTask extends Thread {
     // Fields
@@ -28,7 +28,7 @@ public class SaveTask extends Thread {
 
     @Override
     public void run() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	boolean success = true;
 	final String sg;
 	if (this.isSavedGame) {
@@ -78,9 +78,9 @@ public class SaveTask extends Thread {
 		    + " file failed, probably due to illegal characters in the file name.");
 	    success = false;
 	} catch (final Exception ex) {
-	    Boot.uncaughtException(ex);
+	    Game.uncaughtException(ex);
 	}
-	Boot.getApplication().showMessage(sg + " file saved.");
+	Game.getApplication().showMessage(sg + " file saved.");
 	app.getMazeManager().handleDeferredSuccess(success);
     }
 

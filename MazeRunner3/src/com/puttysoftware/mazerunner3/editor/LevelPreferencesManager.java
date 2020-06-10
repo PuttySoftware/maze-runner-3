@@ -25,7 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.Maze;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 
@@ -63,19 +63,19 @@ public class LevelPreferencesManager {
     // Methods
     public void showPrefs() {
 	this.loadPrefs();
-	Boot.getApplication().getEditor().disableOutput();
+	Game.getApplication().getEditor().disableOutput();
 	this.prefFrame.setVisible(true);
     }
 
     public void hidePrefs() {
 	this.prefFrame.setVisible(false);
-	Boot.getApplication().getEditor().enableOutput();
-	Boot.getApplication().getMazeManager().setDirty(true);
-	Boot.getApplication().getEditor().redrawEditor();
+	Game.getApplication().getEditor().enableOutput();
+	Game.getApplication().getMazeManager().setDirty(true);
+	Game.getApplication().getEditor().redrawEditor();
     }
 
     void setPrefs() {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	if (this.horizontalWrap.isSelected()) {
 	    m.enableHorizontalWraparound();
 	} else {
@@ -158,7 +158,7 @@ public class LevelPreferencesManager {
     }
 
     private void loadPrefs() {
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	this.horizontalWrap.setSelected(m.isHorizontalWraparoundEnabled());
 	this.verticalWrap.setSelected(m.isVerticalWraparoundEnabled());
 	this.thirdDimensionalWrap.setSelected(m.is3rdDimensionWraparoundEnabled());
@@ -206,7 +206,7 @@ public class LevelPreferencesManager {
     private void setUpGUI() {
 	final EventHandler handler = new EventHandler();
 	this.prefFrame = new JFrame("Level Preferences");
-	final Image iconlogo = Boot.getApplication().getIconLogo();
+	final Image iconlogo = Game.getApplication().getIconLogo();
 	this.prefFrame.setIconImage(iconlogo);
 	final Container mainPrefPane = new Container();
 	final Container contentPane = new Container();
@@ -316,7 +316,7 @@ public class LevelPreferencesManager {
 		    lpm.hidePrefs();
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 

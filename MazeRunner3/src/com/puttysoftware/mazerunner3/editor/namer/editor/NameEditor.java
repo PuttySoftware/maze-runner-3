@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.namer.abc.AbstractObjectEditor;
 import com.puttysoftware.mazerunner3.loader.data.NameDataLoader;
 import com.puttysoftware.mazerunner3.names.NamesConstants;
@@ -143,17 +143,17 @@ public class NameEditor extends AbstractObjectEditor {
 
     @Override
     protected void loadObject() {
-	this.cachedNames = Boot.getApplication().getScenarioManager().getNamesFileManager().getNames();
+	this.cachedNames = Game.getApplication().getScenarioManager().getNamesFileManager().getNames();
     }
 
     @Override
     protected void saveObject() {
-	Boot.getApplication().getScenarioManager().getNamesFileManager().setNames(this.cachedNames);
+	Game.getApplication().getScenarioManager().getNamesFileManager().setNames(this.cachedNames);
     }
 
     @Override
     public void handleCloseWindow() {
-	Boot.getApplication().getScenarioManager().getNamesFileManager().saveNames();
+	Game.getApplication().getScenarioManager().getNamesFileManager().saveNames();
 	this.exitEditor();
     }
 
@@ -176,7 +176,7 @@ public class NameEditor extends AbstractObjectEditor {
 			me.edit();
 		    } else {
 			me.create();
-			Boot.getApplication().getScenarioManager().getNamesFileManager().loadNames();
+			Game.getApplication().getScenarioManager().getNamesFileManager().loadNames();
 			me.reSetUpGUI();
 			me.edit();
 		    }
@@ -186,7 +186,7 @@ public class NameEditor extends AbstractObjectEditor {
 		    CommonDialogs.showDialog("Names Reset.");
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 

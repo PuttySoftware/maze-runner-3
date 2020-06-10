@@ -22,7 +22,7 @@ import javax.swing.WindowConstants;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ImageTransformer;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.utilities.MazeObjectList;
@@ -38,7 +38,7 @@ public class RuleSetPicker {
     private final RuleSetEditor rsEditor;
 
     public RuleSetPicker() {
-	final MazeObjectList objectList = Boot.getApplication().getObjects();
+	final MazeObjectList objectList = Game.getApplication().getObjects();
 	this.names = objectList.getAllNames();
 	this.objects = objectList.getAllObjects();
 	this.editorAppearances = objectList.getAllEditorAppearances();
@@ -72,7 +72,7 @@ public class RuleSetPicker {
     }
 
     public void editRuleSets() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getEditor().hideOutput();
 	this.showOutput();
     }
@@ -88,14 +88,14 @@ public class RuleSetPicker {
     }
 
     void exitRuleSetEditor() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.hideOutput();
 	app.getEditor().showOutput();
     }
 
     private void setUpGUI() {
 	final EventHandler handler = new EventHandler();
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.outputFrame = new JFrame("Rule Set Picker");
 	final Image iconlogo = app.getIconLogo();
 	this.outputFrame.setIconImage(iconlogo);

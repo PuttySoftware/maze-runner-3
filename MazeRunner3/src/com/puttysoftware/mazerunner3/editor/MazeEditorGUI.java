@@ -28,7 +28,7 @@ import javax.swing.WindowConstants;
 
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.DrawGrid;
 import com.puttysoftware.mazerunner3.loader.ImageTransformer;
 import com.puttysoftware.mazerunner3.loader.ObjectImageLoader;
@@ -81,7 +81,7 @@ class MazeEditorGUI {
 	this.rhandler = new TreasureEventHandler();
 	this.mbhandler = new MetalButtonEventHandler();
 	this.cthandler = new ConditionalTeleportEventHandler();
-	final MazeObjectList objectList = Boot.getApplication().getObjects();
+	final MazeObjectList objectList = Game.getApplication().getObjects();
 	this.groundNames = objectList.getAllGroundLayerNames();
 	this.objectNames = objectList.getAllObjectLayerNames();
 	this.groundEditorAppearances = objectList.getAllGroundLayerEditorAppearances();
@@ -92,7 +92,7 @@ class MazeEditorGUI {
 	this.containableNames = objectList.getAllContainableNames();
 	this.containableEditorAppearances = objectList.getAllContainableObjectEditorAppearances();
 	this.treasureFrame = new JFrame("Treasure Chest Contents");
-	final Image iconlogo = Boot.getApplication().getIconLogo();
+	final Image iconlogo = Game.getApplication().getIconLogo();
 	this.treasureFrame.setIconImage(iconlogo);
 	this.treasureFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 	this.treasurePicker = new PicturePicker(this.containableEditorAppearances, this.containableNames);
@@ -224,7 +224,7 @@ class MazeEditorGUI {
 	this.elMgr.offsetEditorLocationZ(z);
 	if (w != 0) {
 	    // Level Change
-	    Boot.getApplication().getMazeManager().getMaze().switchLevelOffset(w);
+	    Game.getApplication().getMazeManager().getMaze().switchLevelOffset(w);
 	    this.fixLimits();
 	    this.setUpGUI();
 	}
@@ -240,7 +240,7 @@ class MazeEditorGUI {
 	this.elMgr.setEditorLocationZ(z);
 	if (w != oldW) {
 	    // Level Change
-	    Boot.getApplication().getMazeManager().getMaze().switchLevelOffset(w);
+	    Game.getApplication().getMazeManager().getMaze().switchLevelOffset(w);
 	    this.fixLimits();
 	    this.setUpGUI();
 	}
@@ -251,7 +251,7 @@ class MazeEditorGUI {
     void updateEditorLevelAbsolute(final int w, final UndoRedoEngine engine) {
 	this.elMgr.setEditorLocationW(w);
 	// Level Change
-	Boot.getApplication().getMazeManager().getMaze().switchLevel(w);
+	Game.getApplication().getMazeManager().getMaze().switchLevel(w);
 	this.fixLimits();
 	this.setUpGUI();
 	this.checkMenus(engine);
@@ -259,7 +259,7 @@ class MazeEditorGUI {
     }
 
     void checkMenus(final UndoRedoEngine engine) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (app.getMode() == Application.STATUS_EDITOR) {
 	    final Maze m = app.getMazeManager().getMaze();
 	    if (m.getLevels() == Maze.getMinLevels()) {
@@ -365,7 +365,7 @@ class MazeEditorGUI {
 
     private void redrawGround() {
 	// Draw the maze in edit mode
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int x, y, w;
 	int xFix, yFix;
 	w = this.elMgr.getEditorLocationW();
@@ -401,7 +401,7 @@ class MazeEditorGUI {
 
     private void redrawGroundAndObjects() {
 	// Draw the maze in edit mode
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final Maze m = app.getMazeManager().getMaze();
 	int x, y, w;
 	int xFix, yFix;
@@ -454,7 +454,7 @@ class MazeEditorGUI {
 
     void redrawVirtual(final int x, final int y, final AbstractMazeObject obj3) {
 	// Draw the square
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int xFix, yFix;
 	xFix = y - this.evMgr.getViewingWindowLocationX();
 	yFix = x - this.evMgr.getViewingWindowLocationY();
@@ -483,7 +483,7 @@ class MazeEditorGUI {
     }
 
     void probeObjectProperties(final int x, final int y) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int xOffset = this.vertScroll.getValue() - this.vertScroll.getMinimum();
 	final int yOffset = this.horzScroll.getValue() - this.horzScroll.getMinimum();
 	final int gridX = x / ImageTransformer.getGraphicSize() + this.evMgr.getViewingWindowLocationX() - xOffset
@@ -509,7 +509,7 @@ class MazeEditorGUI {
 
     void fixLimits() {
 	// Fix limits
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (app.getMazeManager().getMaze() != null && this.elMgr != null && this.evMgr != null) {
 	    this.elMgr.setLimitsFromMaze(app.getMazeManager().getMaze());
 	    this.evMgr.halfOffsetMaximumViewingWindowLocationsFromMaze(app.getMazeManager().getMaze());
@@ -517,7 +517,7 @@ class MazeEditorGUI {
     }
 
     void showOutput() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.outputFrame.setJMenuBar(app.getMenuManager().getMainMenuBar());
 	app.getMenuManager().setEditorMenus();
 	this.outputFrame.setVisible(true);
@@ -553,7 +553,7 @@ class MazeEditorGUI {
 	    this.outputFrame.dispose();
 	}
 	this.messageLabel = new JLabel(" ");
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.outputFrame = new JFrame("Editor");
 	final Image iconlogo = app.getIconLogo();
 	this.outputFrame.setIconImage(iconlogo);
@@ -632,8 +632,8 @@ class MazeEditorGUI {
 
     void handleCloseWindow() {
 	try {
-	    final MazeEditorLogic mel = Boot.getApplication().getEditor();
-	    final Application app = Boot.getApplication();
+	    final MazeEditorLogic mel = Game.getApplication().getEditor();
+	    final Application app = Game.getApplication();
 	    boolean success = false;
 	    int status = JOptionPane.DEFAULT_OPTION;
 	    if (app.getMazeManager().getDirty()) {
@@ -651,7 +651,7 @@ class MazeEditorGUI {
 		mel.exitEditor();
 	    }
 	} catch (final Exception ex) {
-	    Boot.uncaughtException(ex);
+	    Game.uncaughtException(ex);
 	}
     }
 
@@ -665,7 +665,7 @@ class MazeEditorGUI {
 	public void adjustmentValueChanged(final AdjustmentEvent e) {
 	    try {
 		final MazeEditorGUI meg = MazeEditorGUI.this;
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final Adjustable src = e.getAdjustable();
 		final int dir = src.getOrientation();
 		final int value = src.getValue();
@@ -683,7 +683,7 @@ class MazeEditorGUI {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -702,7 +702,7 @@ class MazeEditorGUI {
 	public void mouseClicked(final MouseEvent e) {
 	    try {
 		final MazeEditorGUI meg = MazeEditorGUI.this;
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final int x = e.getX();
 		final int y = e.getY();
 		if (e.isAltDown()) {
@@ -719,7 +719,7 @@ class MazeEditorGUI {
 		    }
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -772,12 +772,12 @@ class MazeEditorGUI {
 	@Override
 	public void mouseDragged(final MouseEvent e) {
 	    try {
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final int x = e.getX();
 		final int y = e.getY();
 		mel.editObject(x, y, false);
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -796,7 +796,7 @@ class MazeEditorGUI {
 	@Override
 	public void adjustmentValueChanged(final AdjustmentEvent e) {
 	    try {
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final MazeEditorGUI meg = MazeEditorGUI.this;
 		final Adjustable src = e.getAdjustable();
 		final int dir = src.getOrientation();
@@ -815,7 +815,7 @@ class MazeEditorGUI {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -833,12 +833,12 @@ class MazeEditorGUI {
 	@Override
 	public void mouseClicked(final MouseEvent e) {
 	    try {
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final int x = e.getX();
 		final int y = e.getY();
 		mel.setPlayerLocation(x, y);
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -863,7 +863,7 @@ class MazeEditorGUI {
 	public void adjustmentValueChanged(final AdjustmentEvent e) {
 	    try {
 		final MazeEditorGUI meg = MazeEditorGUI.this;
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final Adjustable src = e.getAdjustable();
 		final int dir = src.getOrientation();
 		final int value = src.getValue();
@@ -881,7 +881,7 @@ class MazeEditorGUI {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -899,12 +899,12 @@ class MazeEditorGUI {
 	@Override
 	public void mouseClicked(final MouseEvent e) {
 	    try {
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final int x = e.getX();
 		final int y = e.getY();
 		mel.setTeleportDestination(x, y);
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -929,7 +929,7 @@ class MazeEditorGUI {
 	public void adjustmentValueChanged(final AdjustmentEvent e) {
 	    try {
 		final MazeEditorGUI meg = MazeEditorGUI.this;
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final Adjustable src = e.getAdjustable();
 		final int dir = src.getOrientation();
 		final int value = src.getValue();
@@ -947,7 +947,7 @@ class MazeEditorGUI {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -965,12 +965,12 @@ class MazeEditorGUI {
 	@Override
 	public void mouseClicked(final MouseEvent e) {
 	    try {
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final int x = e.getX();
 		final int y = e.getY();
 		mel.setConditionalTeleportDestination(x, y);
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -1003,7 +1003,7 @@ class MazeEditorGUI {
 
 	@Override
 	public void windowClosing(final WindowEvent we) {
-	    final MazeEditorLogic mel = Boot.getApplication().getEditor();
+	    final MazeEditorLogic mel = Game.getApplication().getEditor();
 	    mel.setTreasureChestContents();
 	}
 
@@ -1038,7 +1038,7 @@ class MazeEditorGUI {
 	public void adjustmentValueChanged(final AdjustmentEvent e) {
 	    try {
 		final MazeEditorGUI meg = MazeEditorGUI.this;
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final Adjustable src = e.getAdjustable();
 		final int dir = src.getOrientation();
 		final int value = src.getValue();
@@ -1056,7 +1056,7 @@ class MazeEditorGUI {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -1074,12 +1074,12 @@ class MazeEditorGUI {
 	@Override
 	public void mouseClicked(final MouseEvent e) {
 	    try {
-		final MazeEditorLogic mel = Boot.getApplication().getEditor();
+		final MazeEditorLogic mel = Game.getApplication().getEditor();
 		final int x = e.getX();
 		final int y = e.getY();
 		mel.setMetalButtonTarget(x, y);
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 

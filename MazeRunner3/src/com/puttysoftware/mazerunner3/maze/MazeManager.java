@@ -19,7 +19,7 @@ import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.fileutils.FileUtilities;
 import com.puttysoftware.fileutils.FilenameChecker;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.games.GameFilter;
 import com.puttysoftware.mazerunner3.maze.games.GameFinder;
@@ -70,9 +70,9 @@ public class MazeManager implements OpenFilesHandler {
 	    this.setLoaded(true);
 	}
 	this.setDirty(false);
-	Boot.getApplication().getGameManager().stateChanged();
-	Boot.getApplication().getEditor().mazeChanged();
-	Boot.getApplication().getMenuManager().checkFlags();
+	Game.getApplication().getGameManager().stateChanged();
+	Game.getApplication().getEditor().mazeChanged();
+	Game.getApplication().getMenuManager().checkFlags();
     }
 
     public AbstractMazeObject getMazeObject(final int x, final int y, final int z, final int e) {
@@ -85,7 +85,7 @@ public class MazeManager implements OpenFilesHandler {
 
     public int showSaveDialog() {
 	String type, source;
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int mode = app.getMode();
 	if (mode == Application.STATUS_EDITOR) {
 	    type = "maze";
@@ -105,7 +105,7 @@ public class MazeManager implements OpenFilesHandler {
     }
 
     public void setLoaded(final boolean status) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.loaded = status;
 	app.getMenuManager().checkFlags();
     }
@@ -115,7 +115,7 @@ public class MazeManager implements OpenFilesHandler {
     }
 
     public void setDirty(final boolean newDirty) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	this.isDirty = newDirty;
 	final JFrame frame = app.getOutputFrame();
 	if (frame != null) {
@@ -166,7 +166,7 @@ public class MazeManager implements OpenFilesHandler {
     }
 
     public boolean loadMaze() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int status = 0;
 	boolean saved = true;
 	String filename, extension;
@@ -233,7 +233,7 @@ public class MazeManager implements OpenFilesHandler {
     }
 
     public boolean loadGame() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int status = 0;
 	boolean saved = true;
 	String filename;
@@ -297,7 +297,7 @@ public class MazeManager implements OpenFilesHandler {
     }
 
     public boolean importGame() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int status = 0;
 	boolean saved = true;
 	String filename, extension;
@@ -336,13 +336,13 @@ public class MazeManager implements OpenFilesHandler {
 		    if (!file.getParentFile().exists()) {
 			final boolean okay = file.getParentFile().mkdirs();
 			if (!okay) {
-			    Boot.uncaughtException(new IOException("Cannot create game folder!"));
+			    Game.uncaughtException(new IOException("Cannot create game folder!"));
 			}
 		    }
 		    try {
 			FileUtilities.copyFile(file, new File(MazeManager.getGameDirectory() + file.getName()));
 		    } catch (final IOException ioe) {
-			Boot.uncaughtException(ioe);
+			Game.uncaughtException(ioe);
 		    }
 		    MazeManager.loadFile(filename, false, true);
 		} else {
@@ -377,7 +377,7 @@ public class MazeManager implements OpenFilesHandler {
     }
 
     public boolean saveMaze() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (app.getMode() == Application.STATUS_GAME) {
 	    if (this.lastUsedGameFile != null && !this.lastUsedGameFile.equals("")) {
 		final String extension = MazeManager.getExtension(this.lastUsedGameFile);
@@ -413,7 +413,7 @@ public class MazeManager implements OpenFilesHandler {
     }
 
     public boolean saveMazeAs() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	String filename = "";
 	String fileOnly = "\\";
 	String extension;
@@ -502,7 +502,7 @@ public class MazeManager implements OpenFilesHandler {
 		    if (!file.getParentFile().exists()) {
 			final boolean okay = file.getParentFile().mkdirs();
 			if (!okay) {
-			    Boot.uncaughtException(new IOException("Cannot create game folder!"));
+			    Game.uncaughtException(new IOException("Cannot create game folder!"));
 			}
 		    }
 		    MazeManager.saveFile(filename, false, true);
@@ -515,7 +515,7 @@ public class MazeManager implements OpenFilesHandler {
     }
 
     public boolean exportGame() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	String filename = "";
 	String fileOnly = "\\";
 	String extension;
@@ -574,7 +574,7 @@ public class MazeManager implements OpenFilesHandler {
 		sg = "Maze";
 	    }
 	}
-	Boot.getApplication().showMessage("Saving " + sg + " file...");
+	Game.getApplication().showMessage("Saving " + sg + " file...");
 	if (locked) {
 	    final GameSaveTask lst = new GameSaveTask(filename);
 	    lst.start();
@@ -674,7 +674,7 @@ public class MazeManager implements OpenFilesHandler {
 
     @Override
     public void openFiles(OpenFilesEvent e) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (!this.loaded) {
 	    String extension;
 	    final File file = e.getFiles().get(0);

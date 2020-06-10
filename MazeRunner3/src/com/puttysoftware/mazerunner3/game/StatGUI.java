@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import com.puttysoftware.images.BufferedImageIcon;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
 import com.puttysoftware.mazerunner3.loader.EffectImageConstants;
@@ -43,7 +43,7 @@ class StatGUI {
 
     void updateStats() {
 	final PartyMember pc = PartyManager.getParty().getLeader();
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	this.hpLabel.setText(pc.getHPString());
 	this.mpLabel.setText(pc.getMPString());
 	this.goldLabel.setText(Integer.toString(pc.getGold()));

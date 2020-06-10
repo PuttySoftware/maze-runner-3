@@ -2,7 +2,7 @@ package com.puttysoftware.mazerunner3.battle.window;
 
 import javax.swing.JFrame;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.ai.window.AbstractWindowAIRoutine;
 import com.puttysoftware.mazerunner3.battle.AbstractBattle;
 import com.puttysoftware.mazerunner3.battle.BattlePrestige;
@@ -286,7 +286,7 @@ public class WindowBattleLogic extends AbstractBattle {
     // Methods
     @Override
     public void doBattle() {
-	Boot.getApplication().getGameManager().hideOutput();
+	Game.getApplication().getGameManager().hideOutput();
 	if (PreferencesManager.getMusicEnabled(PreferencesManager.MUSIC_BATTLE)) {
 	    MusicLoader.playMusic("battle");
 	}
@@ -308,12 +308,12 @@ public class WindowBattleLogic extends AbstractBattle {
 	final AbstractMonster m = this.enemy;
 	playerCharacter.offsetExperience(m.getExperience());
 	playerCharacter.offsetGold(m.getGold());
-	Boot.getApplication().getGameManager().addToScore(m.getExperience() + m.getGold());
+	Game.getApplication().getGameManager().addToScore(m.getExperience() + m.getGold());
 	// Level Up Check
 	if (playerCharacter.checkLevelUp()) {
 	    playerCharacter.levelUp();
-	    Boot.getApplication().getGameManager().keepNextMessage();
-	    Boot.getApplication().showMessage("You reached level " + playerCharacter.getLevel() + ".");
+	    Game.getApplication().getGameManager().keepNextMessage();
+	    Game.getApplication().showMessage("You reached level " + playerCharacter.getLevel() + ".");
 	}
     }
 
@@ -509,14 +509,14 @@ public class WindowBattleLogic extends AbstractBattle {
 	    playerCharacter.offsetExperience(m.getExperience());
 	    playerCharacter.offsetGold(m.getGold());
 	    SoundLoader.playSound(SoundConstants.SOUND_VICTORY);
-	    Boot.getApplication().getGameManager().addToScore(m.getExperience() + m.getGold());
+	    Game.getApplication().getGameManager().addToScore(m.getExperience() + m.getGold());
 	} else if (this.result == BattleResults.PERFECT) {
 	    this.setStatusMessage("You gain " + m.getExperience() + " experience and " + m.getGold() + " Gold,\nplus "
 		    + m.getPerfectBonusGold() + " extra gold for a perfect fight!");
 	    playerCharacter.offsetExperience(m.getExperience());
 	    playerCharacter.offsetGold(m.getGold() + m.getPerfectBonusGold());
 	    SoundLoader.playSound(SoundConstants.SOUND_VICTORY);
-	    Boot.getApplication().getGameManager()
+	    Game.getApplication().getGameManager()
 		    .addToScore(m.getExperience() + m.getGold() + m.getPerfectBonusGold());
 	} else if (this.result == BattleResults.LOST) {
 	    this.setStatusMessage("You lost...");
@@ -556,8 +556,8 @@ public class WindowBattleLogic extends AbstractBattle {
     @Override
     public final void battleDone() {
 	this.gui.getOutputFrame().setVisible(false);
-	Boot.getApplication().getGameManager().showOutput();
-	Boot.getApplication().getGameManager().redrawMaze();
+	Game.getApplication().getGameManager().showOutput();
+	Game.getApplication().getGameManager().redrawMaze();
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -31,9 +31,9 @@ public class Monster extends AbstractMovingObject {
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	if (PreferencesManager.getRPGEnabled()) {
-	    if (Boot.getApplication().getMode() != Application.STATUS_BATTLE) {
-		Boot.getApplication().getBattle().doBattle();
-		Boot.getApplication().getMazeManager().getMaze().postBattle(this, dirX, dirY, true);
+	    if (Game.getApplication().getMode() != Application.STATUS_BATTLE) {
+		Game.getApplication().getBattle().doBattle();
+		Game.getApplication().getMazeManager().getMaze().postBattle(this, dirX, dirY, true);
 	    }
 	} else {
 	    SoundLoader.playSound(SoundConstants.SOUND_WALK);
@@ -46,8 +46,8 @@ public class Monster extends AbstractMovingObject {
 	if (PreferencesManager.getRPGEnabled()) {
 	    if (arrowType == ArrowTypeConstants.ARROW_TYPE_ICE) {
 		// Transform into iced monster, if hit by an ice arrow
-		final int pz = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
-		Boot.getApplication().getGameManager().morph(new IcedMonster(this.getSavedObject()), locX, locY, pz,
+		final int pz = Game.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
+		Game.getApplication().getGameManager().morph(new IcedMonster(this.getSavedObject()), locX, locY, pz,
 			MazeConstants.LAYER_OBJECT);
 		return false;
 	    } else {
@@ -64,7 +64,7 @@ public class Monster extends AbstractMovingObject {
 	    // Move the monster
 	    final RandomRange r = new RandomRange(0, 7);
 	    final int move = r.generate();
-	    Boot.getApplication().getMazeManager().getMaze().updateMonsterPosition(move, dirX, dirY, this);
+	    Game.getApplication().getMazeManager().getMaze().updateMonsterPosition(move, dirX, dirY, this);
 	}
 	this.activateTimer(1);
     }

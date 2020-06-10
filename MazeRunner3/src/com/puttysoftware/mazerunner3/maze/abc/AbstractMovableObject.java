@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -41,7 +41,7 @@ public abstract class AbstractMovableObject extends AbstractMazeObject {
     @Override
     public void pushAction(final MazeObjectInventory inv, final AbstractMazeObject mo, final int x, final int y,
 	    final int pushX, final int pushY) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().updatePushedPosition(x, y, pushX, pushY, this);
 	this.setSavedObject(mo);
 	SoundLoader.playSound(SoundConstants.SOUND_PUSH_PULL);
@@ -50,7 +50,7 @@ public abstract class AbstractMovableObject extends AbstractMazeObject {
     @Override
     public void pullAction(final MazeObjectInventory inv, final AbstractMazeObject mo, final int x, final int y,
 	    final int pullX, final int pullY) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().updatePulledPosition(x, y, pullX, pullY, this);
 	this.setSavedObject(mo);
 	SoundLoader.playSound(SoundConstants.SOUND_PUSH_PULL);

@@ -12,7 +12,7 @@ import java.nio.BufferUnderflowException;
 
 import com.puttysoftware.audio.mod.MicroMod;
 import com.puttysoftware.fileutils.FileUtilities;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.Maze;
 
 public class MusicLoader {
@@ -66,7 +66,7 @@ public class MusicLoader {
 	    } catch (final NullPointerException np) {
 		// Ignore
 	    } catch (final Throwable t) {
-		Boot.uncaughtException(t);
+		Game.uncaughtException(t);
 	    }
 	}
     }

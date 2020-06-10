@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.ai.map.AbstractMapAIRoutine;
 import com.puttysoftware.mazerunner3.ai.map.AutoMapAI;
 import com.puttysoftware.mazerunner3.ai.map.MapAIContext;
@@ -86,18 +86,18 @@ public class MapBattleLogic extends AbstractBattle {
 	final PartyMember playerCharacter = PartyManager.getParty().getLeader();
 	playerCharacter.offsetExperience(m.getExperience());
 	playerCharacter.offsetGold(m.getGold());
-	Boot.getApplication().getGameManager().addToScore(m.getExperience() + m.getGold());
+	Game.getApplication().getGameManager().addToScore(m.getExperience() + m.getGold());
 	// Level Up Check
 	if (playerCharacter.checkLevelUp()) {
 	    playerCharacter.levelUp();
-	    Boot.getApplication().getGameManager().keepNextMessage();
-	    Boot.getApplication().showMessage("You reached level " + playerCharacter.getLevel() + ".");
+	    Game.getApplication().getGameManager().keepNextMessage();
+	    Game.getApplication().showMessage("You reached level " + playerCharacter.getLevel() + ".");
 	}
     }
 
     private void doBattleInternal(final Maze bMaze, final MapBattle b) {
 	// Initialize Battle
-	Boot.getApplication().setInBattle();
+	Game.getApplication().setInBattle();
 	this.bd = new MapBattleDefinitions();
 	this.bd.setBattleMaze(bMaze);
 	this.de = AbstractDamageEngine.getInstance();
@@ -166,7 +166,7 @@ public class MapBattleLogic extends AbstractBattle {
 		SoundLoader.playSound(SoundConstants.SOUND_VICTORY);
 		CommonDialogs.showTitledDialog("The party is victorious!", "Victory!");
 		PartyManager.getParty().distributeVictorySpoils(this.vsd);
-		Boot.getApplication().getGameManager().addToScore(Math.max(1,
+		Game.getApplication().getGameManager().addToScore(Math.max(1,
 			(this.vsd.getTotalExp() + gold) / (100 * PartyManager.getParty().getActivePCCount())));
 	    } else if (this.result == BattleResults.LOST) {
 		CommonDialogs.showTitledDialog("The party has been defeated!", "Defeat...");
@@ -187,13 +187,13 @@ public class MapBattleLogic extends AbstractBattle {
 	    PartyManager.getParty().checkPartyLevelUp();
 	    // Leave Battle
 	    this.hideBattle();
-	    Boot.getApplication().setInGame();
+	    Game.getApplication().setInGame();
 	    // Return to whence we came
-	    Boot.getApplication().getGameManager().showOutput();
-	    Boot.getApplication().getGameManager().redrawMaze();
-	    Boot.getApplication().getGameManager().updateStats();
+	    Game.getApplication().getGameManager().showOutput();
+	    Game.getApplication().getGameManager().redrawMaze();
+	    Game.getApplication().getGameManager().updateStats();
 	    // Check for Game Over
-	    Boot.getApplication().getGameManager().checkGameOver();
+	    Game.getApplication().getGameManager().checkGameOver();
 	}
     }
 
@@ -439,7 +439,7 @@ public class MapBattleLogic extends AbstractBattle {
 		return this.setNextActive(isNewRound);
 	    }
 	    // AI Check
-	    if (this.bd.getActiveCharacter().getTemplate().hasAI() && !Boot.inDebugMode()) {
+	    if (this.bd.getActiveCharacter().getTemplate().hasAI() && !Game.inDebugMode()) {
 		// Run AI
 		this.waitForAI();
 		this.ait = new MapBattleAITask(this);
@@ -592,7 +592,7 @@ public class MapBattleLogic extends AbstractBattle {
 	    at.start();
 	} else {
 	    // Deny arrow - out of actions
-	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Boot.inDebugMode()) {
+	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Game.inDebugMode()) {
 		this.setStatusMessage("Out of actions!");
 	    }
 	}
@@ -797,7 +797,7 @@ public class MapBattleLogic extends AbstractBattle {
 		    }
 		} else {
 		    // Deny move - out of actions
-		    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Boot.inDebugMode()) {
+		    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Game.inDebugMode()) {
 			this.setStatusMessage("Out of moves!");
 		    }
 		    return false;
@@ -809,7 +809,7 @@ public class MapBattleLogic extends AbstractBattle {
 			final BattleCharacter bc = (BattleCharacter) next;
 			if (bc.getTeamID() == active.getTeamID()) {
 			    // Attack Friend?
-			    if (!active.getTemplate().hasAI() || Boot.inDebugMode()) {
+			    if (!active.getTemplate().hasAI() || Game.inDebugMode()) {
 				final int confirm = CommonDialogs.showConfirmDialog("Attack Friend?", "Battle");
 				if (confirm != JOptionPane.YES_OPTION) {
 				    return false;
@@ -867,14 +867,14 @@ public class MapBattleLogic extends AbstractBattle {
 			}
 		    } else {
 			// Deny attack - out of actions
-			if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Boot.inDebugMode()) {
+			if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Game.inDebugMode()) {
 			    this.setStatusMessage("Out of attacks!");
 			}
 			return false;
 		    }
 		} else {
 		    // Move Failed
-		    if (!active.getTemplate().hasAI() || Boot.inDebugMode()) {
+		    if (!active.getTemplate().hasAI() || Game.inDebugMode()) {
 			this.setStatusMessage("Can't go that way");
 		    }
 		    return false;
@@ -882,7 +882,7 @@ public class MapBattleLogic extends AbstractBattle {
 	    }
 	} else {
 	    // Confirm Flee
-	    if (!active.getTemplate().hasAI() || Boot.inDebugMode()) {
+	    if (!active.getTemplate().hasAI() || Game.inDebugMode()) {
 		SoundLoader.playSound(SoundConstants.SOUND_SPECIAL);
 		final int confirm = CommonDialogs.showConfirmDialog("Embrace Cowardice?", "Battle");
 		if (confirm != JOptionPane.YES_OPTION) {
@@ -971,7 +971,7 @@ public class MapBattleLogic extends AbstractBattle {
     public boolean castSpell() {
 	// Check Spell Counter
 	if (this.getActiveSpellCounter() > 0) {
-	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Boot.inDebugMode()) {
+	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Game.inDebugMode()) {
 		// Active character has no AI, or AI is turned off
 		final boolean success = SpellCaster.selectAndCastSpell(this.bd.getActiveCharacter().getTemplate(),
 			this.bd.getActiveCharacter().getTeamID(), true, this.bd);
@@ -1007,7 +1007,7 @@ public class MapBattleLogic extends AbstractBattle {
 	    }
 	} else {
 	    // Deny cast - out of actions
-	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Boot.inDebugMode()) {
+	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Game.inDebugMode()) {
 		this.setStatusMessage("Out of actions!");
 	    }
 	    return false;
@@ -1018,7 +1018,7 @@ public class MapBattleLogic extends AbstractBattle {
     public boolean useItem() {
 	// Check Action Counter
 	if (this.getActiveActionCounter() > 0) {
-	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Boot.inDebugMode()) {
+	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Game.inDebugMode()) {
 		// Active character has no AI, or AI is turned off
 		final boolean success = CombatItemChucker.selectAndUseItem(this.bd.getActiveCharacter().getTemplate(),
 			this.bd.getActiveCharacter().getTeamID(), true, this.bd);
@@ -1050,7 +1050,7 @@ public class MapBattleLogic extends AbstractBattle {
 	    }
 	} else {
 	    // Deny use - out of actions
-	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Boot.inDebugMode()) {
+	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Game.inDebugMode()) {
 		this.setStatusMessage("Out of actions!");
 	    }
 	    return false;
@@ -1120,7 +1120,7 @@ public class MapBattleLogic extends AbstractBattle {
 	    }
 	} else {
 	    // Deny steal - out of actions
-	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Boot.inDebugMode()) {
+	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Game.inDebugMode()) {
 		this.setStatusMessage("Out of actions!");
 	    }
 	    return false;
@@ -1192,7 +1192,7 @@ public class MapBattleLogic extends AbstractBattle {
 	    }
 	} else {
 	    // Deny drain - out of actions
-	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Boot.inDebugMode()) {
+	    if (!this.bd.getActiveCharacter().getTemplate().hasAI() || Game.inDebugMode()) {
 		this.setStatusMessage("Out of actions!");
 	    }
 	    return false;
@@ -1323,7 +1323,7 @@ public class MapBattleLogic extends AbstractBattle {
 	    if (this.bd.getBattlers()[x] != null) {
 		// Perform New Round Actions
 		if (this.bd.getBattlerAIContexts()[x] != null
-			&& this.bd.getBattlerAIContexts()[x].getCharacter().getTemplate().hasAI() && !Boot.inDebugMode()
+			&& this.bd.getBattlerAIContexts()[x].getCharacter().getTemplate().hasAI() && !Game.inDebugMode()
 			&& this.bd.getBattlers()[x].isActive() && this.bd.getBattlers()[x].getTemplate().isAlive()) {
 		    this.bd.getBattlerAIContexts()[x].getCharacter().getTemplate().getMapAI().newRoundHook();
 		}
@@ -1338,7 +1338,7 @@ public class MapBattleLogic extends AbstractBattle {
 
     private void waitForAI() {
 	this.battleGUI.turnEventHandlersOff();
-	Boot.getApplication().getMenuManager().disableBattleMenus();
+	Game.getApplication().getMenuManager().disableBattleMenus();
     }
 
     private void stopWaitingForAI() {
@@ -1346,7 +1346,7 @@ public class MapBattleLogic extends AbstractBattle {
 	    this.ait.turnOver();
 	}
 	this.battleGUI.turnEventHandlersOn();
-	Boot.getApplication().getMenuManager().enableBattleMenus();
+	Game.getApplication().getMenuManager().enableBattleMenus();
     }
 
     @Override

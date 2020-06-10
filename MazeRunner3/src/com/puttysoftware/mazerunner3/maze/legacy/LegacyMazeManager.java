@@ -16,7 +16,7 @@ import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.fileutils.FileUtilities;
 import com.puttysoftware.fileutils.FilenameChecker;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.legacy.games.LegacyGameFilter;
 import com.puttysoftware.mazerunner3.maze.legacy.games.LegacyGameFinder;
 import com.puttysoftware.mazerunner3.maze.legacy.games.LegacyGameLoadTask;
@@ -38,23 +38,23 @@ public class LegacyMazeManager {
 
     // Methods
     private static boolean getLoaded() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	return app.getMazeManager().getLoaded();
     }
 
     private static boolean getDirty() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	return app.getMazeManager().getDirty();
     }
 
     private static void setDirty(final boolean newDirty) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getMazeManager().setDirty(newDirty);
     }
 
     private static int showSaveDialog() {
 	String type, source;
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int mode = app.getMode();
 	if (mode == Application.STATUS_EDITOR) {
 	    type = "maze";
@@ -70,7 +70,7 @@ public class LegacyMazeManager {
     }
 
     public void legacyLoadFromOSHandler(final String filename) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	String extension;
 	final File file = new File(filename);
 	String loadFile;
@@ -87,7 +87,7 @@ public class LegacyMazeManager {
     }
 
     public boolean loadLegacyMaze() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int status = 0;
 	boolean saved = true;
 	String filename, extension;
@@ -151,7 +151,7 @@ public class LegacyMazeManager {
     }
 
     public boolean loadLegacyGame() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int status = 0;
 	boolean saved = true;
 	String filename;
@@ -213,7 +213,7 @@ public class LegacyMazeManager {
     }
 
     public boolean importLegacyGame() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	int status = 0;
 	boolean saved = true;
 	String filename, extension;
@@ -250,13 +250,13 @@ public class LegacyMazeManager {
 		    if (!file.getParentFile().exists()) {
 			final boolean okay = file.getParentFile().mkdirs();
 			if (!okay) {
-			    Boot.uncaughtException(new IOException("Cannot create game folder!"));
+			    Game.uncaughtException(new IOException("Cannot create game folder!"));
 			}
 		    }
 		    try {
 			FileUtilities.copyFile(file, new File(LegacyMazeManager.getGameDirectory() + file.getName()));
 		    } catch (final IOException ioe) {
-			Boot.uncaughtException(ioe);
+			Game.uncaughtException(ioe);
 		    }
 		    LegacyMazeManager.loadLegacyFile(filename, false, true);
 		} else {

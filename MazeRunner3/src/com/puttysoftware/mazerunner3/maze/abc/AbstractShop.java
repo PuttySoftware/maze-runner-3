@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.maze.abc;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.items.Shop;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -36,7 +36,7 @@ public abstract class AbstractShop extends AbstractMazeObject {
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	if (PreferencesManager.getRPGEnabled()) {
-	    final Shop shop = Boot.getApplication().getGenericShop(this.shopType);
+	    final Shop shop = Game.getApplication().getGenericShop(this.shopType);
 	    if (shop != null) {
 		shop.showShop();
 	    }

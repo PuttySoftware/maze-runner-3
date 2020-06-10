@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractAmulet;
 import com.puttysoftware.mazerunner3.maze.effects.MazeEffectConstants;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
@@ -36,15 +36,15 @@ public class FireAmulet extends AbstractAmulet {
 
     @Override
     public void stepAction() {
-	final int x = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationX();
-	final int y = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationY();
-	final int z = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
-	Boot.getApplication().getMazeManager().getMaze().hotGround(x, y, z);
+	final int x = Game.getApplication().getMazeManager().getMaze().getPlayerLocationX();
+	final int y = Game.getApplication().getMazeManager().getMaze().getPlayerLocationY();
+	final int z = Game.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
+	Game.getApplication().getMazeManager().getMaze().hotGround(x, y, z);
     }
 
     @Override
     public void postMoveActionHook() {
-	Boot.getApplication().getGameManager().activateEffect(MazeEffectConstants.EFFECT_FIERY,
+	Game.getApplication().getGameManager().activateEffect(MazeEffectConstants.EFFECT_FIERY,
 		FireAmulet.EFFECT_DURATION);
     }
 }

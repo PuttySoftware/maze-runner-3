@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -40,8 +40,8 @@ public class CrumblingWall extends AbstractWall {
 
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final int z = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
-	Boot.getApplication().getGameManager().morph(new Empty(), dirX, dirY, z, MazeConstants.LAYER_OBJECT);
+	final int z = Game.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
+	Game.getApplication().getGameManager().morph(new Empty(), dirX, dirY, z, MazeConstants.LAYER_OBJECT);
 	SoundLoader.playSound(SoundConstants.SOUND_CRACK);
     }
 

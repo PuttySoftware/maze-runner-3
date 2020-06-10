@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
 package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -43,7 +43,7 @@ public abstract class AbstractGenerator extends AbstractWall {
 	// Remove barriers if present
 	boolean scanResult = false;
 	boolean flag = false;
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int pz = app.getMazeManager().getMaze().getPlayerLocationZ();
 	final int pw = app.getMazeManager().getMaze().getPlayerLocationW();
 	String mo2Name, mo4Name, mo6Name, mo8Name, invalidName, horzName, vertName;
@@ -132,7 +132,7 @@ public abstract class AbstractGenerator extends AbstractWall {
 	// Generate barriers again
 	boolean scanResult = false;
 	boolean flag = false;
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final int pz = app.getMazeManager().getMaze().getPlayerLocationZ();
 	String mo2Name, mo4Name, mo6Name, mo8Name, invalidName, horzName, vertName;
 	invalidName = new EmptyVoid().getName();
@@ -211,7 +211,7 @@ public abstract class AbstractGenerator extends AbstractWall {
     }
 
     protected boolean scan(final int dir, final int x, final int y, final int z, final int limit, final boolean o) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final String invalidName = new EmptyVoid().getName();
 	if (dir == DirectionConstants.DIRECTION_EAST) {
 	    for (int l = 1; l < limit; l++) {
@@ -350,7 +350,7 @@ public abstract class AbstractGenerator extends AbstractWall {
     }
 
     protected void generate(final int dir, final int x, final int y, final int z, final int limit, final boolean o) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	final String invalidName = new EmptyVoid().getName();
 	if (dir == DirectionConstants.DIRECTION_EAST) {
 	    for (int l = 1; l < limit; l++) {

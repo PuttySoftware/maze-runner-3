@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractBomb;
 import com.puttysoftware.mazerunner3.maze.utilities.ColorConstants;
 
@@ -33,6 +33,6 @@ public class ShuffleBomb extends AbstractBomb {
     @Override
     public void useActionHook(final int x, final int y, final int z) {
 	// Shuffle objects
-	Boot.getApplication().getMazeManager().getMaze().radialScanShuffleObjects(x, y, z, AbstractBomb.EFFECT_RADIUS);
+	Game.getApplication().getMazeManager().getMaze().radialScanShuffleObjects(x, y, z, AbstractBomb.EFFECT_RADIUS);
     }
 }

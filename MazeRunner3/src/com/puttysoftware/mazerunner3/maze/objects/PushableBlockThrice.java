@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -36,7 +36,7 @@ public class PushableBlockThrice extends AbstractMovableObject {
     @Override
     public void pushAction(final MazeObjectInventory inv, final AbstractMazeObject mo, final int x, final int y,
 	    final int pushX, final int pushY) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().updatePushedPosition(x, y, pushX, pushY, this);
 	SoundLoader.playSound(SoundConstants.SOUND_PUSH_PULL);
 	app.getGameManager().morphOther(new PushableBlockTwice(), pushX, pushY, MazeConstants.LAYER_OBJECT);

@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
 import com.puttysoftware.images.BufferedImageIcon;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.ai.window.AbstractWindowAIRoutine;
 import com.puttysoftware.mazerunner3.battle.AbstractBattle;
 import com.puttysoftware.mazerunner3.battle.BattleResults;
@@ -166,7 +166,7 @@ public class WindowBattleGUI {
 		boolean success = true;
 		final String cmd = e.getActionCommand();
 		final WindowBattleGUI wbg = WindowBattleGUI.this;
-		final AbstractBattle b = Boot.getApplication().getBattle();
+		final AbstractBattle b = Game.getApplication().getBattle();
 		// Clear Message Area
 		wbg.clearMessageArea();
 		// Display Beginning Stats
@@ -248,7 +248,7 @@ public class WindowBattleGUI {
 		    wbg.battleFrame.pack();
 		}
 	    } catch (final Throwable t) {
-		Boot.uncaughtException(t);
+		Game.uncaughtException(t);
 	    }
 	}
     }

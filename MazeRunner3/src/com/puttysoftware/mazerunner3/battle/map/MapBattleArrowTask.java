@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
 package com.puttysoftware.mazerunner3.battle.map;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.battle.AbstractBattle;
 import com.puttysoftware.mazerunner3.creatures.faiths.Faith;
 import com.puttysoftware.mazerunner3.creatures.faiths.FaithConstants;
@@ -39,7 +39,7 @@ class MapBattleArrowTask extends Thread {
     public void run() {
 	try {
 	    boolean res = true;
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    final Maze m = this.bd.getBattleMaze();
 	    final int px = this.bd.getActiveCharacter().getX();
 	    final int py = this.bd.getActiveCharacter().getY();
@@ -105,7 +105,7 @@ class MapBattleArrowTask extends Thread {
 	    }
 	    app.getBattle().arrowDone(hit);
 	} catch (final Throwable t) {
-	    Boot.uncaughtException(t);
+	    Game.uncaughtException(t);
 	}
     }
 

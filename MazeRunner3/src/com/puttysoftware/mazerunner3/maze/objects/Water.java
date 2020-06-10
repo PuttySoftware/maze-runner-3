@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
@@ -30,14 +30,14 @@ public class Water extends AbstractField {
 
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	Boot.getApplication().showMessage("You'll drown");
+	Game.getApplication().showMessage("You'll drown");
 	SoundLoader.playSound(SoundConstants.SOUND_WATER);
     }
 
     @Override
     public void pushIntoAction(final MazeObjectInventory inv, final AbstractMazeObject pushed, final int x, final int y,
 	    final int z) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (pushed.isPushable()) {
 	    app.getGameManager().morph(new SunkenBlock(), x, y, z, MazeConstants.LAYER_GROUND);
 	    app.getGameManager().morph(new Empty(), x, y, z, MazeConstants.LAYER_OBJECT);

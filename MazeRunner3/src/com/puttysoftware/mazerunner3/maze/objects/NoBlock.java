@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -34,7 +34,7 @@ public class NoBlock extends AbstractAntiObject {
     public void pushIntoAction(final MazeObjectInventory inv, final AbstractMazeObject mo, final int x, final int y,
 	    final int z) {
 	// Destroy incoming block
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().morph(this, x, y, z, MazeConstants.LAYER_OBJECT);
 	SoundLoader.playSound(SoundConstants.SOUND_DESTROY);
     }
@@ -43,7 +43,7 @@ public class NoBlock extends AbstractAntiObject {
     public void pullIntoAction(final MazeObjectInventory inv, final AbstractMazeObject mo, final int x, final int y,
 	    final int z) {
 	// Destroy incoming block
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().morph(this, x, y, z, MazeConstants.LAYER_OBJECT);
 	SoundLoader.playSound(SoundConstants.SOUND_DESTROY);
     }

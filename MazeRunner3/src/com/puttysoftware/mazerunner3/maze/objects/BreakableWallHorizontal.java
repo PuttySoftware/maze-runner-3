@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -42,7 +42,7 @@ public class BreakableWallHorizontal extends AbstractWall {
 
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final int dirZ = Boot.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
+	final int dirZ = Game.getApplication().getMazeManager().getMaze().getPlayerLocationZ();
 	this.chainReactionAction(dirX, dirY, dirZ);
 	SoundLoader.playSound(SoundConstants.SOUND_CRACK);
     }
@@ -50,8 +50,8 @@ public class BreakableWallHorizontal extends AbstractWall {
     @Override
     public void chainReactionAction(final int dirX, final int dirY, final int dirZ) {
 	// Break up
-	Boot.getApplication().getGameManager().morph(new Empty(), dirX, dirY, dirZ, MazeConstants.LAYER_OBJECT);
-	final Maze m = Boot.getApplication().getMazeManager().getMaze();
+	Game.getApplication().getGameManager().morph(new Empty(), dirX, dirY, dirZ, MazeConstants.LAYER_OBJECT);
+	final Maze m = Game.getApplication().getMazeManager().getMaze();
 	try {
 	    final AbstractMazeObject left = m.getCell(dirX - 1, dirY, dirZ, MazeConstants.LAYER_OBJECT);
 	    if (left.isOfType(TypeConstants.TYPE_BREAKABLE_H)) {

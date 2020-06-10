@@ -17,7 +17,7 @@ import javax.swing.WindowConstants;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.images.BufferedImageIcon;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.DrawGrid;
 import com.puttysoftware.mazerunner3.battle.AbstractBattle;
 import com.puttysoftware.mazerunner3.loader.ImageTransformer;
@@ -68,13 +68,13 @@ class MapBattleGUI {
     }
 
     void showBattle() {
-	Boot.getApplication().getMenuManager().setBattleMenus();
+	Game.getApplication().getMenuManager().setBattleMenus();
 	if (PreferencesManager.getMusicEnabled(PreferencesManager.MUSIC_BATTLE)) {
 	    MusicLoader.stopMusic();
 	    MusicLoader.playMusic("battle");
 	}
 	this.battleFrame.setVisible(true);
-	this.battleFrame.setJMenuBar(Boot.getApplication().getMenuManager().getMainMenuBar());
+	this.battleFrame.setJMenuBar(Game.getApplication().getMenuManager().getMainMenuBar());
     }
 
     void hideBattle() {
@@ -151,7 +151,7 @@ class MapBattleGUI {
 	borderPane.setLayout(new BorderLayout());
 	this.messageLabel = new JLabel(" ");
 	this.messageLabel.setOpaque(true);
-	if (Boot.inDebugMode()) {
+	if (Game.inDebugMode()) {
 	    this.battleFrame = new JFrame("Battle (DEBUG)");
 	} else {
 	    this.battleFrame = new JFrame("Battle");
@@ -231,7 +231,7 @@ class MapBattleGUI {
 			return;
 		    }
 		}
-		final AbstractBattle bl = Boot.getApplication().getBattle();
+		final AbstractBattle bl = Game.getApplication().getBattle();
 		final MapBattleGUI bg = MapBattleGUI.this;
 		if (bg.eventHandlersOn) {
 		    final int keyCode = e.getKeyCode();
@@ -286,7 +286,7 @@ class MapBattleGUI {
 		    }
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -301,7 +301,7 @@ class MapBattleGUI {
 			return;
 		    }
 		}
-		final AbstractBattle bl = Boot.getApplication().getBattle();
+		final AbstractBattle bl = Game.getApplication().getBattle();
 		final MapBattleGUI bg = MapBattleGUI.this;
 		if (bg.eventHandlersOn) {
 		    final int keyCode = e.getKeyCode();
@@ -356,7 +356,7 @@ class MapBattleGUI {
 		    }
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
     }

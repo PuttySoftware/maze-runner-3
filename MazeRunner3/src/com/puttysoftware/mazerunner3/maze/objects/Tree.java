@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -30,7 +30,7 @@ public class Tree extends AbstractInfiniteLock {
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	if (this.isConditionallySolid(inv)) {
-	    Boot.getApplication().showMessage("You need an axe");
+	    Game.getApplication().showMessage("You need an axe");
 	}
 	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
     }
@@ -40,7 +40,7 @@ public class Tree extends AbstractInfiniteLock {
 	if (!this.getKey().isInfinite()) {
 	    inv.removeItem(this.getKey());
 	}
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().decayTo(new CutTree());
 	SoundLoader.playSound(SoundConstants.SOUND_UNLOCK);
     }

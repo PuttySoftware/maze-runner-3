@@ -27,7 +27,7 @@ import javax.swing.WindowConstants;
 
 import com.puttysoftware.images.BufferedImageIcon;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.DrawGrid;
 import com.puttysoftware.mazerunner3.loader.ImageTransformer;
 import com.puttysoftware.mazerunner3.loader.MusicLoader;
@@ -83,7 +83,7 @@ class GameGUIManager {
 
     void initViewManager() {
 	if (this.vwMgr == null) {
-	    this.vwMgr = Boot.getApplication().getGameManager().getViewManager();
+	    this.vwMgr = Game.getApplication().getGameManager().getViewManager();
 	    this.setUpGUI();
 	}
     }
@@ -99,7 +99,7 @@ class GameGUIManager {
     }
 
     public void showOutput() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getMenuManager().setGameMenus();
 	if (PreferencesManager.getMusicEnabled(PreferencesManager.MUSIC_EXPLORING)) {
 	    MusicLoader.playMusic("exploring");
@@ -160,7 +160,7 @@ class GameGUIManager {
     public void redrawMaze() {
 	// Draw the maze, if it is visible
 	if (this.outputFrame.isVisible()) {
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    final Maze m = app.getMazeManager().getMaze();
 	    int x, y, u, v;
 	    int xFix, yFix;
@@ -276,7 +276,7 @@ class GameGUIManager {
     void redrawOneSquare(final int x, final int y, final boolean useDelay, final AbstractMazeObject obj4) {
 	// Draw the maze, if it is visible
 	if (this.outputFrame.isVisible()) {
-	    final Application app = Boot.getApplication();
+	    final Application app = Game.getApplication();
 	    final Maze m = app.getMazeManager().getMaze();
 	    int u, v;
 	    int xFix, yFix;
@@ -403,7 +403,7 @@ class GameGUIManager {
 	this.messageLabel = new JLabel(" ");
 	this.messageLabel.setOpaque(true);
 	this.outputFrame = new JFrame("MazeRunnerII");
-	final Image iconlogo = Boot.getApplication().getIconLogo();
+	final Image iconlogo = Game.getApplication().getIconLogo();
 	this.outputFrame.setIconImage(iconlogo);
 	this.drawGrid = new DrawGrid(PreferencesManager.getViewingWindowSize());
 	this.outputPane = new GameDraw(this.drawGrid);
@@ -423,7 +423,7 @@ class GameGUIManager {
 	this.messageLabel = new JLabel(" ");
 	this.messageLabel.setOpaque(true);
 	this.outputFrame = new JFrame("MazeRunnerII");
-	final Image iconlogo = Boot.getApplication().getIconLogo();
+	final Image iconlogo = Game.getApplication().getIconLogo();
 	this.outputFrame.setIconImage(iconlogo);
 	this.drawGrid = new DrawGrid(PreferencesManager.getViewingWindowSize());
 	this.outputPane = new GameDraw(this.drawGrid);
@@ -445,7 +445,7 @@ class GameGUIManager {
 
 	@Override
 	public void keyPressed(final KeyEvent e) {
-	    final GameLogicManager glm = Boot.getApplication().getGameManager();
+	    final GameLogicManager glm = Game.getApplication().getGameManager();
 	    if (!glm.isArrowActive()) {
 		if (!PreferencesManager.oneMove()) {
 		    if (e.isAltDown()) {
@@ -459,7 +459,7 @@ class GameGUIManager {
 
 	@Override
 	public void keyReleased(final KeyEvent e) {
-	    final GameLogicManager glm = Boot.getApplication().getGameManager();
+	    final GameLogicManager glm = Game.getApplication().getGameManager();
 	    if (!glm.isArrowActive()) {
 		if (PreferencesManager.oneMove()) {
 		    if (e.isAltDown()) {
@@ -478,7 +478,7 @@ class GameGUIManager {
 
 	public void handleMovement(final KeyEvent e) {
 	    try {
-		final GameLogicManager glm = Boot.getApplication().getGameManager();
+		final GameLogicManager glm = Game.getApplication().getGameManager();
 		final int keyCode = e.getKeyCode();
 		if (e.isShiftDown()) {
 		    glm.setPullInProgress(true);
@@ -545,7 +545,7 @@ class GameGUIManager {
 		case KeyEvent.VK_ESCAPE:
 		    if (glm.isTeleporting()) {
 			glm.setTeleporting(false);
-			Boot.getApplication().showMessage(" ");
+			Game.getApplication().showMessage(" ");
 		    }
 		    break;
 		default:
@@ -555,13 +555,13 @@ class GameGUIManager {
 		    glm.setPullInProgress(false);
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
 	public void handleArrows(final KeyEvent e) {
 	    try {
-		final GameLogicManager glm = Boot.getApplication().getGameManager();
+		final GameLogicManager glm = Game.getApplication().getGameManager();
 		final int keyCode = e.getKeyCode();
 		switch (keyCode) {
 		case KeyEvent.VK_NUMPAD4:
@@ -620,7 +620,7 @@ class GameGUIManager {
 		    break;
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -638,7 +638,7 @@ class GameGUIManager {
 	@Override
 	public void windowClosing(final WindowEvent we) {
 	    try {
-		final Application app = Boot.getApplication();
+		final Application app = Game.getApplication();
 		boolean success = false;
 		int status = 0;
 		if (app.getMazeManager().getDirty()) {
@@ -655,7 +655,7 @@ class GameGUIManager {
 		    app.getGameManager().exitGame();
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 
@@ -693,7 +693,7 @@ class GameGUIManager {
 	@Override
 	public void mouseClicked(final MouseEvent e) {
 	    try {
-		final GameLogicManager gm = Boot.getApplication().getGameManager();
+		final GameLogicManager gm = Game.getApplication().getGameManager();
 		if (gm.usingAnItem()) {
 		    final int x = e.getX();
 		    final int y = e.getY();
@@ -710,7 +710,7 @@ class GameGUIManager {
 		    gm.controllableTeleportHandler(x, y);
 		}
 	    } catch (final Exception ex) {
-		Boot.uncaughtException(ex);
+		Game.uncaughtException(ex);
 	    }
 	}
 

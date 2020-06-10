@@ -12,7 +12,7 @@ import javax.swing.JFileChooser;
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.fileutils.FilenameChecker;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.Extension;
 
 public class RuleSetManager {
@@ -23,7 +23,7 @@ public class RuleSetManager {
 
     // Methods
     public static void importRuleSet() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	String filename, extension;
 	final JFileChooser fc = new JFileChooser();
 	final RuleSetFilter xrsf = new RuleSetFilter();
@@ -58,7 +58,7 @@ public class RuleSetManager {
     }
 
     public static boolean exportRuleSet() {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	String filename = "";
 	String fileOnly = "\\";
 	String extension;

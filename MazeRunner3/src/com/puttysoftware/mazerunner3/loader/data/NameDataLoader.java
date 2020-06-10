@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.puttysoftware.fileutils.ResourceStreamReader;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.names.NamesConstants;
 
 public class NameDataLoader {
@@ -62,7 +62,7 @@ public class NameDataLoader {
 	    }
 	    return res;
 	} catch (final Exception e) {
-	    Boot.uncaughtException(e);
+	    Game.uncaughtException(e);
 	    return null;
 	}
     }
@@ -106,7 +106,7 @@ public class NameDataLoader {
 		return res;
 	    }
 	} catch (final Exception e) {
-	    Boot.uncaughtException(e);
+	    Game.uncaughtException(e);
 	    return null;
 	}
     }
@@ -122,7 +122,7 @@ public class NameDataLoader {
 		}
 	    }
 	} catch (final Exception e) {
-	    Boot.uncaughtException(e);
+	    Game.uncaughtException(e);
 	}
     }
 

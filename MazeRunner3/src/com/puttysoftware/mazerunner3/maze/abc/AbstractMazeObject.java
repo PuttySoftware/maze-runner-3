@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.BitSet;
 
 import com.puttysoftware.images.BufferedImageIcon;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.rulesets.RuleSet;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
@@ -260,7 +260,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
 	    return copy;
 	} catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
 		| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-	    Boot.uncaughtException(e);
+	    Game.uncaughtException(e);
 	    return null;
 	}
     }
@@ -584,7 +584,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
      */
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
-	Boot.getApplication().showMessage("Can't go that way");
+	Game.getApplication().showMessage("Can't go that way");
     }
 
     /**
@@ -626,7 +626,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
     }
 
     public void editorProbeHook() {
-	Boot.getApplication().showMessage(this.getName());
+	Game.getApplication().showMessage(this.getName());
     }
 
     public AbstractMazeObject editorPropertiesHook() {
@@ -731,8 +731,8 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
 	    final int pushY) {
 	// Play push failed sound, if it's enabled
 	SoundLoader.playSound(SoundConstants.SOUND_ACTION_FAILED);
-	Boot.getApplication().getGameManager().keepNextMessage();
-	Boot.getApplication().showMessage("Can't push that");
+	Game.getApplication().getGameManager().keepNextMessage();
+	Game.getApplication().showMessage("Can't push that");
     }
 
     /**
@@ -786,8 +786,8 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
     public void pullFailedAction(final MazeObjectInventory inv, final int x, final int y, final int pullX,
 	    final int pullY) {
 	SoundLoader.playSound(SoundConstants.SOUND_ACTION_FAILED);
-	Boot.getApplication().getGameManager().keepNextMessage();
-	Boot.getApplication().showMessage("Can't pull that");
+	Game.getApplication().getGameManager().keepNextMessage();
+	Game.getApplication().showMessage("Can't pull that");
     }
 
     public boolean arrowHitBattleCheck() {
@@ -1054,7 +1054,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
 	if (ident.equals(this.getIdentifierV1())) {
 	    final String savedIdent = reader.readString();
 	    if (!savedIdent.equals("NULL")) {
-		this.saved = Boot.getApplication().getObjects().readLegacySavedMazeObject(reader, savedIdent,
+		this.saved = Game.getApplication().getObjects().readLegacySavedMazeObject(reader, savedIdent,
 			LegacyFormatConstants.LEGACY_MAZE_FORMAT_1);
 	    }
 	    final int cc = this.getCustomFormat();
@@ -1077,7 +1077,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
 	if (ident.equals(this.getIdentifier())) {
 	    final String savedIdent = reader.readString();
 	    if (!savedIdent.equals("NULL")) {
-		this.saved = Boot.getApplication().getObjects().readLegacySavedMazeObject(reader, savedIdent,
+		this.saved = Game.getApplication().getObjects().readLegacySavedMazeObject(reader, savedIdent,
 			LegacyFormatConstants.LEGACY_MAZE_FORMAT_2);
 	    }
 	    final int cc = this.getCustomFormat();
@@ -1101,7 +1101,7 @@ public abstract class AbstractMazeObject implements TypeConstants, RandomGenerat
 	    final String savedIdent = reader.readString();
 	    reader.readClosingGroup(AbstractMazeObject.OBJECT_SAVED_GROUP);
 	    if (!savedIdent.equals("NULL")) {
-		this.saved = Boot.getApplication().getObjects().readSavedMazeObject(reader, savedIdent,
+		this.saved = Game.getApplication().getObjects().readSavedMazeObject(reader, savedIdent,
 			FormatConstants.MAZE_FORMAT_1);
 	    }
 	    reader.readOpeningGroup(AbstractMazeObject.OBJECT_SETTINGS_GROUP);

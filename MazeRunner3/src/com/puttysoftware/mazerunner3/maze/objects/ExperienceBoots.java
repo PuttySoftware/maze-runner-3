@@ -18,7 +18,7 @@ Any questions should be directed to the author via email at: fantastle@worldwiza
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractBoots;
@@ -52,12 +52,12 @@ public class ExperienceBoots extends AbstractBoots {
     public void stepAction() {
 	final PartyMember playerCharacter = PartyManager.getParty().getLeader();
 	playerCharacter.offsetExperience(ExperienceBoots.EXP_AMOUNT);
-	Boot.getApplication().getGameManager().addToScore(ExperienceBoots.EXP_AMOUNT);
+	Game.getApplication().getGameManager().addToScore(ExperienceBoots.EXP_AMOUNT);
 	// Level Up Check
 	if (playerCharacter.checkLevelUp()) {
 	    playerCharacter.levelUp();
-	    Boot.getApplication().getGameManager().keepNextMessage();
-	    Boot.getApplication().showMessage("You reached level " + playerCharacter.getLevel() + ".");
+	    Game.getApplication().getGameManager().keepNextMessage();
+	    Game.getApplication().showMessage("You reached level " + playerCharacter.getLevel() + ".");
 	}
     }
 }

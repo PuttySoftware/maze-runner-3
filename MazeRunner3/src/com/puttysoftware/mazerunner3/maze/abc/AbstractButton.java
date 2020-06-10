@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
  */
 package com.puttysoftware.mazerunner3.maze.abc;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -67,8 +67,8 @@ public abstract class AbstractButton extends AbstractMazeObject {
     // Scriptability
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	Boot.getApplication().getMazeManager().getMaze().findAllObjectPairsAndSwap(this.offState, this.onState);
-	Boot.getApplication().getGameManager().redrawMaze();
+	Game.getApplication().getMazeManager().getMaze().findAllObjectPairsAndSwap(this.offState, this.onState);
+	Game.getApplication().getGameManager().redrawMaze();
 	SoundLoader.playSound(SoundConstants.SOUND_BUTTON);
     }
 

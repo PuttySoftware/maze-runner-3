@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -40,7 +40,7 @@ public abstract class AbstractProgrammableLock extends AbstractSingleLock {
 
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (!app.getGameManager().isEffectActive(MazeEffectConstants.EFFECT_GHOSTLY)
 		&& !inv.isItemThere(new PasswallBoots())) {
 	    if (this.getKey() != AbstractProgrammableLock.SIGNAL) {
@@ -51,7 +51,7 @@ public abstract class AbstractProgrammableLock extends AbstractSingleLock {
 	    app.getGameManager().decay();
 	    // Play unlock sound, if it's enabled
 	    SoundLoader.playSound(SoundConstants.SOUND_WALK);
-	    Boot.getApplication().getGameManager().addToScore(AbstractLock.SCORE_UNLOCK);
+	    Game.getApplication().getGameManager().addToScore(AbstractLock.SCORE_UNLOCK);
 	} else {
 	    SoundLoader.playSound(SoundConstants.SOUND_WALK);
 	}
@@ -61,9 +61,9 @@ public abstract class AbstractProgrammableLock extends AbstractSingleLock {
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	if (this.isConditionallyDirectionallySolid(ie, dirX, dirY, inv)) {
 	    if (this.getKey() == AbstractProgrammableLock.SIGNAL) {
-		Boot.getApplication().showMessage("You need a Crystal");
+		Game.getApplication().showMessage("You need a Crystal");
 	    } else {
-		Boot.getApplication().showMessage("You need a " + this.getKey().getName());
+		Game.getApplication().showMessage("You need a " + this.getKey().getName());
 	    }
 	}
 	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
@@ -105,7 +105,7 @@ public abstract class AbstractProgrammableLock extends AbstractSingleLock {
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-	final MazeObjectList objects = Boot.getApplication().getObjects();
+	final MazeObjectList objects = Game.getApplication().getObjects();
 	final String[] tempKeyNames = objects.getAllProgrammableKeyNames();
 	final AbstractMazeObject[] tempKeys = objects.getAllProgrammableKeys();
 	final String[] keyNames = new String[tempKeyNames.length + 1];
@@ -143,7 +143,7 @@ public abstract class AbstractProgrammableLock extends AbstractSingleLock {
     @Override
     protected AbstractMazeObject readLegacyMazeObjectHook(final XLegacyDataReader reader, final int formatVersion)
 	    throws IOException {
-	final AbstractMazeObject o = Boot.getApplication().getObjects().readLegacyMazeObject(reader, formatVersion);
+	final AbstractMazeObject o = Game.getApplication().getObjects().readLegacyMazeObject(reader, formatVersion);
 	if (o == null) {
 	    this.setKey(AbstractProgrammableLock.SIGNAL);
 	} else {
@@ -155,7 +155,7 @@ public abstract class AbstractProgrammableLock extends AbstractSingleLock {
     @Override
     protected AbstractMazeObject readMazeObjectHook(final XDataReader reader, final int formatVersion)
 	    throws IOException {
-	final AbstractMazeObject o = Boot.getApplication().getObjects().readMazeObject(reader, formatVersion);
+	final AbstractMazeObject o = Game.getApplication().getObjects().readMazeObject(reader, formatVersion);
 	if (o == null) {
 	    this.setKey(AbstractProgrammableLock.SIGNAL);
 	} else {

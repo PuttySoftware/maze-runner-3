@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
  */
 package com.puttysoftware.mazerunner3.maze.abc;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -25,7 +25,7 @@ public abstract class AbstractBarrier extends AbstractWall {
     @Override
     public void moveFailedAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	// Display impassable barrier message
-	Boot.getApplication().showMessage("The barrier is impassable!");
+	Game.getApplication().showMessage("The barrier is impassable!");
 	SoundLoader.playSound(SoundConstants.SOUND_BARRIER);
 	// Hurt the player for trying to cross the barrier
 	PartyManager.getParty().getLeader().doDamagePercentage(AbstractBarrier.BARRIER_DAMAGE_PERCENT);

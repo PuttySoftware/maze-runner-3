@@ -8,7 +8,7 @@ package com.puttysoftware.mazerunner3.maze.abc;
 import java.io.IOException;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -76,7 +76,7 @@ public abstract class AbstractContainer extends AbstractLock {
 
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	if (!app.getGameManager().isEffectActive(MazeEffectConstants.EFFECT_GHOSTLY)
 		&& !inv.isItemThere(new PasswallBoots())) {
 	    if (!this.getKey().isInfinite()) {
@@ -90,7 +90,7 @@ public abstract class AbstractContainer extends AbstractLock {
 	    }
 	    SoundLoader.playSound(SoundConstants.SOUND_UNLOCK);
 	    app.getGameManager().backUpPlayer(this);
-	    Boot.getApplication().getGameManager().addToScore(AbstractLock.SCORE_UNLOCK);
+	    Game.getApplication().getGameManager().addToScore(AbstractLock.SCORE_UNLOCK);
 	} else {
 	    SoundLoader.playSound(SoundConstants.SOUND_WALK);
 	}
@@ -99,9 +99,9 @@ public abstract class AbstractContainer extends AbstractLock {
     @Override
     public void editorProbeHook() {
 	if (!this.inside.getName().equals("Empty")) {
-	    Boot.getApplication().showMessage(this.getName() + ": Contains " + this.inside.getName());
+	    Game.getApplication().showMessage(this.getName() + ": Contains " + this.inside.getName());
 	} else {
-	    Boot.getApplication().showMessage(this.getName() + ": Contains Nothing");
+	    Game.getApplication().showMessage(this.getName() + ": Contains Nothing");
 	}
     }
 
@@ -118,7 +118,7 @@ public abstract class AbstractContainer extends AbstractLock {
     @Override
     protected AbstractMazeObject readLegacyMazeObjectHook(final XLegacyDataReader reader, final int formatVersion)
 	    throws IOException {
-	final MazeObjectList objectList = Boot.getApplication().getObjects();
+	final MazeObjectList objectList = Game.getApplication().getObjects();
 	this.inside = objectList.readLegacyMazeObject(reader, formatVersion);
 	return this;
     }
@@ -126,7 +126,7 @@ public abstract class AbstractContainer extends AbstractLock {
     @Override
     protected AbstractMazeObject readMazeObjectHook(final XDataReader reader, final int formatVersion)
 	    throws IOException {
-	final MazeObjectList objectList = Boot.getApplication().getObjects();
+	final MazeObjectList objectList = Game.getApplication().getObjects();
 	this.inside = objectList.readMazeObject(reader, formatVersion);
 	return this;
     }

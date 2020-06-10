@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -132,7 +132,7 @@ public abstract class AbstractNWayTeleport extends AbstractTeleport {
     // Scriptability
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	String input = null;
 	int n = -1;
 	while (input == null) {
@@ -176,7 +176,7 @@ public abstract class AbstractNWayTeleport extends AbstractTeleport {
 	    return;
 	}
 	this.ways = Integer.parseInt(respN) - 1;
-	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	final MazeEditorLogic me = Game.getApplication().getEditor();
 	me.setNWayDestCount(this.ways + 1);
     }
 

@@ -7,7 +7,7 @@ package com.puttysoftware.mazerunner3.maze.abc;
 
 import java.io.IOException;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.maze.MazeConstants;
 import com.puttysoftware.mazerunner3.maze.objects.Empty;
@@ -68,14 +68,14 @@ public abstract class AbstractCharacter extends AbstractMazeObject {
     @Override
     protected AbstractMazeObject readLegacyMazeObjectHook(final XLegacyDataReader reader, final int formatVersion)
 	    throws IOException {
-	this.savedObject = Boot.getApplication().getObjects().readLegacyMazeObject(reader, formatVersion);
+	this.savedObject = Game.getApplication().getObjects().readLegacyMazeObject(reader, formatVersion);
 	return this;
     }
 
     @Override
     protected AbstractMazeObject readMazeObjectHook(final XDataReader reader, final int formatVersion)
 	    throws IOException {
-	this.savedObject = Boot.getApplication().getObjects().readMazeObject(reader, formatVersion);
+	this.savedObject = Game.getApplication().getObjects().readMazeObject(reader, formatVersion);
 	return this;
     }
 }

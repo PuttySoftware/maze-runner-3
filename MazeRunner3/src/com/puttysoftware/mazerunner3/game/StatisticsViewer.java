@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.creatures.StatConstants;
 import com.puttysoftware.mazerunner3.creatures.party.PartyManager;
 import com.puttysoftware.mazerunner3.creatures.party.PartyMember;
@@ -64,7 +64,7 @@ public class StatisticsViewer {
 
     private static void setUpGUI() {
 	if (!StatisticsViewer.inited) {
-	    if (Boot.inDebugMode()) {
+	    if (Game.inDebugMode()) {
 		StatisticsViewer.statisticsFrame = new JFrame("Statistics (DEBUG)");
 	    } else {
 		StatisticsViewer.statisticsFrame = new JFrame("Statistics");

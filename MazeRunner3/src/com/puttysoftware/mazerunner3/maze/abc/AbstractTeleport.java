@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.abc;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -97,7 +97,7 @@ public abstract class AbstractTeleport extends AbstractMazeObject {
     }
 
     public int getDestinationLevel() {
-	return Boot.getApplication().getMazeManager().getMaze().getPlayerLocationW();
+	return Game.getApplication().getMazeManager().getMaze().getPlayerLocationW();
     }
 
     // Transformer methods
@@ -116,7 +116,7 @@ public abstract class AbstractTeleport extends AbstractMazeObject {
     // Scriptability
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().updatePositionAbsolute(this.getDestinationRow(), this.getDestinationColumn(),
 		this.getDestinationFloor());
 	SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
@@ -137,7 +137,7 @@ public abstract class AbstractTeleport extends AbstractMazeObject {
 
     @Override
     public void editorProbeHook() {
-	Boot.getApplication().showMessage(this.getName() + ": Destination (" + (this.destCol + 1) + ","
+	Game.getApplication().showMessage(this.getName() + ": Destination (" + (this.destCol + 1) + ","
 		+ (this.destRow + 1) + "," + (this.destFloor + 1) + ")");
     }
 

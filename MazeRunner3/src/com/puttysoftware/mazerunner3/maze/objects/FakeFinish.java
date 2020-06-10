@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: MazeRunnerII@worldw
  */
 package com.puttysoftware.mazerunner3.maze.objects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
 import com.puttysoftware.mazerunner3.loader.SoundLoader;
@@ -21,7 +21,7 @@ public class FakeFinish extends AbstractPassThroughObject {
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
 	SoundLoader.playSound(SoundConstants.SOUND_WALK_FAILED);
-	Boot.getApplication().showMessage("Fake exit!");
+	Game.getApplication().showMessage("Fake exit!");
     }
 
     @Override

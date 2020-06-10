@@ -5,7 +5,7 @@ Any questions should be directed to the author via email at: mazer5d@worldwizard
  */
 package com.puttysoftware.mazerunner3.maze.effects;
 
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.maze.objects.CounterpoisonAmulet;
 
 public class CounterPoisoned extends MazeEffect {
@@ -17,14 +17,14 @@ public class CounterPoisoned extends MazeEffect {
     @Override
     public void customExtendLogic() {
 	// Apply the effect
-	Boot.getApplication().getMazeManager().getMaze().doCounterpoisonAmulet();
+	Game.getApplication().getMazeManager().getMaze().doCounterpoisonAmulet();
     }
 
     @Override
     public void customTerminateLogic() {
 	// Remove item that granted effect from inventory
-	Boot.getApplication().getGameManager().getObjectInventory().removeItem(new CounterpoisonAmulet());
+	Game.getApplication().getGameManager().getObjectInventory().removeItem(new CounterpoisonAmulet());
 	// Undo the effect
-	Boot.getApplication().getMazeManager().getMaze().undoPoisonAmulets();
+	Game.getApplication().getMazeManager().getMaze().undoPoisonAmulets();
     }
 }

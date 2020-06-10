@@ -6,7 +6,7 @@ Any questions should be directed to the author via email at: products@puttysoftw
 package com.puttysoftware.mazerunner3.maze.objects;
 
 import com.puttysoftware.mazerunner3.Application;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.editor.MazeEditorLogic;
 import com.puttysoftware.mazerunner3.loader.ObjectImageConstants;
 import com.puttysoftware.mazerunner3.loader.SoundConstants;
@@ -29,7 +29,7 @@ public class RandomInvisibleOneShotTeleport extends RandomInvisibleTeleport {
     // Scriptability
     @Override
     public void postMoveAction(final boolean ie, final int dirX, final int dirY, final MazeObjectInventory inv) {
-	final Application app = Boot.getApplication();
+	final Application app = Game.getApplication();
 	app.getGameManager().decay();
 	int dr, dc;
 	do {
@@ -37,7 +37,7 @@ public class RandomInvisibleOneShotTeleport extends RandomInvisibleTeleport {
 	    dc = this.getDestinationColumn();
 	} while (!app.getGameManager().tryUpdatePositionRelative(dr, dc));
 	app.getGameManager().updatePositionRelative(dr, dc, 0);
-	Boot.getApplication().showMessage("Invisible Teleport!");
+	Game.getApplication().showMessage("Invisible Teleport!");
 	SoundLoader.playSound(SoundConstants.SOUND_TELEPORT);
     }
 
@@ -53,7 +53,7 @@ public class RandomInvisibleOneShotTeleport extends RandomInvisibleTeleport {
 
     @Override
     public AbstractMazeObject editorPropertiesHook() {
-	final MazeEditorLogic me = Boot.getApplication().getEditor();
+	final MazeEditorLogic me = Game.getApplication().getEditor();
 	return me.editTeleportDestination(MazeEditorLogic.TELEPORT_TYPE_RANDOM_INVISIBLE_ONESHOT);
     }
 

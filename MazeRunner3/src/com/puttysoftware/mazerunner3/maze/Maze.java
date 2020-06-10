@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import com.puttysoftware.diane.gui.CommonDialogs;
 import com.puttysoftware.fileutils.FileUtilities;
-import com.puttysoftware.mazerunner3.Boot;
+import com.puttysoftware.mazerunner3.Game;
 import com.puttysoftware.mazerunner3.legacyxio.XLegacyDataReader;
 import com.puttysoftware.mazerunner3.maze.abc.AbstractMazeObject;
 import com.puttysoftware.mazerunner3.maze.legacy.LegacyFormatConstants;
@@ -116,7 +116,7 @@ public class Maze implements MazeConstants {
     // Methods
     public static Maze getTemporaryBattleCopy() {
 	final Maze temp = new Maze();
-	temp.addLevel(Boot.getBattleMazeSize(), Boot.getBattleMazeSize(), 1);
+	temp.addLevel(Game.getBattleMazeSize(), Game.getBattleMazeSize(), 1);
 	final MazeObjectList list = new MazeObjectList();
 	final AbstractMazeObject[] glo = list.getAllGroundLayerObjects();
 	final RandomRange gen = new RandomRange(0, glo.length - 1);
@@ -565,7 +565,7 @@ public class Maze implements MazeConstants {
     public void pasteLevel() {
 	if (this.clipboard != null) {
 	    this.mazeData = this.clipboard;
-	    Boot.getApplication().getMazeManager().setDirty(true);
+	    Game.getApplication().getMazeManager().setDirty(true);
 	}
     }
 
